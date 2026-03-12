@@ -142,6 +142,8 @@ export default function ResultsPage() {
       concernSummary: assessment.concernTypes.map((ct) => CONCERN_LABEL[ct]).join(', '),
       recommendation: rec,
       createdAt: new Date(),
+      resolved: null,
+      result: result ?? undefined,
     })
     setSaved(true)
   }

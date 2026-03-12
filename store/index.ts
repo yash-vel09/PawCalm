@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { MOCK_HISTORY } from '@/lib/mockHistory'
 
 export type ConcernType = 'not_eating' | 'low_energy' | 'vomiting' | 'bathroom_issues' | 'unusual_barking' | 'aggression' | 'limping' | 'something_else'
 export type OnsetTiming = 'within_the_hour' | 'earlier_today' | 'yesterday' | 'few_days' | 'week_or_more'
@@ -21,6 +22,8 @@ export interface HistoryEntry {
   concernSummary: string
   recommendation: Recommendation
   createdAt: Date
+  resolved: boolean | null
+  result?: AssessmentResult
 }
 
 export interface AssessmentResult {
@@ -81,6 +84,6 @@ export const useAppStore = create<AppState>((set) => ({
   setCurrentAssessment: (input) => set({ currentAssessment: input }),
   assessmentResult: null,
   setAssessmentResult: (result) => set({ assessmentResult: result }),
-  assessmentHistory: [],
+  assessmentHistory: [...MOCK_HISTORY],
   addToHistory: (entry) => set((s) => ({ assessmentHistory: [...s.assessmentHistory, entry] })),
 }))

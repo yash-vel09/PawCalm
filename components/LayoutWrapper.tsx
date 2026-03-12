@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import BottomNav from '@/components/navigation/BottomNav'
 
-const PATHS_WITHOUT_NAV = ['/onboarding', '/concern', '/processing', '/results']
+const PATHS_WITHOUT_NAV = ['/onboarding', '/concern', '/processing', '/results', '/assessment']
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
