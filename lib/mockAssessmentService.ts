@@ -41,7 +41,10 @@ const MOCK_RESULTS: AssessmentResult[] = [
       "Ensure constant access to fresh water and a quiet, comfortable resting spot away from stimulation",
       "Reduce activity and keep their environment calm for the next 12–24 hours, then reassess",
     ],
-    questions_for_vet: [],
+    questions_for_vet: [
+      "How long should I try home care before scheduling an appointment?",
+      "Are there any symptoms I should watch for that would make this more urgent?",
+    ],
     reassurance_note: "Your instinct to check in is exactly right — that's what a caring pet parent does. These steps often help in situations like this. Give it 24 hours and see how they respond. If things don't improve or you feel more worried, trust that instinct and call your vet.",
   },
 

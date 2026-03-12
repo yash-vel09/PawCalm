@@ -16,6 +16,13 @@ export interface ConcernAssessmentInput {
 
 export type Recommendation = 'monitor' | 'try_this' | 'call_vet'
 
+export interface HistoryEntry {
+  id: string
+  concernSummary: string
+  recommendation: Recommendation
+  createdAt: Date
+}
+
 export interface AssessmentResult {
   likely_explanations: string[]
   what_to_watch_for: string[]
@@ -61,6 +68,8 @@ interface AppState {
   setCurrentAssessment: (input: ConcernAssessmentInput) => void
   assessmentResult: AssessmentResult | null
   setAssessmentResult: (result: AssessmentResult) => void
+  assessmentHistory: HistoryEntry[]
+  addToHistory: (entry: HistoryEntry) => void
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -72,4 +81,6 @@ export const useAppStore = create<AppState>((set) => ({
   setCurrentAssessment: (input) => set({ currentAssessment: input }),
   assessmentResult: null,
   setAssessmentResult: (result) => set({ assessmentResult: result }),
+  assessmentHistory: [],
+  addToHistory: (entry) => set((s) => ({ assessmentHistory: [...s.assessmentHistory, entry] })),
 }))
