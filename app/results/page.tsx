@@ -4,21 +4,19 @@ import { useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { X, Phone } from 'lucide-react'
 import { useAppStore } from '@/store'
-import type { ConcernAssessmentInput, ConcernType } from '@/store'
-
-type Rec = 'monitor' | 'try_this' | 'call_vet'
+import type { ConcernAssessmentInput, ConcernType, Recommendation } from '@/store'
 
 // ─── Labels ────────────────────────────────────────────────────────────────
 
 const CONCERN_LABEL: Record<ConcernType, string> = {
-  not_eating:       'Not eating / eating less',
-  low_energy:       'Low energy / lethargy',
-  vomiting:         'Vomiting / upset stomach',
-  bathroom_issues:  'Bathroom issues',
-  unusual_barking:  'Unusual barking / whining',
-  aggression:       'Aggression / behavior changes',
-  limping:          'Limping / mobility issues',
-  something_else:   'Something else',
+  not_eating:      'Not eating / eating less',
+  low_energy:      'Low energy / lethargy',
+  vomiting:        'Vomiting / upset stomach',
+  bathroom_issues: 'Bathroom issues',
+  unusual_barking: 'Unusual barking / whining',
+  aggression:      'Aggression / behavior changes',
+  limping:         'Limping / mobility issues',
+  something_else:  'Something else',
 }
 
 const ONSET_LABEL: Record<string, string> = {
@@ -41,66 +39,21 @@ function formatLabel(val: string): string {
   return val.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
 }
 
-// ─── Recommendation logic ──────────────────────────────────────────────────
+// ─── Fallback recommendation derivation (no AI result) ─────────────────────
 
-function deriveRec(a: ConcernAssessmentInput): Rec {
+function deriveRec(a: ConcernAssessmentInput): Recommendation {
   const urgentSymptoms = a.physicalSymptoms.some((s) => s === 'swelling' || s === 'shaking')
   const urgentConcern  = a.concernTypes.some((c) => c === 'limping' || c === 'aggression' || c === 'vomiting')
   const acuteOnset     = a.onsetTiming === 'within_the_hour' || a.onsetTiming === 'earlier_today'
-
   if ((a.worryLevel ?? 0) >= 4 || urgentSymptoms || (urgentConcern && acuteOnset)) return 'call_vet'
-
   const hasSymptoms = a.physicalSymptoms.some((s) => s !== 'none')
   if ((a.worryLevel ?? 0) >= 3 || hasSymptoms) return 'try_this'
-
   return 'monitor'
-}
-
-// ─── Guidance steps ────────────────────────────────────────────────────────
-
-type Step = { emoji: string; title: string; detail: string }
-
-function getSteps(rec: Rec, a: ConcernAssessmentInput, dogName: string): Step[] {
-  if (rec === 'call_vet') {
-    return [
-      { emoji: '📞', title: 'Contact your vet now',   detail: "Call your vet clinic or the nearest emergency animal hospital. Describe what you've observed and when it started." },
-      { emoji: '📋', title: 'Prepare key details',    detail: `Be ready to share ${dogName}'s breed, age, current medications, and any recent changes to food or routine.` },
-      { emoji: '🧘', title: `Keep ${dogName} calm`,   detail: 'Limit activity and keep them resting comfortably in a quiet space until they can be seen.' },
-    ]
-  }
-
-  if (rec === 'try_this') {
-    const ct = a.concernTypes
-    const first: Step = ct.includes('not_eating')
-      ? { emoji: '🍲', title: 'Try bland food',            detail: 'Offer small amounts of boiled chicken and plain rice, or lightly warmed kibble to spark interest.' }
-      : ct.includes('vomiting')
-      ? { emoji: '⏸️', title: 'Rest the stomach',          detail: `Withhold food for 2–4 hours, then offer small bland portions. Keep ${dogName} hydrated with fresh water.` }
-      : ct.includes('low_energy')
-      ? { emoji: '💧', title: 'Encourage rest & water',    detail: `Make sure ${dogName} has fresh water and a comfortable, quiet spot to rest.` }
-      : ct.includes('unusual_barking')
-      ? { emoji: '🏠', title: 'Reduce stressors',          detail: 'Identify potential triggers in the environment and minimize them. Calm, predictable routines help.' }
-      : ct.includes('bathroom_issues')
-      ? { emoji: '🚶', title: 'Increase outdoor access',   detail: `Give ${dogName} more frequent outdoor trips. Note any unusual color, consistency, or blood.` }
-      : { emoji: '👀', title: 'Monitor closely',           detail: `Observe ${dogName}'s eating, energy, and behavior closely over the next few hours.` }
-
-    return [
-      first,
-      { emoji: '📝', title: 'Track any changes',     detail: 'Log time, frequency, and severity of symptoms. This context is helpful if a vet visit becomes needed.' },
-      { emoji: '📞', title: 'Call vet if worsening', detail: 'If symptoms intensify, new ones appear, or you feel more concerned, contact your vet right away.' },
-    ]
-  }
-
-  // monitor
-  return [
-    { emoji: '⏰', title: 'Check in every few hours', detail: `Observe ${dogName}'s eating, energy, and behavior over the next 12–24 hours.` },
-    { emoji: '📓', title: 'Note any changes',          detail: 'Jot down time and nature of any changes. Patterns are useful if a vet visit eventually becomes needed.' },
-    { emoji: '📞', title: 'Reassess if needed',        detail: `If anything worsens or you become more concerned, log a new concern or call your vet.` },
-  ]
 }
 
 // ─── UI config per recommendation ─────────────────────────────────────────
 
-const REC_CONFIG: Record<Rec, {
+const REC_CONFIG: Record<Recommendation, {
   label: string; emoji: string; headline: string; summary: string
   heroBg: string; badge: string; accent: string; bar: string
 }> = {
@@ -139,14 +92,19 @@ const REC_CONFIG: Record<Rec, {
 // ─── Page ──────────────────────────────────────────────────────────────────
 
 export default function ResultsPage() {
-  const router     = useRouter()
-  const dogProfile = useAppStore((s) => s.dogProfile)
-  const assessment = useAppStore((s) => s.currentAssessment)
-  const dogName    = dogProfile?.name ?? 'Your dog'
+  const router           = useRouter()
+  const dogProfile       = useAppStore((s) => s.dogProfile)
+  const assessment       = useAppStore((s) => s.currentAssessment)
+  const assessmentResult = useAppStore((s) => s.assessmentResult)
+  const dogName          = dogProfile?.name ?? 'Your dog'
 
-  const rec   = useMemo(() => (assessment ? deriveRec(assessment) : 'monitor'), [assessment])
-  const cfg   = REC_CONFIG[rec]
-  const steps = useMemo(() => (assessment ? getSteps(rec, assessment, dogName) : []), [rec, assessment, dogName])
+  const rec = useMemo(() => {
+    if (assessmentResult) return assessmentResult.recommendation
+    if (assessment) return deriveRec(assessment)
+    return 'monitor' as Recommendation
+  }, [assessmentResult, assessment])
+
+  const cfg = REC_CONFIG[rec]
 
   if (!assessment) {
     return (
@@ -161,6 +119,7 @@ export default function ResultsPage() {
 
   const hasSymptoms = assessment.physicalSymptoms.some((s) => s !== 'none')
   const hasChanges  = assessment.recentChanges.some((c) => c !== 'nothing_changed')
+  const hasVetQs    = (assessmentResult?.questions_for_vet ?? []).length > 0
 
   return (
     <div className="flex flex-col min-h-screen bg-soft-cream">
@@ -187,17 +146,19 @@ export default function ResultsPage() {
           <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full mb-4 ${cfg.badge}`}>
             {cfg.label}
           </span>
-          <div className="flex items-center gap-4 mb-3">
+          <div className="flex items-center gap-4 mb-4">
             <span className="text-5xl">{cfg.emoji}</span>
             <div>
               <p className="text-[13px] text-medium-gray leading-tight">{cfg.headline}</p>
               <h2 className="text-2xl font-bold text-calm-navy">{dogName}</h2>
             </div>
           </div>
-          <p className="text-sm text-medium-gray leading-relaxed">{cfg.summary}</p>
+          <p className="text-[15px] text-calm-navy leading-relaxed">
+            {assessmentResult?.reassurance_note ?? cfg.summary}
+          </p>
         </div>
 
-        {/* What you reported */}
+        {/* You Reported */}
         <div className="bg-white rounded-card p-4">
           <p className="text-xs font-bold text-medium-gray uppercase tracking-wide mb-3">You Reported</p>
           <div className="space-y-2">
@@ -215,26 +176,67 @@ export default function ResultsPage() {
           )}
         </div>
 
-        {/* Guidance steps */}
+        {/* What might be going on — AI only */}
+        {assessmentResult && (
+          <div className="bg-white rounded-card p-4">
+            <p className="text-xs font-bold text-medium-gray uppercase tracking-wide mb-3">What Might Be Going On</p>
+            <div className="space-y-3">
+              {assessmentResult.likely_explanations.map((exp, i) => (
+                <div key={i} className="flex gap-3">
+                  <div className={`shrink-0 w-5 h-5 rounded-full ${cfg.heroBg} flex items-center justify-center text-[11px] font-bold ${cfg.accent} mt-0.5`}>
+                    {i + 1}
+                  </div>
+                  <p className="text-[15px] text-calm-navy leading-relaxed">{exp}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* What to watch for — AI only */}
+        {assessmentResult && (
+          <div className="bg-white rounded-card p-4">
+            <p className="text-xs font-bold text-medium-gray uppercase tracking-wide mb-3">What to Watch For</p>
+            <div className="space-y-2.5">
+              {assessmentResult.what_to_watch_for.map((item, i) => (
+                <div key={i} className="flex items-start gap-2.5">
+                  <div className={`w-1.5 h-1.5 rounded-full shrink-0 mt-[7px] ${cfg.bar}`} />
+                  <p className="text-[15px] text-calm-navy leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Steps to take */}
         <div>
-          <p className="text-xs font-bold text-medium-gray uppercase tracking-wide mb-3 px-1">What to Do</p>
+          <p className="text-xs font-bold text-medium-gray uppercase tracking-wide mb-3 px-1">Steps to Take</p>
           <div className="space-y-3">
-            {steps.map((step, i) => (
+            {(assessmentResult?.suggested_actions ?? []).map((action, i) => (
               <div key={i} className="bg-white rounded-card p-4 flex gap-3">
                 <div className={`shrink-0 w-6 h-6 rounded-full ${cfg.heroBg} flex items-center justify-center text-xs font-bold ${cfg.accent} mt-0.5`}>
                   {i + 1}
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-base">{step.emoji}</span>
-                    <p className="text-sm font-semibold text-calm-navy">{step.title}</p>
-                  </div>
-                  <p className="text-sm text-medium-gray leading-relaxed">{step.detail}</p>
-                </div>
+                <p className="text-[15px] text-calm-navy leading-relaxed">{action}</p>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Questions for your vet — AI only, non-empty */}
+        {hasVetQs && (
+          <div className="bg-white rounded-card p-4">
+            <p className="text-xs font-bold text-medium-gray uppercase tracking-wide mb-3">Questions for Your Vet</p>
+            <div className="space-y-3">
+              {assessmentResult!.questions_for_vet.map((q, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span className={`text-sm font-bold ${cfg.accent} shrink-0 mt-0.5`}>Q</span>
+                  <p className="text-[15px] text-calm-navy leading-relaxed">{q}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Assessment details */}
         <div className="bg-white rounded-card p-4">

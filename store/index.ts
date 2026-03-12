@@ -14,6 +14,17 @@ export interface ConcernAssessmentInput {
   worryLevel: 1 | 2 | 3 | 4 | 5 | null
 }
 
+export type Recommendation = 'monitor' | 'try_this' | 'call_vet'
+
+export interface AssessmentResult {
+  likely_explanations: string[]
+  what_to_watch_for: string[]
+  recommendation: Recommendation
+  suggested_actions: string[]
+  questions_for_vet: string[]
+  reassurance_note: string
+}
+
 export type DogSex = 'male' | 'female'
 export type SpayedNeuteredStatus = 'yes' | 'no' | 'not_sure'
 export type EatingPattern = 'eats_everything' | 'moderate_eater' | 'picky_eater' | 'variable'
@@ -48,6 +59,8 @@ interface AppState {
   setActiveTab: (tab: string) => void
   currentAssessment: ConcernAssessmentInput | null
   setCurrentAssessment: (input: ConcernAssessmentInput) => void
+  assessmentResult: AssessmentResult | null
+  setAssessmentResult: (result: AssessmentResult) => void
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -57,4 +70,6 @@ export const useAppStore = create<AppState>((set) => ({
   setActiveTab: (tab) => set({ activeTab: tab }),
   currentAssessment: null,
   setCurrentAssessment: (input) => set({ currentAssessment: input }),
+  assessmentResult: null,
+  setAssessmentResult: (result) => set({ assessmentResult: result }),
 }))

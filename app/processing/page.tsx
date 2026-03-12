@@ -5,51 +5,66 @@ import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { PawPrint } from 'lucide-react'
 import { useAppStore } from '@/store'
+import { runAssessment } from '@/lib/mockAssessmentService'
 
 const MESSAGES = (dogName: string) => [
+  `Analyzing ${dogName}'s patterns...`,
   `Reviewing ${dogName}'s profile...`,
-  'Analyzing your concern...',
+  'Checking behavioral patterns...',
   'Preparing your guidance...',
 ]
 
+const MIN_DISPLAY_MS = 2500
+
 export default function ProcessingPage() {
-  const router = useRouter()
-  const dogProfile = useAppStore((s) => s.dogProfile)
-  const dogName = dogProfile?.name ?? 'your dog'
+  const router              = useRouter()
+  const dogProfile          = useAppStore((s) => s.dogProfile)
+  const assessment          = useAppStore((s) => s.currentAssessment)
+  const setAssessmentResult = useAppStore((s) => s.setAssessmentResult)
+
+  const dogName  = dogProfile?.name ?? 'your dog'
   const messages = MESSAGES(dogName)
 
   const [msgIdx, setMsgIdx] = useState(0)
 
+  // Cycle messages every 2 s
   useEffect(() => {
     const interval = setInterval(() => {
       setMsgIdx((i) => (i + 1) % messages.length)
-    }, 800)
+    }, 2000)
     return () => clearInterval(interval)
   }, [messages.length])
 
+  // Run API + enforce minimum display time, then navigate
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    let cancelled = false
+
+    const minDelay = new Promise<void>((resolve) => setTimeout(resolve, MIN_DISPLAY_MS))
+    const apiCall  = assessment ? runAssessment(assessment) : Promise.resolve(null)
+
+    Promise.all([minDelay, apiCall]).then(([, result]) => {
+      if (cancelled) return
+      if (result) setAssessmentResult(result)
       router.push('/results')
-    }, 2500)
-    return () => clearTimeout(timeout)
-  }, [router])
+    })
+
+    return () => { cancelled = true }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-soft-cream gap-6 px-6">
-      {/* Breathing paw circle */}
+
+      {/* Breathing paw circle — scale + opacity pulse */}
       <motion.div
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        className="w-24 h-24 bg-light-teal rounded-full flex items-center justify-center"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        className="w-[120px] h-[120px] bg-light-teal rounded-full flex items-center justify-center"
       >
-        <PawPrint size={40} className="text-pawcalm-teal" />
+        <PawPrint size={48} className="text-pawcalm-teal" />
       </motion.div>
 
-      <h2 className="text-xl font-semibold text-calm-navy text-center">
-        Analyzing {dogName}&apos;s concern
-      </h2>
-
-      {/* Cycling message */}
+      {/* Rotating microcopy */}
       <AnimatePresence mode="wait">
         <motion.p
           key={msgIdx}
@@ -63,9 +78,11 @@ export default function ProcessingPage() {
         </motion.p>
       </AnimatePresence>
 
-      <p className="text-xs text-medium-gray text-center mt-8">
-        This is general guidance, not a substitute for veterinary advice.
+      {/* Fixed reassurance text */}
+      <p className="text-[13px] text-medium-gray text-center -mt-2">
+        We&apos;re putting together thoughtful guidance for {dogName}.
       </p>
+
     </div>
   )
 }
