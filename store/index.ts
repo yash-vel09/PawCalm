@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { MOCK_HISTORY } from '@/lib/mockHistory'
+import { MOCK_DOG_PROFILE } from '@/lib/mockDogProfile'
 
 export type ConcernType = 'not_eating' | 'low_energy' | 'vomiting' | 'bathroom_issues' | 'unusual_barking' | 'aggression' | 'limping' | 'something_else'
 export type OnsetTiming = 'within_the_hour' | 'earlier_today' | 'yesterday' | 'few_days' | 'week_or_more'
@@ -76,7 +77,7 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>((set) => ({
-  dogProfile: null,
+  dogProfile: MOCK_DOG_PROFILE,
   setDogProfile: (profile) => set({ dogProfile: profile }),
   activeTab: '/',
   setActiveTab: (tab) => set({ activeTab: tab }),
