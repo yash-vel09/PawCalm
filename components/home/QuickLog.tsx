@@ -44,6 +44,8 @@ export default function QuickLog() {
               key={key}
               type="button"
               onClick={() => toggle(key)}
+              aria-label={`${label}: ${status === 'normal' ? 'normal' : status === 'not_normal' ? 'off' : 'not logged'}`}
+              aria-pressed={status !== null}
               className={`relative flex flex-col items-center gap-1.5 py-3 rounded-card border-2 transition-colors duration-150 ${
                 isNormal
                   ? 'bg-light-teal border-pawcalm-teal'

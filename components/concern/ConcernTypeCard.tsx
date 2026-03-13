@@ -11,6 +11,8 @@ export default function ConcernTypeCard({ emoji, label, selected, onSelect, disa
     <button
       type="button"
       onClick={disabled ? undefined : onSelect}
+      aria-label={label}
+      aria-pressed={selected}
       className={`flex flex-col items-center justify-center gap-2 p-3 rounded-card border-2 w-full min-h-[80px] transition-colors duration-150 ${
         disabled
           ? 'opacity-50 cursor-not-allowed border-warm-gray bg-warm-gray'

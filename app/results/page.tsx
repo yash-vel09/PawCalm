@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import {
   X, Phone, Eye, CheckCircle, Check, Stethoscope, Copy,
-  Bookmark, BookmarkPlus, Share2, ThumbsUp, ThumbsDown,
+  Bookmark, BookmarkPlus, Share2, ThumbsUp, ThumbsDown, ClipboardList,
 } from 'lucide-react'
 import { useAppStore } from '@/store'
 import type { ConcernAssessmentInput, ConcernType, Recommendation } from '@/store'
+import { useToast } from '@/lib/toast'
 
 // ─── Labels ────────────────────────────────────────────────────────────────
 
@@ -98,6 +99,7 @@ export default function ResultsPage() {
   const [feedback, setFeedback]             = useState<'up' | 'down' | null>(null)
   const [saved, setSaved]                   = useState(false)
   const [copied, setCopied]                 = useState(false)
+  const { show } = useToast()
 
   const rec = useMemo(() => {
     if (result) return result.recommendation
@@ -112,9 +114,19 @@ export default function ResultsPage() {
 
   if (!assessment) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-soft-cream gap-4 px-6">
-        <p className="text-lg font-semibold text-calm-navy">No assessment found</p>
-        <button type="button" onClick={() => router.push('/')} className="text-pawcalm-teal font-semibold">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-soft-cream px-6 text-center">
+        <div className="w-20 h-20 rounded-full bg-light-teal flex items-center justify-center mb-5">
+          <ClipboardList size={32} className="text-pawcalm-teal" />
+        </div>
+        <h2 className="text-[18px] font-semibold text-calm-navy mb-2">Nothing to review</h2>
+        <p className="text-[15px] text-medium-gray leading-relaxed mb-6 max-w-xs">
+          Start a new assessment from home to see your results here.
+        </p>
+        <button
+          type="button"
+          onClick={() => router.push('/')}
+          className="bg-pawcalm-teal text-white text-[15px] font-semibold px-6 py-3 rounded-button"
+        >
           Go to Home
         </button>
       </div>
@@ -146,6 +158,7 @@ export default function ResultsPage() {
       result: result ?? undefined,
     })
     setSaved(true)
+    show('Assessment saved!', 'success')
   }
 
   async function handleShare() {

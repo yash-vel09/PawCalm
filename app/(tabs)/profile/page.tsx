@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { Camera, Pencil, PawPrint } from 'lucide-react'
 import { useAppStore } from '@/store'
+import { useToast } from '@/lib/toast'
 import type {
   DogProfile, DogSex, SpayedNeuteredStatus,
   EatingPattern, EnergyPattern, MoodPattern,
@@ -89,9 +90,9 @@ export default function ProfilePage() {
   const setDogProfile = useAppStore((s) => s.setDogProfile)
   const history       = useAppStore((s) => s.assessmentHistory)
 
-  const [editing, setEditing]     = useState<EditCard | null>(null)
-  const [draft, setDraft]         = useState<DogProfile | null>(null)
-  const [photoToast, setPhotoToast] = useState(false)
+  const [editing, setEditing] = useState<EditCard | null>(null)
+  const [draft, setDraft]     = useState<DogProfile | null>(null)
+  const { show } = useToast()
 
   // ── Statistics ──
   const sortedHistory = useMemo(
@@ -119,6 +120,7 @@ export default function ProfilePage() {
     if (draft) setDogProfile(draft)
     setEditing(null)
     setDraft(null)
+    show('Profile updated', 'success')
   }
 
   function cancelEdit() {
@@ -141,8 +143,7 @@ export default function ProfilePage() {
   }
 
   function handlePhotoTap() {
-    setPhotoToast(true)
-    setTimeout(() => setPhotoToast(false), 3000)
+    show('Photo upload coming soon')
   }
 
   // ── Empty state ──
@@ -457,15 +458,6 @@ export default function ProfilePage() {
         </div>
 
       </div>
-
-      {/* ── Photo toast ── */}
-      {photoToast && (
-        <div className="fixed bottom-24 inset-x-0 flex justify-center pointer-events-none z-50">
-          <div className="bg-calm-navy text-white text-sm font-semibold px-5 py-3 rounded-full shadow-lg">
-            Photo upload coming soon
-          </div>
-        </div>
-      )}
 
     </div>
   )

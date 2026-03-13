@@ -1,0 +1,15 @@
+{
+  "name": "PawCalm",
+  "short_name": "PawCalm",
+  "theme_color": "#0D9488",
+  "background_color": "#FFF7ED",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

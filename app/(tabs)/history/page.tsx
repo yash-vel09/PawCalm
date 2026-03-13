@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Clock, FileDown, ChevronRight } from 'lucide-react'
 import { useAppStore } from '@/store'
 import type { Recommendation } from '@/store'
+import { useToast } from '@/lib/toast'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -48,8 +49,8 @@ export default function HistoryPage() {
   const history    = useAppStore((s) => s.assessmentHistory)
   const dogName    = dogProfile?.name ?? 'Your dog'
 
-  const [filter, setFilter]         = useState<FilterValue>('all')
-  const [exportToast, setExportToast] = useState(false)
+  const [filter, setFilter] = useState<FilterValue>('all')
+  const { show } = useToast()
 
   const sorted = useMemo(
     () => [...history].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()),
@@ -62,8 +63,7 @@ export default function HistoryPage() {
   )
 
   function handleExport() {
-    setExportToast(true)
-    setTimeout(() => setExportToast(false), 3000)
+    show('Export coming soon')
   }
 
   return (
@@ -191,15 +191,6 @@ export default function HistoryPage() {
 
         )}
       </div>
-
-      {/* ── Export toast ── */}
-      {exportToast && (
-        <div className="fixed bottom-24 inset-x-0 flex justify-center pointer-events-none z-50">
-          <div className="bg-calm-navy text-white text-sm font-semibold px-5 py-3 rounded-full shadow-lg">
-            Export coming soon
-          </div>
-        </div>
-      )}
 
     </div>
   )

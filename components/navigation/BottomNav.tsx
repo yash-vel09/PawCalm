@@ -22,7 +22,7 @@ export default function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md h-16 bg-white border-t border-warm-gray z-50">
+    <nav aria-label="Main navigation" className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md h-16 bg-white border-t border-warm-gray z-50">
       <div className="flex items-center justify-around h-full px-2">
         {tabs.map((tab) => {
           const isActive = pathname === tab.path
@@ -31,6 +31,8 @@ export default function BottomNav() {
             <Link
               key={tab.path}
               href={tab.path}
+              aria-label={tab.label}
+              aria-current={isActive ? 'page' : undefined}
               className="flex flex-col items-center gap-0.5 py-2 px-3 min-w-[48px] min-h-[48px] justify-center"
             >
               <Icon

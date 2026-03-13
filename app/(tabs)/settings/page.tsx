@@ -6,6 +6,7 @@ import {
   ChevronRight, LogOut, Star, Mail, FileText, Shield,
   Trash2, Download, Zap, CheckCircle,
 } from 'lucide-react'
+import { useToast } from '@/lib/toast'
 
 // ─── Shared sub-components ─────────────────────────────────────────────────
 
@@ -100,18 +101,6 @@ function TealToggle({
   )
 }
 
-// ─── Toast ─────────────────────────────────────────────────────────────────
-
-function Toast({ message }: { message: string }) {
-  return (
-    <div className="fixed bottom-24 inset-x-0 flex justify-center pointer-events-none z-50">
-      <div className="bg-calm-navy text-white text-sm font-semibold px-5 py-3 rounded-full shadow-lg">
-        {message}
-      </div>
-    </div>
-  )
-}
-
 // ─── Delete confirmation dialog ────────────────────────────────────────────
 
 function DeleteDialog({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) {
@@ -159,25 +148,20 @@ export default function SettingsPage() {
   const [dailyCheckin, setDailyCheckin] = useState(false)
 
   // UI state
-  const [toast, setToast]               = useState<string | null>(null)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
-
-  function showToast(msg: string) {
-    setToast(msg)
-    setTimeout(() => setToast(null), 3000)
-  }
+  const { show } = useToast()
 
   function handleSignOut() {
-    showToast('Sign out coming soon')
+    show('Sign out coming soon')
   }
 
   function handleExportData() {
-    showToast('Export feature coming soon')
+    show('Export feature coming soon')
   }
 
   function handleDeleteConfirm() {
     setShowDeleteDialog(false)
-    showToast('Account deletion coming soon')
+    show('Account deletion coming soon')
   }
 
   return (
@@ -302,7 +286,7 @@ export default function SettingsPage() {
 
               <button
                 type="button"
-                onClick={() => showToast('Subscriptions coming soon')}
+                onClick={() => show('Subscriptions coming soon')}
                 className="w-full mt-2 py-3 bg-pawcalm-teal rounded-button text-[15px] font-semibold text-white"
               >
                 Upgrade to Premium
@@ -328,13 +312,13 @@ export default function SettingsPage() {
             <SettingsRow
               label="Rate PawCalm"
               sublabel="Enjoying the app? Leave us a review"
-              onPress={() => showToast('App rating coming soon')}
+              onPress={() => show('App rating coming soon')}
               right={<Star size={16} className="text-medium-gray shrink-0" />}
             />
             <SettingsRow
               label="FAQ"
               sublabel="Common questions about PawCalm"
-              onPress={() => showToast('FAQ coming soon')}
+              onPress={() => show('FAQ coming soon')}
               borderBottom={false}
             />
           </Card>
@@ -352,12 +336,12 @@ export default function SettingsPage() {
             />
             <SettingsRow
               label="Privacy Policy"
-              onPress={() => showToast('Privacy Policy coming soon')}
+              onPress={() => show('Privacy Policy coming soon')}
               right={<FileText size={16} className="text-medium-gray shrink-0" />}
             />
             <SettingsRow
               label="Terms of Service"
-              onPress={() => showToast('Terms of Service coming soon')}
+              onPress={() => show('Terms of Service coming soon')}
               right={<FileText size={16} className="text-medium-gray shrink-0" />}
               borderBottom={false}
             />
@@ -413,8 +397,6 @@ export default function SettingsPage() {
         />
       )}
 
-      {/* ── Toast ── */}
-      {toast && <Toast message={toast} />}
     </div>
   )
 }

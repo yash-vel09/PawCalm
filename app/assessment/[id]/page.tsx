@@ -2,7 +2,7 @@
 
 import { useAppStore } from '@/store'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Eye, CheckCircle, Stethoscope, Phone } from 'lucide-react'
+import { ArrowLeft, Eye, CheckCircle, Stethoscope, Phone, Search } from 'lucide-react'
 import type { Recommendation } from '@/store'
 
 // ─── Config (mirrors results page) ────────────────────────────────────────
@@ -71,12 +71,18 @@ export default function AssessmentDetailPage({ params }: { params: { id: string 
 
   if (!entry) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-soft-cream gap-4 px-6">
-        <p className="text-lg font-semibold text-calm-navy">Assessment not found</p>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-soft-cream px-6 text-center">
+        <div className="w-20 h-20 rounded-full bg-light-teal flex items-center justify-center mb-5">
+          <Search size={32} className="text-pawcalm-teal" />
+        </div>
+        <h2 className="text-[18px] font-semibold text-calm-navy mb-2">Assessment not found</h2>
+        <p className="text-[15px] text-medium-gray leading-relaxed mb-6 max-w-xs">
+          This record may have been removed or the link is no longer valid.
+        </p>
         <button
           type="button"
           onClick={() => router.push('/history')}
-          className="text-pawcalm-teal font-semibold"
+          className="bg-pawcalm-teal text-white text-[15px] font-semibold px-6 py-3 rounded-button"
         >
           Back to History
         </button>

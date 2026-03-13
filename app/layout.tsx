@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Nunito } from 'next/font/google'
 import './globals.css'
 import LayoutWrapper from '@/components/LayoutWrapper'
+import ToastContainer from '@/components/ToastContainer'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -12,12 +13,18 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: 'PawCalm',
   description: 'AI-powered pet symptom checker',
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
+  themeColor: '#0D9488',
 }
 
 export default function RootLayout({
@@ -29,6 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nunito.variable} font-sans bg-soft-cream`}>
         <LayoutWrapper>{children}</LayoutWrapper>
+        <ToastContainer />
       </body>
     </html>
   )
