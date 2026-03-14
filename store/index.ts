@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { MOCK_HISTORY } from '@/lib/mockHistory'
 import { MOCK_DOG_PROFILE } from '@/lib/mockDogProfile'
+import { MOCK_CAT_PROFILE } from '@/lib/mockCatProfile'
 
 export type ConcernType = 'not_eating' | 'low_energy' | 'vomiting' | 'bathroom_issues' | 'unusual_barking' | 'aggression' | 'limping' | 'something_else'
 export type OnsetTiming = 'within_the_hour' | 'earlier_today' | 'yesterday' | 'few_days' | 'week_or_more'
@@ -28,6 +29,7 @@ export interface Resolution {
 
 export interface HistoryEntry {
   id: string
+  petId?: string
   concernSummary: string
   recommendation: Recommendation
   createdAt: Date
@@ -51,9 +53,11 @@ export type EatingPattern = 'eats_everything' | 'moderate_eater' | 'picky_eater'
 export type EnergyPattern = 'very_active' | 'moderately_active' | 'calm' | 'low_energy'
 export type MoodPattern = 'very_social' | 'friendly' | 'independent' | 'anxious'
 export type HealthCondition = 'allergies' | 'joint_issues' | 'heart_condition' | 'diabetes' | 'seizures' | 'none' | 'other'
+export type PetType = 'dog' | 'cat'
 
-export interface DogProfile {
+export interface PetProfile {
   id: string
+  type: PetType
   name: string
   photoUrl: string | null
   breed: string
@@ -68,13 +72,33 @@ export interface DogProfile {
   healthConditions: HealthCondition[]
   medications: string
   vetClinicName: string
+  createdAt: string
+  // Cat-specific (only used when type === 'cat')
+  indoorOutdoor?: 'indoor' | 'outdoor' | 'both'
+  normalLitterBox?: string
+  normalGrooming?: string
 }
 
-export type DogProfileDraft = Partial<Omit<DogProfile, 'id'>>
+// Keep aliases so existing imports don't break
+export type DogProfile = PetProfile
+export type DogProfileDraft = Partial<Omit<PetProfile, 'id'>>
 
 interface AppState {
-  dogProfile: DogProfile | null
-  setDogProfile: (profile: DogProfile) => void
+  // Multi-pet state
+  pets: PetProfile[]
+  activePetId: string | null
+  getActivePet: () => PetProfile | null
+  addPet: (pet: PetProfile) => void
+  removePet: (petId: string) => void
+  setActivePet: (petId: string) => void
+  updatePet: (petId: string, updates: Partial<PetProfile>) => void
+  getPetAssessments: (petId: string) => HistoryEntry[]
+
+  // Backward-compat — mirrors active pet
+  dogProfile: PetProfile | null
+  setDogProfile: (profile: PetProfile) => void
+
+  // Unchanged
   activeTab: string
   setActiveTab: (tab: string) => void
   currentAssessment: ConcernAssessmentInput | null
@@ -86,9 +110,74 @@ interface AppState {
   resolveAssessment: (id: string, outcome: ResolutionOutcome, notes: string) => void
 }
 
-export const useAppStore = create<AppState>((set) => ({
+export const useAppStore = create<AppState>((set, get) => ({
+  pets: [MOCK_DOG_PROFILE, MOCK_CAT_PROFILE],
+  activePetId: 'mock-profile-1',
   dogProfile: MOCK_DOG_PROFILE,
-  setDogProfile: (profile) => set({ dogProfile: profile }),
+
+  getActivePet: () => {
+    const { pets, activePetId } = get()
+    return pets.find((p) => p.id === activePetId) ?? null
+  },
+
+  addPet: (pet) =>
+    set((s) => {
+      const isFirst = s.pets.length === 0
+      return {
+        pets: [...s.pets, pet],
+        ...(isFirst ? { activePetId: pet.id, dogProfile: pet } : {}),
+      }
+    }),
+
+  removePet: (petId) =>
+    set((s) => {
+      const remaining = s.pets.filter((p) => p.id !== petId)
+      const history = s.assessmentHistory.filter((e) => e.petId !== petId)
+      if (s.activePetId === petId) {
+        const next = remaining[0] ?? null
+        return { pets: remaining, assessmentHistory: history, activePetId: next?.id ?? null, dogProfile: next }
+      }
+      return { pets: remaining, assessmentHistory: history }
+    }),
+
+  setActivePet: (petId) =>
+    set((s) => {
+      const pet = s.pets.find((p) => p.id === petId) ?? null
+      return { activePetId: petId, dogProfile: pet }
+    }),
+
+  updatePet: (petId, updates) =>
+    set((s) => {
+      const pets = s.pets.map((p) => (p.id === petId ? { ...p, ...updates } : p))
+      const updated = pets.find((p) => p.id === petId) ?? null
+      return {
+        pets,
+        ...(s.activePetId === petId ? { dogProfile: updated } : {}),
+      }
+    }),
+
+  getPetAssessments: (petId) => {
+    return get().assessmentHistory.filter((e) => e.petId === petId)
+  },
+
+  setDogProfile: (profile) =>
+    set((s) => {
+      const exists = s.pets.find((p) => p.id === profile.id)
+      if (exists) {
+        const pets = s.pets.map((p) => (p.id === profile.id ? profile : p))
+        return {
+          pets,
+          dogProfile: profile,
+          activePetId: profile.id,
+        }
+      }
+      return {
+        pets: [...s.pets, profile],
+        dogProfile: profile,
+        activePetId: profile.id,
+      }
+    }),
+
   activeTab: '/',
   setActiveTab: (tab) => set({ activeTab: tab }),
   currentAssessment: null,
@@ -96,7 +185,13 @@ export const useAppStore = create<AppState>((set) => ({
   assessmentResult: null,
   setAssessmentResult: (result) => set({ assessmentResult: result }),
   assessmentHistory: [...MOCK_HISTORY],
-  addToHistory: (entry) => set((s) => ({ assessmentHistory: [...s.assessmentHistory, entry] })),
+  addToHistory: (entry) =>
+    set((s) => ({
+      assessmentHistory: [
+        ...s.assessmentHistory,
+        { ...entry, petId: entry.petId ?? s.activePetId ?? undefined },
+      ],
+    })),
   resolveAssessment: (id, outcome, notes) =>
     set((s) => ({
       assessmentHistory: s.assessmentHistory.map((e) =>

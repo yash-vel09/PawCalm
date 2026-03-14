@@ -61,6 +61,8 @@ function buildProfile(draft: DogProfileDraft): DogProfile {
     healthConditions: draft.healthConditions ?? [],
     medications: draft.medications ?? '',
     vetClinicName: draft.vetClinicName ?? '',
+    type: 'dog',
+    createdAt: new Date().toISOString(),
   }
 }
 

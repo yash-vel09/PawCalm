@@ -147,6 +147,7 @@ const R_CALL_VET_VOMITING: AssessmentResult = {
 export const MOCK_HISTORY: HistoryEntry[] = [
   {
     id: 'mock-1',
+    petId: 'mock-profile-1',
     concernSummary: 'Not eating / eating less',
     recommendation: 'monitor',
     createdAt: daysAgo(2),
@@ -155,6 +156,7 @@ export const MOCK_HISTORY: HistoryEntry[] = [
   },
   {
     id: 'mock-2',
+    petId: 'mock-profile-1',
     concernSummary: 'Low energy / lethargy, Vomiting / upset stomach',
     recommendation: 'try_this',
     createdAt: daysAgo(6),
@@ -163,6 +165,7 @@ export const MOCK_HISTORY: HistoryEntry[] = [
   },
   {
     id: 'mock-3',
+    petId: 'mock-profile-1',
     concernSummary: 'Unusual barking / whining',
     recommendation: 'monitor',
     createdAt: daysAgo(10),
@@ -171,6 +174,7 @@ export const MOCK_HISTORY: HistoryEntry[] = [
   },
   {
     id: 'mock-4',
+    petId: 'mock-profile-1',
     concernSummary: 'Limping / mobility issues',
     recommendation: 'call_vet',
     createdAt: daysAgo(16),
@@ -179,6 +183,7 @@ export const MOCK_HISTORY: HistoryEntry[] = [
   },
   {
     id: 'mock-5',
+    petId: 'mock-profile-1',
     concernSummary: 'Low energy / lethargy',
     recommendation: 'try_this',
     createdAt: daysAgo(22),
@@ -187,10 +192,38 @@ export const MOCK_HISTORY: HistoryEntry[] = [
   },
   {
     id: 'mock-6',
+    petId: 'mock-profile-1',
     concernSummary: 'Vomiting / upset stomach, Bathroom issues',
     recommendation: 'call_vet',
     createdAt: daysAgo(29),
     resolved: true,
     result: R_CALL_VET_VOMITING,
+  },
+  {
+    id: 'mock-cat-1',
+    petId: 'mock-cat-1',
+    concernSummary: 'Hiding / less social',
+    recommendation: 'monitor',
+    createdAt: daysAgo(3),
+    resolved: null,
+    result: R_MONITOR_BARKING,
+  },
+  {
+    id: 'mock-cat-2',
+    petId: 'mock-cat-1',
+    concernSummary: 'Not eating / eating less',
+    recommendation: 'try_this',
+    createdAt: daysAgo(9),
+    resolved: true,
+    result: R_TRY_THIS_STOMACH,
+  },
+  {
+    id: 'mock-cat-3',
+    petId: 'mock-cat-1',
+    concernSummary: 'Vomiting / upset stomach',
+    recommendation: 'try_this',
+    createdAt: daysAgo(20),
+    resolved: true,
+    result: R_TRY_THIS_STOMACH,
   },
 ]
