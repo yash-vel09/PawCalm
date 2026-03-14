@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Home, Clock, PawPrint, Settings } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { useAppStore } from '@/store'
 
 interface Tab {
   label: string
@@ -12,14 +13,17 @@ interface Tab {
 }
 
 const tabs: Tab[] = [
-  { label: 'Home', icon: Home, path: '/' },
-  { label: 'History', icon: Clock, path: '/history' },
-  { label: 'Profile', icon: PawPrint, path: '/profile' },
+  { label: 'Home',     icon: Home,     path: '/' },
+  { label: 'History',  icon: Clock,    path: '/history' },
+  { label: 'Profile',  icon: PawPrint, path: '/profile' },
   { label: 'Settings', icon: Settings, path: '/settings' },
 ]
 
 export default function BottomNav() {
-  const pathname = usePathname()
+  const pathname    = usePathname()
+  const getActivePet = useAppStore((s) => s.getActivePet)
+  const activePet   = getActivePet()
+  const petInitial  = activePet?.name?.[0]?.toUpperCase() ?? null
 
   return (
     <nav aria-label="Main navigation" className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md h-16 bg-white border-t border-warm-gray z-50">
@@ -27,6 +31,8 @@ export default function BottomNav() {
         {tabs.map((tab) => {
           const isActive = pathname === tab.path
           const Icon = tab.icon
+          const isProfile = tab.path === '/profile'
+
           return (
             <Link
               key={tab.path}
@@ -35,16 +41,22 @@ export default function BottomNav() {
               aria-current={isActive ? 'page' : undefined}
               className="flex flex-col items-center gap-0.5 py-2 px-3 min-w-[48px] min-h-[48px] justify-center"
             >
-              <Icon
-                size={24}
-                strokeWidth={1.5}
-                className={isActive ? 'text-pawcalm-teal' : 'text-medium-gray'}
-              />
-              <span
-                className={`text-[11px] font-medium ${
-                  isActive ? 'text-pawcalm-teal' : 'text-medium-gray'
-                }`}
-              >
+              {isProfile && petInitial ? (
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-colors ${
+                  isActive
+                    ? 'bg-pawcalm-teal text-white'
+                    : 'bg-warm-gray text-medium-gray'
+                }`}>
+                  {petInitial}
+                </div>
+              ) : (
+                <Icon
+                  size={24}
+                  strokeWidth={1.5}
+                  className={isActive ? 'text-pawcalm-teal' : 'text-medium-gray'}
+                />
+              )}
+              <span className={`text-[11px] font-medium ${isActive ? 'text-pawcalm-teal' : 'text-medium-gray'}`}>
                 {tab.label}
               </span>
             </Link>

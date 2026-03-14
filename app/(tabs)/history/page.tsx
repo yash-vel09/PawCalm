@@ -9,9 +9,10 @@ import { useToast } from '@/lib/toast'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
-type FilterValue = 'all' | Recommendation
+type RecFilter = 'all' | Recommendation
+type PetFilter = 'all' | string  // petId
 
-const FILTERS: { value: FilterValue; label: string }[] = [
+const REC_FILTERS: { value: RecFilter; label: string }[] = [
   { value: 'all',      label: 'All' },
   { value: 'monitor',  label: '🟢 Monitor' },
   { value: 'try_this', label: '🟡 Try This' },
@@ -44,27 +45,44 @@ function relativeTime(date: Date): string {
 // ─── Page ──────────────────────────────────────────────────────────────────
 
 export default function HistoryPage() {
-  const router     = useRouter()
-  const dogProfile = useAppStore((s) => s.dogProfile)
-  const history    = useAppStore((s) => s.assessmentHistory)
-  const dogName    = dogProfile?.name ?? 'Your dog'
+  const router      = useRouter()
+  const pets        = useAppStore((s) => s.pets)
+  const activePetId = useAppStore((s) => s.activePetId)
+  const history     = useAppStore((s) => s.assessmentHistory)
+  const activePet   = pets.find((p) => p.id === activePetId) ?? pets[0] ?? null
+  const petName     = activePet?.name ?? 'your pet'
 
-  const [filter, setFilter] = useState<FilterValue>('all')
+  const [recFilter, setRecFilter] = useState<RecFilter>('all')
+  const [petFilter, setPetFilter] = useState<PetFilter>(activePetId ?? 'all')
   const { show } = useToast()
+
+  const showingAll = petFilter === 'all'
+
+  const petById = useMemo(() => {
+    const map: Record<string, typeof pets[0]> = {}
+    pets.forEach((p) => { map[p.id] = p })
+    return map
+  }, [pets])
 
   const sorted = useMemo(
     () => [...history].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()),
     [history],
   )
 
-  const filtered = useMemo(
-    () => filter === 'all' ? sorted : sorted.filter((e) => e.recommendation === filter),
-    [sorted, filter],
-  )
+  const filtered = useMemo(() => {
+    let result = sorted
+    if (!showingAll) result = result.filter((e) => e.petId === petFilter)
+    if (recFilter !== 'all') result = result.filter((e) => e.recommendation === recFilter)
+    return result
+  }, [sorted, petFilter, recFilter, showingAll])
 
   function handleExport() {
     show('Export coming soon')
   }
+
+  const displayedPetName = showingAll
+    ? 'All pets'
+    : (petById[petFilter]?.name ?? petName)
 
   return (
     <div className="flex flex-col bg-soft-cream min-h-[calc(100vh-64px)]">
@@ -73,7 +91,9 @@ export default function HistoryPage() {
       <div className="px-4 pt-12 pb-4 flex items-start justify-between">
         <div>
           <h1 className="text-[28px] font-bold text-calm-navy">Assessment History</h1>
-          <p className="text-[15px] text-medium-gray mt-0.5">{dogName}&apos;s concern timeline</p>
+          <p className="text-[15px] text-medium-gray mt-0.5">
+            {showingAll ? 'All pets' : `${displayedPetName}'s concern timeline`}
+          </p>
         </div>
         <button
           type="button"
@@ -85,16 +105,53 @@ export default function HistoryPage() {
         </button>
       </div>
 
-      {/* ── Filter bar ── */}
+      {/* ── Pet filter bar (only when multiple pets) ── */}
+      {pets.length > 1 && (
+        <div className="px-4 pb-3 overflow-x-auto scrollbar-none">
+          <div className="flex gap-2 w-max">
+            <button
+              type="button"
+              onClick={() => setPetFilter('all')}
+              className={`px-4 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${
+                showingAll ? 'bg-calm-navy text-white' : 'bg-warm-gray text-calm-navy'
+              }`}
+            >
+              All Pets
+            </button>
+            {pets.map((pet) => {
+              const active = petFilter === pet.id
+              return (
+                <button
+                  key={pet.id}
+                  type="button"
+                  onClick={() => setPetFilter(pet.id)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${
+                    active ? 'bg-pawcalm-teal text-white' : 'bg-warm-gray text-calm-navy'
+                  }`}
+                >
+                  <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${
+                    active ? 'bg-white/20 text-white' : 'bg-pawcalm-teal/10 text-pawcalm-teal'
+                  }`}>
+                    {pet.name[0].toUpperCase()}
+                  </span>
+                  {pet.name}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* ── Rec filter bar ── */}
       <div className="px-4 pb-5 overflow-x-auto scrollbar-none">
         <div className="flex gap-2 w-max">
-          {FILTERS.map((f) => (
+          {REC_FILTERS.map((f) => (
             <button
               key={f.value}
               type="button"
-              onClick={() => setFilter(f.value)}
+              onClick={() => setRecFilter(f.value)}
               className={`px-4 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${
-                filter === f.value
+                recFilter === f.value
                   ? 'bg-pawcalm-teal text-white'
                   : 'bg-warm-gray text-calm-navy'
               }`}
@@ -115,14 +172,16 @@ export default function HistoryPage() {
               <Clock size={32} className="text-medium-gray" />
             </div>
             <h3 className="text-[18px] font-semibold text-calm-navy mb-2">
-              {filter === 'all' ? 'No assessments yet' : 'No matching assessments'}
+              {recFilter !== 'all' ? 'No matching assessments' : 'No assessments yet'}
             </h3>
             <p className="text-[15px] text-medium-gray leading-relaxed mb-6 max-w-xs">
-              {filter === 'all'
-                ? `When something worries you about ${dogName}, your assessment history will appear here.`
-                : `No ${FILTERS.find((f2) => f2.value === filter)?.label} assessments found. Try a different filter.`}
+              {recFilter !== 'all'
+                ? `No ${REC_FILTERS.find((f2) => f2.value === recFilter)?.label} assessments found. Try a different filter.`
+                : showingAll
+                ? 'When something worries you about your pets, your assessment history will appear here.'
+                : `No assessments yet for ${displayedPetName}. When something worries you about ${displayedPetName}, your assessment history will appear here.`}
             </p>
-            {filter === 'all' && (
+            {recFilter === 'all' && (
               <button
                 type="button"
                 onClick={() => router.push('/concern')}
@@ -138,8 +197,9 @@ export default function HistoryPage() {
           /* Timeline */
           <div>
             {filtered.map((entry, i) => {
-              const isLast  = i === filtered.length - 1
-              const badge   = REC_BADGE[entry.recommendation]
+              const isLast   = i === filtered.length - 1
+              const badge    = REC_BADGE[entry.recommendation]
+              const entryPet = entry.petId ? petById[entry.petId] : null
               return (
                 <div key={entry.id} className="flex">
                   {/* Timeline column: dot + connector */}
@@ -161,7 +221,19 @@ export default function HistoryPage() {
                           <span className={`${badge.bg} text-white text-xs font-bold px-3 py-1 rounded-full`}>
                             {badge.label}
                           </span>
-                          <ChevronRight size={16} className="text-medium-gray" />
+                          <div className="flex items-center gap-2">
+                            {showingAll && entryPet && (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[13px]">
+                                  {entryPet.type === 'cat' ? '🐱' : '🐕'}
+                                </span>
+                                <span className="text-[12px] font-semibold text-medium-gray">
+                                  {entryPet.name}
+                                </span>
+                              </div>
+                            )}
+                            <ChevronRight size={16} className="text-medium-gray" />
+                          </div>
                         </div>
 
                         {/* Concern summary */}

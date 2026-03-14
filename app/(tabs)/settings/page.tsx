@@ -1,12 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import {
   User, Bell, Info, CreditCard, HelpCircle, Database,
   ChevronRight, LogOut, Star, Mail, FileText, Shield,
-  Trash2, Download, Zap, CheckCircle,
+  Trash2, Download, Zap, CheckCircle, PawPrint, Plus,
 } from 'lucide-react'
 import { useToast } from '@/lib/toast'
+import { useAppStore } from '@/store'
 
 // ─── Shared sub-components ─────────────────────────────────────────────────
 
@@ -142,6 +144,10 @@ function DeleteDialog({ onConfirm, onCancel }: { onConfirm: () => void; onCancel
 // ─── Page ──────────────────────────────────────────────────────────────────
 
 export default function SettingsPage() {
+  const router       = useRouter()
+  const pets         = useAppStore((s) => s.pets)
+  const setActivePet = useAppStore((s) => s.setActivePet)
+
   // Notification toggles
   const [followUp24, setFollowUp24]     = useState(true)
   const [followUp48, setFollowUp48]     = useState(false)
@@ -170,6 +176,43 @@ export default function SettingsPage() {
 
         {/* ── Page title ── */}
         <h1 className="text-[28px] font-bold text-calm-navy px-1">Settings</h1>
+
+        {/* ─────────────────────────────────────────────────
+            0. MY PETS
+        ───────────────────────────────────────────────── */}
+        <div>
+          <SectionHeader icon={PawPrint} title="My Pets" />
+          <Card>
+            {pets.map((pet, i) => (
+              <SettingsRow
+                key={pet.id}
+                label={pet.name}
+                sublabel={`${pet.breed} · ${pet.type === 'cat' ? '🐱 Cat' : '🐕 Dog'}`}
+                onPress={() => {
+                  setActivePet(pet.id)
+                  router.push('/profile')
+                }}
+                borderBottom={i < pets.length - 1}
+                right={
+                  <div className="flex items-center gap-2 shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-light-teal flex items-center justify-center text-[13px] font-bold text-pawcalm-teal">
+                      {pet.name[0].toUpperCase()}
+                    </div>
+                    <ChevronRight size={16} className="text-medium-gray" />
+                  </div>
+                }
+              />
+            ))}
+          </Card>
+          <button
+            type="button"
+            onClick={() => router.push('/onboarding')}
+            className="mt-2 w-full flex items-center gap-2 px-4 py-3 bg-white rounded-card border border-warm-gray text-pawcalm-teal text-[15px] font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+          >
+            <Plus size={18} className="shrink-0" />
+            Add a pet
+          </button>
+        </div>
 
         {/* ─────────────────────────────────────────────────
             1. ACCOUNT
@@ -276,7 +319,7 @@ export default function SettingsPage() {
                 'Unlimited concern assessments',
                 'Behavioral pattern alerts',
                 'Vet report PDF exports',
-                'Multi-dog household support',
+                'Multi-pet household support (dogs & cats)',
               ].map((benefit) => (
                 <div key={benefit} className="flex items-center gap-3">
                   <CheckCircle size={16} className="text-pawcalm-teal shrink-0" />
@@ -355,7 +398,7 @@ export default function SettingsPage() {
             </div>
             <p className="text-[14px] text-calm-navy leading-relaxed">
               PawCalm provides <span className="font-semibold">behavioral guidance</span>, not medical diagnoses.
-              We help you understand what your dog&apos;s behavior might mean and decide whether to monitor,
+              We help you understand what your dog&apos;s or cat&apos;s behavior might mean and decide whether to monitor,
               try something at home, or call your vet — but we never replace professional veterinary care.
             </p>
           </div>

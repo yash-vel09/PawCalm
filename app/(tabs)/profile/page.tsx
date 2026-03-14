@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Camera, Pencil, PawPrint } from 'lucide-react'
+import { Camera, Pencil, PawPrint, Trash2 } from 'lucide-react'
 import { useAppStore } from '@/store'
 import { useToast } from '@/lib/toast'
 import type {
-  DogProfile, DogSex, SpayedNeuteredStatus,
+  PetProfile, DogProfile, DogSex, SpayedNeuteredStatus,
   EatingPattern, EnergyPattern, MoodPattern,
   HealthCondition, Recommendation,
 } from '@/store'
@@ -36,8 +37,9 @@ const HEALTH_LABEL: Record<HealthCondition, string> = {
   other: 'Other',
 }
 const REC_LABEL: Record<Recommendation, string> = { monitor: '🟢 Monitor', try_this: '🟡 Try This', call_vet: '🔴 Call Vet' }
+const INDOOR_LABEL: Record<string, string> = { indoor: 'Indoor', outdoor: 'Outdoor', both: 'Indoor & Outdoor' }
 
-// ─── Edit option arrays (mirrors onboarding steps) ────────────────────────
+// ─── Edit option arrays ─────────────────────────────────────────────────────
 
 const SEX_OPTIONS     = [{ label: 'Male', value: 'male' }, { label: 'Female', value: 'female' }]
 const SPAYED_OPTIONS  = [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }, { label: 'Not sure', value: 'not_sure' }]
@@ -46,11 +48,11 @@ const ENERGY_OPTIONS  = [{ label: 'Very active', value: 'very_active' }, { label
 const MOOD_OPTIONS    = [{ label: 'Very social', value: 'very_social' }, { label: 'Friendly', value: 'friendly' }, { label: 'Independent', value: 'independent' }, { label: 'Anxious', value: 'anxious' }]
 const HEALTH_OPTIONS  = [{ label: 'Allergies', value: 'allergies' }, { label: 'Joint issues', value: 'joint_issues' }, { label: 'Heart condition', value: 'heart_condition' }, { label: 'Diabetes', value: 'diabetes' }, { label: 'Seizures', value: 'seizures' }, { label: 'Other', value: 'other' }, { label: 'None', value: 'none' }]
 
-// ─── Shared input class ────────────────────────────────────────────────────
+// ─── Shared input class ─────────────────────────────────────────────────────
 
 const INPUT = 'w-full border-2 border-warm-gray rounded-button px-4 py-2.5 text-sm text-calm-navy placeholder-medium-gray focus:outline-none focus:border-pawcalm-teal transition-colors'
 
-// ─── Helper components ─────────────────────────────────────────────────────
+// ─── Helper components ──────────────────────────────────────────────────────
 
 function InfoRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -65,9 +67,7 @@ function InfoValue({ children }: { children: React.ReactNode }) {
   return <span className="text-[15px] text-calm-navy font-medium">{children}</span>
 }
 
-function CardHeader({
-  title, onEdit,
-}: { title: string; onEdit?: () => void }) {
+function CardHeader({ title, onEdit }: { title: string; onEdit?: () => void }) {
   return (
     <div className="flex items-center justify-between mb-3">
       <p className="text-xs font-bold text-medium-gray uppercase tracking-wide">{title}</p>
@@ -93,33 +93,93 @@ function EditActions({ onSave, onCancel }: { onSave: () => void; onCancel: () =>
   )
 }
 
-// ─── Page ──────────────────────────────────────────────────────────────────
+// ─── Remove pet confirmation dialog ────────────────────────────────────────
+
+function RemovePetDialog({
+  petName,
+  onConfirm,
+  onCancel,
+}: {
+  petName: string
+  onConfirm: () => void
+  onCancel: () => void
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 px-4 pb-6">
+      <div className="bg-white rounded-card w-full max-w-[480px] overflow-hidden shadow-2xl">
+        <div className="p-6 pb-4">
+          <div className="w-12 h-12 bg-soft-red-bg rounded-full flex items-center justify-center mb-4 mx-auto">
+            <Trash2 size={22} className="text-call-vet-red" />
+          </div>
+          <h2 className="text-[18px] font-bold text-calm-navy text-center mb-2">
+            Remove {petName} from PawCalm?
+          </h2>
+          <p className="text-[15px] text-medium-gray leading-relaxed text-center">
+            This will delete{' '}
+            <span className="text-calm-navy font-medium">{petName}&apos;s profile</span>{' '}
+            and all assessment history. This cannot be undone.
+          </p>
+        </div>
+        <div className="flex gap-3 px-6 pb-6 pt-2">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="flex-1 py-3 border-2 border-warm-gray rounded-button text-[15px] font-semibold text-calm-navy"
+          >
+            Keep {petName}
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            className="flex-1 py-3 bg-call-vet-red rounded-button text-[15px] font-semibold text-white"
+          >
+            Yes, remove
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── Page ───────────────────────────────────────────────────────────────────
 
 type EditCard = 'basic' | 'patterns' | 'health'
 
 export default function ProfilePage() {
-  const dogProfile    = useAppStore((s) => s.dogProfile)
+  const router        = useRouter()
+  const pets          = useAppStore((s) => s.pets)
+  const activePetId   = useAppStore((s) => s.activePetId)
+  const setActivePet  = useAppStore((s) => s.setActivePet)
   const setDogProfile = useAppStore((s) => s.setDogProfile)
+  const removePet     = useAppStore((s) => s.removePet)
   const history       = useAppStore((s) => s.assessmentHistory)
 
-  const [editing, setEditing] = useState<EditCard | null>(null)
-  const [draft, setDraft]     = useState<DogProfile | null>(null)
+  const dogProfile = pets.find((p) => p.id === activePetId) ?? pets[0] ?? null
+  const isCat      = dogProfile?.type === 'cat'
+
+  const [editing, setEditing]     = useState<EditCard | null>(null)
+  const [draft, setDraft]         = useState<DogProfile | null>(null)
+  const [showRemove, setShowRemove] = useState(false)
   const { show } = useToast()
 
-  // ── Statistics ──
+  // ── Per-pet statistics ──
+  const petHistory = useMemo(
+    () => history.filter((e) => e.petId === (dogProfile?.id ?? activePetId)),
+    [history, dogProfile, activePetId],
+  )
   const sortedHistory = useMemo(
-    () => [...history].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()),
-    [history],
+    () => [...petHistory].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()),
+    [petHistory],
   )
   const lastEntry = sortedHistory[0] ?? null
   const mostCommonRec = useMemo(() => {
-    if (!history.length) return null
-    const counts = history.reduce((acc, e) => {
+    if (!petHistory.length) return null
+    const counts = petHistory.reduce((acc, e) => {
       acc[e.recommendation] = (acc[e.recommendation] ?? 0) + 1
       return acc
     }, {} as Record<string, number>)
     return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] as Recommendation | undefined
-  }, [history])
+  }, [petHistory])
 
   // ── Edit helpers ──
   function startEdit(card: EditCard) {
@@ -140,7 +200,7 @@ export default function ProfilePage() {
     setDraft(null)
   }
 
-  function patchDraft(updates: Partial<DogProfile>) {
+  function patchDraft(updates: Partial<PetProfile>) {
     setDraft((prev) => prev ? { ...prev, ...updates } : prev)
   }
 
@@ -158,6 +218,18 @@ export default function ProfilePage() {
     show('Photo upload coming soon')
   }
 
+  function handleRemoveConfirm() {
+    if (!dogProfile) return
+    const isLast = pets.length <= 1
+    removePet(dogProfile.id)
+    setShowRemove(false)
+    if (isLast) {
+      router.push('/onboarding')
+    } else {
+      show(`${dogProfile.name} removed`, 'success')
+    }
+  }
+
   // ── Empty state ──
   if (!dogProfile) {
     return (
@@ -165,37 +237,64 @@ export default function ProfilePage() {
         <div className="w-20 h-20 rounded-full bg-warm-gray flex items-center justify-center mb-5">
           <PawPrint size={32} className="text-medium-gray" />
         </div>
-        <h2 className="text-[18px] font-semibold text-calm-navy mb-2">No dog profile yet</h2>
+        <h2 className="text-[18px] font-semibold text-calm-navy mb-2">No pets yet</h2>
         <p className="text-[15px] text-medium-gray leading-relaxed mb-6 max-w-xs">
-          Complete your dog&apos;s profile to get personalized assessments.
+          Add your first pet to get personalized assessments.
         </p>
         <Link
           href="/onboarding"
           className="bg-pawcalm-teal text-white text-[15px] font-semibold px-6 py-3 rounded-button"
         >
-          Set up profile
+          Add a pet
         </Link>
       </div>
     )
   }
 
   const ageDisplay = dogProfile.isPuppy
-    ? 'Puppy (< 1 yr)'
+    ? `${isCat ? 'Kitten' : 'Puppy'} (< 1 yr)`
     : dogProfile.ageYears
     ? `${dogProfile.ageYears} yr${dogProfile.ageYears === 1 ? '' : 's'}`
     : '—'
 
-  const memberSince = new Date('2025-10-15').toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-
+  const memberSince = new Date(dogProfile.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
   const activeConditions = dogProfile.healthConditions.filter((c) => c !== 'none')
 
   return (
     <div className="flex flex-col bg-soft-cream min-h-[calc(100vh-64px)]">
       <div className="overflow-y-auto px-4 pt-10 pb-10 space-y-4">
 
+        {/* ── Pet switcher (only when multiple pets) ── */}
+        {pets.length > 1 && (
+          <div className="overflow-x-auto scrollbar-none -mx-4 px-4">
+            <div className="flex gap-2 w-max pb-1">
+              {pets.map((pet) => {
+                const isActive = pet.id === dogProfile.id
+                return (
+                  <button
+                    key={pet.id}
+                    type="button"
+                    onClick={() => setActivePet(pet.id)}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${
+                      isActive ? 'bg-pawcalm-teal text-white' : 'bg-white border border-warm-gray text-calm-navy'
+                    }`}
+                  >
+                    <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 ${
+                      isActive ? 'bg-white/20 text-white' : 'bg-warm-gray text-medium-gray'
+                    }`}>
+                      {pet.name[0].toUpperCase()}
+                    </span>
+                    {pet.name}
+                    <span className="text-[13px]">{pet.type === 'cat' ? '🐱' : '🐕'}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* ── Profile header ── */}
         <div className="flex flex-col items-center pt-2 pb-2">
-          {/* Photo */}
           <button type="button" onClick={handlePhotoTap} className="relative mb-4" aria-label="Edit photo">
             <div className="w-[120px] h-[120px] rounded-full bg-light-teal flex items-center justify-center overflow-hidden">
               {dogProfile.photoUrl ? (
@@ -212,11 +311,19 @@ export default function ProfilePage() {
             </div>
           </button>
 
-          <h1 className="text-[28px] font-bold text-calm-navy">{dogProfile.name}</h1>
+          <h1 className="text-[28px] font-bold text-calm-navy flex items-center gap-2">
+            {dogProfile.name}
+            <span className="text-[22px]">{isCat ? '🐱' : '🐕'}</span>
+          </h1>
           <p className="text-[15px] text-medium-gray mt-1">
             {dogProfile.breed} · {ageDisplay} · {dogProfile.weightLbs} lbs
           </p>
-          <p className="text-[13px] text-medium-gray mt-1">Member since {memberSince}</p>
+          {isCat && dogProfile.indoorOutdoor && (
+            <span className="mt-2 text-[12px] font-semibold px-3 py-1 bg-light-teal text-pawcalm-teal rounded-full">
+              {INDOOR_LABEL[dogProfile.indoorOutdoor]}
+            </span>
+          )}
+          <p className="text-[13px] text-medium-gray mt-2">Member since {memberSince}</p>
         </div>
 
         {/* ── Basic Info card ── */}
@@ -227,7 +334,6 @@ export default function ProfilePage() {
           />
           {editing === 'basic' && draft ? (
             <>
-              {/* Name */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold text-calm-navy mb-1.5">Name</label>
                 <input
@@ -237,8 +343,6 @@ export default function ProfilePage() {
                   className={INPUT}
                 />
               </div>
-
-              {/* Breed */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold text-calm-navy mb-1.5">Breed</label>
                 <SearchableBreedSelect
@@ -246,8 +350,6 @@ export default function ProfilePage() {
                   onChange={(breed) => patchDraft({ breed })}
                 />
               </div>
-
-              {/* Age */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold text-calm-navy mb-1.5">Age</label>
                 <label className="flex items-center gap-2 mb-2 cursor-pointer">
@@ -257,7 +359,9 @@ export default function ProfilePage() {
                     onChange={(e) => patchDraft({ isPuppy: e.target.checked, ageYears: null })}
                     className="w-4 h-4 accent-pawcalm-teal"
                   />
-                  <span className="text-sm text-calm-navy">Under 1 year old (puppy)</span>
+                  <span className="text-sm text-calm-navy">
+                    Under 1 year old ({isCat ? 'kitten' : 'puppy'})
+                  </span>
                 </label>
                 {!draft.isPuppy && (
                   <input
@@ -271,8 +375,6 @@ export default function ProfilePage() {
                   />
                 )}
               </div>
-
-              {/* Weight */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold text-calm-navy mb-1.5">Weight (lbs)</label>
                 <input
@@ -285,8 +387,6 @@ export default function ProfilePage() {
                   className={INPUT}
                 />
               </div>
-
-              {/* Sex */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold text-calm-navy mb-1.5">Sex</label>
                 <ToggleButton
@@ -295,8 +395,6 @@ export default function ProfilePage() {
                   onChange={(v) => patchDraft({ sex: v as DogSex })}
                 />
               </div>
-
-              {/* Spayed/Neutered */}
               <div className="mb-1">
                 <label className="block text-sm font-semibold text-calm-navy mb-1.5">Spayed / Neutered</label>
                 <ToggleButton
@@ -305,7 +403,6 @@ export default function ProfilePage() {
                   onChange={(v) => patchDraft({ spayedNeutered: v as SpayedNeuteredStatus })}
                 />
               </div>
-
               <EditActions onSave={saveEdit} onCancel={cancelEdit} />
             </>
           ) : (
@@ -374,6 +471,12 @@ export default function ProfilePage() {
               <InfoRow label="Eating"><InfoValue>{EATING_LABEL[dogProfile.normalEating]}</InfoValue></InfoRow>
               <InfoRow label="Energy"><InfoValue>{ENERGY_LABEL[dogProfile.normalEnergy]}</InfoValue></InfoRow>
               <InfoRow label="Mood"><InfoValue>{MOOD_LABEL[dogProfile.normalMood]}</InfoValue></InfoRow>
+              {isCat && dogProfile.normalLitterBox && (
+                <InfoRow label="Litter box"><InfoValue>{dogProfile.normalLitterBox}</InfoValue></InfoRow>
+              )}
+              {isCat && dogProfile.normalGrooming && (
+                <InfoRow label="Grooming"><InfoValue>{dogProfile.normalGrooming}</InfoValue></InfoRow>
+              )}
             </>
           )}
         </div>
@@ -452,7 +555,7 @@ export default function ProfilePage() {
           <div className="space-y-0">
             <div className="flex items-center justify-between py-2.5 border-b border-pawcalm-teal/10 last:border-0">
               <span className="text-[13px] text-calm-navy/70">Total assessments</span>
-              <span className="text-[15px] font-bold text-pawcalm-teal">{history.length}</span>
+              <span className="text-[15px] font-bold text-pawcalm-teal">{petHistory.length}</span>
             </div>
             <div className="flex items-center justify-between py-2.5 border-b border-pawcalm-teal/10 last:border-0">
               <span className="text-[13px] text-calm-navy/70">Most frequent outcome</span>
@@ -469,8 +572,27 @@ export default function ProfilePage() {
           </div>
         </div>
 
+        {/* ── Remove pet ── */}
+        <div className="pt-2 text-center">
+          <button
+            type="button"
+            onClick={() => setShowRemove(true)}
+            className="text-[15px] font-medium text-call-vet-red"
+          >
+            Remove {dogProfile.name} from PawCalm
+          </button>
+        </div>
+
       </div>
 
+      {/* ── Remove confirmation dialog ── */}
+      {showRemove && (
+        <RemovePetDialog
+          petName={dogProfile.name}
+          onConfirm={handleRemoveConfirm}
+          onCancel={() => setShowRemove(false)}
+        />
+      )}
     </div>
   )
 }
