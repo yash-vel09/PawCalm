@@ -1,19 +1,24 @@
 'use client'
 
 import { Bell } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { useAppStore } from '@/store'
-import { MOCK_ASSESSMENTS } from '@/lib/mockAssessments'
 import DogProfileCard from '@/components/home/DogProfileCard'
 import LogConcernButton from '@/components/home/LogConcernButton'
 import RecentAssessments from '@/components/home/RecentAssessments'
 import QuickLog from '@/components/home/QuickLog'
 import FollowUpBanner from '@/components/home/FollowUpBanner'
+import PetSwitcher from '@/components/home/PetSwitcher'
 
 export default function HomePage() {
-  const dogProfile = useAppStore((s) => s.dogProfile)
+  const getActivePet = useAppStore((s) => s.getActivePet)
+  const activePetId = useAppStore((s) => s.activePetId)
+  const assessmentHistory = useAppStore((s) => s.assessmentHistory)
 
-  const dogName = dogProfile?.name ?? 'your pup'
-  const lastAssessment = MOCK_ASSESSMENTS[0] ?? null
+  const activePet = getActivePet()
+  const petName = activePet?.name ?? 'your pup'
+  const petHistory = assessmentHistory.filter((e) => e.petId === activePetId)
+  const lastAssessment = petHistory[0] ?? null
 
   return (
     <div className="min-h-screen bg-soft-cream">
@@ -24,7 +29,7 @@ export default function HomePage() {
           <div>
             <h1 className="text-[18px] font-semibold text-calm-navy">Hi there 👋</h1>
             <p className="text-sm text-medium-gray mt-0.5">
-              {dogProfile ? `${dogName}'s dashboard` : 'Welcome to PawCalm'}
+              {activePet ? `${petName}'s dashboard` : 'Welcome to PawCalm'}
             </p>
           </div>
           <button
@@ -36,23 +41,36 @@ export default function HomePage() {
           </button>
         </div>
 
-        {/* Dog profile card */}
-        <DogProfileCard profile={dogProfile} lastAssessment={lastAssessment} />
+        {/* Pet switcher */}
+        <PetSwitcher />
 
-        {/* Primary CTA */}
-        <LogConcernButton />
+        {/* Animated content keyed to active pet */}
+        <motion.div
+          key={activePetId ?? 'none'}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className="space-y-5">
+            {/* Pet profile card */}
+            <DogProfileCard profile={activePet} lastAssessment={lastAssessment} />
 
-        {/* Follow-up resolution banner */}
-        <FollowUpBanner />
+            {/* Primary CTA */}
+            <LogConcernButton />
 
-        {/* Recent assessments */}
-        <RecentAssessments assessments={MOCK_ASSESSMENTS} dogName={dogName} />
+            {/* Follow-up resolution banner */}
+            <FollowUpBanner />
 
-        {/* Divider */}
-        <div className="border-t border-warm-gray" />
+            {/* Recent assessments */}
+            <RecentAssessments assessments={petHistory.slice(0, 3)} dogName={petName} />
 
-        {/* Quick log */}
-        <QuickLog />
+            {/* Divider */}
+            <div className="border-t border-warm-gray" />
+
+            {/* Quick log */}
+            <QuickLog petType={activePet?.type ?? 'dog'} />
+          </div>
+        </motion.div>
 
       </div>
     </div>

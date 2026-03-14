@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { Utensils, Zap, Droplets, Smile, Check } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Utensils, Zap, Droplets, Smile, Check, Box, Sparkles } from 'lucide-react'
+import type { PetType } from '@/store'
 
 type Status = 'normal' | 'not_normal' | null
 
@@ -11,15 +12,32 @@ interface LogItem {
   Icon: typeof Utensils
 }
 
-const ITEMS: LogItem[] = [
+const DOG_ITEMS: LogItem[] = [
   { key: 'eating', label: 'Eating', Icon: Utensils },
   { key: 'energy', label: 'Energy', Icon: Zap },
   { key: 'bathroom', label: 'Bathroom', Icon: Droplets },
   { key: 'mood', label: 'Mood', Icon: Smile },
 ]
 
-export default function QuickLog() {
+const CAT_ITEMS: LogItem[] = [
+  { key: 'eating', label: 'Eating', Icon: Utensils },
+  { key: 'litter', label: 'Litter Box', Icon: Box },
+  { key: 'grooming', label: 'Grooming', Icon: Sparkles },
+  { key: 'mood', label: 'Mood', Icon: Smile },
+]
+
+interface QuickLogProps {
+  petType: PetType
+}
+
+export default function QuickLog({ petType }: QuickLogProps) {
   const [log, setLog] = useState<Record<string, Status>>({})
+
+  useEffect(() => {
+    setLog({})
+  }, [petType])
+
+  const ITEMS = petType === 'cat' ? CAT_ITEMS : DOG_ITEMS
 
   function toggle(key: string) {
     setLog((prev) => {
@@ -70,7 +88,7 @@ export default function QuickLog() {
                 }
               />
               <span
-                className={`text-[11px] font-medium leading-tight ${
+                className={`text-[11px] font-medium leading-tight text-center ${
                   isNormal
                     ? 'text-pawcalm-teal'
                     : isOff

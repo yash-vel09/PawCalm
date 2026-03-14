@@ -17,25 +17,28 @@ function formatAge(date: Date): string {
 }
 
 export default function FollowUpBanner() {
-  const dogProfile       = useAppStore((s) => s.dogProfile)
   const history          = useAppStore((s) => s.assessmentHistory)
+  const activePetId      = useAppStore((s) => s.activePetId)
+  const getActivePet     = useAppStore((s) => s.getActivePet)
   const resolveAssessment = useAppStore((s) => s.resolveAssessment)
 
   const [dismissed, setDismissed] = useState<string | null>(null)
   const [modalId,   setModalId]   = useState<string | null>(null)
 
-  // Find the most recent unresolved entry older than 24h
+  const activePet = getActivePet()
+
+  // Find the most recent unresolved entry older than 24h for the active pet
   const pending = useMemo(() => {
     const cutoff = Date.now() - TWENTY_FOUR_HOURS
     return history
-      .filter((e) => e.resolved === null && e.createdAt.getTime() < cutoff)
+      .filter((e) => e.resolved === null && e.petId === activePetId && e.createdAt.getTime() < cutoff)
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0] ?? null
-  }, [history])
+  }, [history, activePetId])
 
   // Nothing to show
   if (!pending || pending.id === dismissed) return null
 
-  const dogName    = dogProfile?.name ?? 'your pup'
+  const dogName    = activePet?.name ?? 'your pup'
   const ageLabel   = formatAge(pending.createdAt)
   const modalEntry = modalId ? history.find((e) => e.id === modalId) ?? null : null
 

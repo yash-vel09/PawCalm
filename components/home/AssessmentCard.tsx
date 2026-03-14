@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { Assessment } from '@/lib/mockAssessments'
+import { HistoryEntry } from '@/store'
 import { formatRelativeTime } from '@/lib/formatTime'
 
-const BADGE: Record<Assessment['recommendation'], { label: string; className: string }> = {
+const BADGE: Record<HistoryEntry['recommendation'], { label: string; className: string }> = {
   monitor: {
     label: 'Monitor',
     className: 'bg-soft-green-bg text-monitor-green border border-monitor-green/20',
@@ -17,13 +17,13 @@ const BADGE: Record<Assessment['recommendation'], { label: string; className: st
   },
 }
 
-const LEFT_BORDER: Record<Assessment['recommendation'], string> = {
+const LEFT_BORDER: Record<HistoryEntry['recommendation'], string> = {
   monitor: 'border-l-4 border-l-monitor-green',
   try_this: 'border-l-4 border-l-try-amber',
   call_vet: 'border-l-4 border-l-call-vet-red',
 }
 
-export default function AssessmentCard({ assessment }: { assessment: Assessment }) {
+export default function AssessmentCard({ assessment }: { assessment: HistoryEntry }) {
   const badge = BADGE[assessment.recommendation]
   const border = LEFT_BORDER[assessment.recommendation]
 

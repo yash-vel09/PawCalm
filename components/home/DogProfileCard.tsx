@@ -1,12 +1,11 @@
 import Link from 'next/link'
-import { PawPrint, ChevronRight } from 'lucide-react'
-import { DogProfile } from '@/store'
+import { PawPrint, ChevronRight, Dog, Cat } from 'lucide-react'
+import { DogProfile, HistoryEntry } from '@/store'
 import { formatRelativeTime } from '@/lib/formatTime'
-import { Assessment } from '@/lib/mockAssessments'
 
 interface DogProfileCardProps {
   profile: DogProfile | null
-  lastAssessment?: Assessment | null
+  lastAssessment?: HistoryEntry | null
 }
 
 export default function DogProfileCard({ profile, lastAssessment }: DogProfileCardProps) {
@@ -47,8 +46,22 @@ export default function DogProfileCard({ profile, lastAssessment }: DogProfileCa
 
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <p className="text-[18px] font-semibold text-calm-navy leading-tight">{profile.name}</p>
-          <p className="text-xs text-medium-gray mt-0.5 truncate">{details}</p>
+          <p className="text-[18px] font-semibold text-calm-navy leading-tight flex items-center gap-1">
+            {profile.name}
+            {profile.type === 'cat' ? (
+              <Cat size={14} className="text-medium-gray ml-1" />
+            ) : (
+              <Dog size={14} className="text-medium-gray ml-1" />
+            )}
+          </p>
+          <p className="text-xs text-medium-gray mt-0.5 truncate flex items-center gap-1">
+            {details}
+            {profile.type === 'cat' && profile.indoorOutdoor && (
+              <span className="text-[10px] font-semibold px-1.5 py-0.5 bg-light-teal text-pawcalm-teal rounded-full ml-1.5 shrink-0">
+                {profile.indoorOutdoor === 'indoor' ? 'Indoor' : profile.indoorOutdoor === 'outdoor' ? 'Outdoor' : 'Indoor & Outdoor'}
+              </span>
+            )}
+          </p>
           <p className="text-xs text-medium-gray mt-1.5">
             Last check:{' '}
             <span className={lastAssessment ? 'text-pawcalm-teal font-medium' : ''}>

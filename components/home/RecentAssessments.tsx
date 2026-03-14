@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { ClipboardList } from 'lucide-react'
-import { Assessment } from '@/lib/mockAssessments'
+import { HistoryEntry } from '@/store'
 import AssessmentCard from './AssessmentCard'
 
 interface RecentAssessmentsProps {
-  assessments: Assessment[]
+  assessments: HistoryEntry[]
   dogName: string
 }
 
@@ -21,13 +21,13 @@ export default function RecentAssessments({ assessments, dogName }: RecentAssess
           <div>
             <p className="text-sm font-semibold text-calm-navy">No assessments yet</p>
             <p className="text-xs text-medium-gray mt-1 leading-relaxed">
-              When something worries you about {dogName}, tap &ldquo;Log a Concern&rdquo; above.
+              No assessments yet for {dogName}. Tap &ldquo;Log a Concern&rdquo; above.
             </p>
           </div>
         </div>
       ) : (
         <div className="space-y-2">
-          {assessments.slice(0, 3).map((a) => (
+          {assessments.map((a) => (
             <AssessmentCard key={a.id} assessment={a} />
           ))}
           <Link href="/history">
