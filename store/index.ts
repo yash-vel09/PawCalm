@@ -3,12 +3,24 @@ import { MOCK_HISTORY } from '@/lib/mockHistory'
 import { MOCK_DOG_PROFILE } from '@/lib/mockDogProfile'
 import { MOCK_CAT_PROFILE } from '@/lib/mockCatProfile'
 
-export type ConcernType = 'not_eating' | 'low_energy' | 'vomiting' | 'bathroom_issues' | 'unusual_barking' | 'aggression' | 'limping' | 'something_else'
+export type ConcernType =
+  | 'not_eating' | 'low_energy' | 'vomiting' | 'bathroom_issues'
+  | 'unusual_barking' | 'aggression' | 'limping' | 'something_else'
+  // cat-specific:
+  | 'litter_box_changes' | 'hiding' | 'excessive_grooming' | 'excessive_meowing'
+  | 'hairballs'
 export type OnsetTiming = 'within_the_hour' | 'earlier_today' | 'yesterday' | 'few_days' | 'week_or_more'
-export type PhysicalSymptom = 'excessive_drooling' | 'shaking' | 'coughing' | 'sneezing' | 'eye_discharge' | 'swelling' | 'skin_changes' | 'bad_breath' | 'excessive_thirst' | 'weight_change' | 'none'
+export type PhysicalSymptom =
+  | 'excessive_drooling' | 'shaking' | 'coughing' | 'sneezing'
+  | 'eye_discharge' | 'swelling' | 'skin_changes' | 'bad_breath'
+  | 'excessive_thirst' | 'weight_change' | 'none'
+  // cat-specific:
+  | 'diarrhea' | 'constipation' | 'straining_litter_box' | 'blood_in_urine'
+  | 'watery_eyes' | 'bald_patches' | 'drooling'
 export type RecentChange = 'new_food' | 'moved_home' | 'new_pet' | 'new_family_member' | 'schedule_change' | 'boarding_travel' | 'weather_change' | 'new_medication' | 'vet_visit' | 'loss_of_companion' | 'nothing_changed'
 
 export interface ConcernAssessmentInput {
+  petType: 'dog' | 'cat'
   concernTypes: ConcernType[]
   additionalNotes: string
   onsetTiming: OnsetTiming | null

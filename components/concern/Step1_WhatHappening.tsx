@@ -1,28 +1,43 @@
 import type { ConcernAssessmentInput, ConcernType } from '@/store'
 import ConcernTypeCard from './ConcernTypeCard'
 
-const CONCERN_OPTIONS: { emoji: string; label: string; value: ConcernType }[] = [
-  { emoji: '🍽️', label: 'Not eating / eating less', value: 'not_eating' },
-  { emoji: '😴', label: 'Low energy / lethargy',    value: 'low_energy' },
-  { emoji: '🤢', label: 'Vomiting / upset stomach', value: 'vomiting' },
-  { emoji: '💩', label: 'Bathroom issues',           value: 'bathroom_issues' },
-  { emoji: '🐕', label: 'Unusual barking / whining', value: 'unusual_barking' },
-  { emoji: '😠', label: 'Aggression / behavior',     value: 'aggression' },
-  { emoji: '🦴', label: 'Limping / mobility issues', value: 'limping' },
-  { emoji: '🔍', label: 'Something else',            value: 'something_else' },
+const DOG_CONCERNS: { emoji: string; label: string; value: ConcernType }[] = [
+  { emoji: '🍽️', label: 'Not eating / eating less',     value: 'not_eating' },
+  { emoji: '😴', label: 'Low energy / lethargy',         value: 'low_energy' },
+  { emoji: '🤢', label: 'Vomiting / upset stomach',      value: 'vomiting' },
+  { emoji: '💩', label: 'Bathroom issues',               value: 'bathroom_issues' },
+  { emoji: '🐕', label: 'Unusual barking / whining',     value: 'unusual_barking' },
+  { emoji: '😠', label: 'Aggression / behavior change',  value: 'aggression' },
+  { emoji: '🦴', label: 'Limping / mobility issues',     value: 'limping' },
+  { emoji: '🔍', label: 'Something else',                value: 'something_else' },
+]
+
+const CAT_CONCERNS: { emoji: string; label: string; value: ConcernType }[] = [
+  { emoji: '🍽️', label: 'Not eating / eating less',        value: 'not_eating' },
+  { emoji: '😴', label: 'Low energy / lethargy',            value: 'low_energy' },
+  { emoji: '🤢', label: 'Vomiting / hairballs',             value: 'vomiting' },
+  { emoji: '🚽', label: 'Litter box changes',               value: 'litter_box_changes' },
+  { emoji: '🙀', label: 'Hiding more than usual',           value: 'hiding' },
+  { emoji: '😠', label: 'Aggression / behavior change',     value: 'aggression' },
+  { emoji: '💈', label: 'Excessive grooming / fur loss',    value: 'excessive_grooming' },
+  { emoji: '😿', label: 'Excessive meowing / vocalization', value: 'excessive_meowing' },
+  { emoji: '🔍', label: 'Something else',                   value: 'something_else' },
 ]
 
 interface Step1Props {
   draft: Partial<ConcernAssessmentInput>
   onChange: (u: Partial<ConcernAssessmentInput>) => void
   errors: Record<string, string>
-  dogName: string
+  petName: string
+  petType: 'dog' | 'cat'
 }
 
-export default function Step1_WhatHappening({ draft, onChange, errors, dogName }: Step1Props) {
+export default function Step1_WhatHappening({ draft, onChange, errors, petName, petType }: Step1Props) {
   const concernTypes = draft.concernTypes ?? []
   const additionalNotes = draft.additionalNotes ?? ''
   const somethingElseSelected = concernTypes.includes('something_else')
+
+  const CONCERN_OPTIONS = petType === 'cat' ? CAT_CONCERNS : DOG_CONCERNS
 
   function toggleConcern(value: ConcernType) {
     if (concernTypes.includes(value)) {
@@ -35,7 +50,7 @@ export default function Step1_WhatHappening({ draft, onChange, errors, dogName }
   return (
     <div>
       <h2 className="text-xl font-bold text-calm-navy mb-2">
-        What&apos;s going on with {dogName}?
+        What&apos;s going on with {petName}?
       </h2>
       <p className="text-sm text-medium-gray mb-6">Select up to 3</p>
       <div className="grid grid-cols-2 gap-3 mb-4">

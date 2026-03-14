@@ -21,10 +21,12 @@ const fadeVariants = {
 
 export default function ConcernPage() {
   const router = useRouter()
-  const dogProfile = useAppStore((s) => s.dogProfile)
+  const getActivePet = useAppStore((s) => s.getActivePet)
   const setCurrentAssessment = useAppStore((s) => s.setCurrentAssessment)
 
-  const dogName = dogProfile?.name ?? 'your dog'
+  const activePet = getActivePet()
+  const petName = activePet?.name ?? 'your pet'
+  const petType = activePet?.type ?? 'dog'
 
   const [step, setStep] = useState(1)
   const [draft, setDraft] = useState<Partial<ConcernAssessmentInput>>({
@@ -93,6 +95,7 @@ export default function ConcernPage() {
     if (!validate()) return
 
     const input: ConcernAssessmentInput = {
+      petType,
       concernTypes: draft.concernTypes ?? [],
       additionalNotes: draft.additionalNotes ?? '',
       onsetTiming: draft.onsetTiming ?? null,
@@ -144,7 +147,8 @@ export default function ConcernPage() {
                 draft={draft}
                 onChange={updateDraft}
                 errors={errors}
-                dogName={dogName}
+                petName={petName}
+                petType={petType}
               />
             )}
             {step === 2 && (
@@ -158,6 +162,7 @@ export default function ConcernPage() {
               <Step3_PhysicalSymptoms
                 values={draft.physicalSymptoms as PhysicalSymptom[]}
                 onChange={(v) => updateDraft({ physicalSymptoms: v })}
+                petType={petType}
               />
             )}
             {step === 4 && (

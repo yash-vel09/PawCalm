@@ -14,14 +14,20 @@ import { useToast } from '@/lib/toast'
 // ─── Labels ────────────────────────────────────────────────────────────────
 
 const CONCERN_LABEL: Record<ConcernType, string> = {
-  not_eating:      'Not eating / eating less',
-  low_energy:      'Low energy / lethargy',
-  vomiting:        'Vomiting / upset stomach',
-  bathroom_issues: 'Bathroom issues',
-  unusual_barking: 'Unusual barking / whining',
-  aggression:      'Aggression / behavior changes',
-  limping:         'Limping / mobility issues',
-  something_else:  'Something else',
+  not_eating:        'Not eating / eating less',
+  low_energy:        'Low energy / lethargy',
+  vomiting:          'Vomiting / upset stomach',
+  bathroom_issues:   'Bathroom issues',
+  unusual_barking:   'Unusual barking / whining',
+  aggression:        'Aggression / behavior changes',
+  limping:           'Limping / mobility issues',
+  something_else:    'Something else',
+  // cat-specific:
+  litter_box_changes: 'Litter box changes',
+  hiding:             'Hiding more than usual',
+  excessive_grooming: 'Excessive grooming / fur loss',
+  excessive_meowing:  'Excessive meowing / vocalization',
+  hairballs:          'Vomiting / hairballs',
 }
 
 // ─── Recommendation config ──────────────────────────────────────────────────
