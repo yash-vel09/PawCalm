@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google'
 import './globals.css'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import ToastContainer from '@/components/ToastContainer'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -35,8 +36,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${nunito.variable} font-sans bg-soft-cream`}>
-        <LayoutWrapper>{children}</LayoutWrapper>
-        <ToastContainer />
+        <AuthProvider>
+          <LayoutWrapper>{children}</LayoutWrapper>
+          <ToastContainer />
+        </AuthProvider>
       </body>
     </html>
   )
