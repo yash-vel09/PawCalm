@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import { useToast } from '@/lib/toast'
 import { useAppStore } from '@/store'
+import { useAuth } from '@/contexts/AuthContext'
 
 // ─── Shared sub-components ─────────────────────────────────────────────────
 
@@ -147,6 +148,7 @@ export default function SettingsPage() {
   const router       = useRouter()
   const pets         = useAppStore((s) => s.pets)
   const setActivePet = useAppStore((s) => s.setActivePet)
+  const { user, signOut } = useAuth()
 
   // Notification toggles
   const [followUp24, setFollowUp24]     = useState(true)
@@ -157,8 +159,12 @@ export default function SettingsPage() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const { show } = useToast()
 
-  function handleSignOut() {
-    show('Sign out coming soon')
+  const displayName = user?.user_metadata?.full_name
+    ?? (user?.email ? user.email.split('@')[0] : 'Account')
+  const displayEmail = user?.email ?? '—'
+
+  async function handleSignOut() {
+    await signOut()
   }
 
   function handleExportData() {
@@ -222,11 +228,11 @@ export default function SettingsPage() {
           <Card>
             <SettingsRow
               label="Name"
-              right={<span className="text-[15px] text-medium-gray">Alex Johnson</span>}
+              right={<span className="text-[15px] text-medium-gray">{displayName}</span>}
             />
             <SettingsRow
               label="Email"
-              right={<span className="text-[13px] text-medium-gray">alex@example.com</span>}
+              right={<span className="text-[13px] text-medium-gray">{displayEmail}</span>}
             />
             <SettingsRow
               label="Sign out"

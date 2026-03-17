@@ -123,6 +123,9 @@ interface AppState {
   assessmentHistory: HistoryEntry[]
   addToHistory: (entry: HistoryEntry) => void
   resolveAssessment: (id: string, outcome: ResolutionOutcome, notes: string) => void
+
+  // Auth
+  reset: () => void
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -215,4 +218,14 @@ export const useAppStore = create<AppState>((set, get) => ({
           : e,
       ),
     })),
+
+  reset: () =>
+    set({
+      pets: [],
+      activePetId: null,
+      dogProfile: null,
+      currentAssessment: null,
+      assessmentResult: null,
+      assessmentHistory: [],
+    }),
 }))

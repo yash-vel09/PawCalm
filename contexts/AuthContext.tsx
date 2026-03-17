@@ -1,8 +1,10 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import type { User, Session } from '@supabase/supabase-js'
 import { createClient } from '@/lib/supabase/client'
+import { useAppStore } from '@/store'
 
 interface AuthState {
   user: User | null
@@ -21,6 +23,8 @@ const AuthContext = createContext<AuthState>({
 })
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
+  const resetStore = useAppStore((s) => s.reset)
   const [user, setUser] = useState<User | null>(null)
   const [session, setSession] = useState<Session | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -50,6 +54,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function signOut() {
     const supabase = createClient()
     await supabase.auth.signOut()
+    resetStore()
+    router.push('/login')
   }
 
   return (

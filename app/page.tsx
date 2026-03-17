@@ -3,6 +3,7 @@
 import { Bell } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useAppStore } from '@/store'
+import { useAuth } from '@/contexts/AuthContext'
 import DogProfileCard from '@/components/home/DogProfileCard'
 import LogConcernButton from '@/components/home/LogConcernButton'
 import RecentAssessments from '@/components/home/RecentAssessments'
@@ -10,15 +11,21 @@ import QuickLog from '@/components/home/QuickLog'
 import FollowUpBanner from '@/components/home/FollowUpBanner'
 import PetSwitcher from '@/components/home/PetSwitcher'
 
+const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('.supabase.co') ?? false
+
 export default function HomePage() {
   const getActivePet = useAppStore((s) => s.getActivePet)
   const activePetId = useAppStore((s) => s.activePetId)
   const assessmentHistory = useAppStore((s) => s.assessmentHistory)
+  const { user } = useAuth()
 
   const activePet = getActivePet()
   const petName = activePet?.name ?? 'your pup'
   const petHistory = assessmentHistory.filter((e) => e.petId === activePetId)
   const lastAssessment = petHistory[0] ?? null
+
+  const ownerName = user?.user_metadata?.full_name
+    ?? (user?.email ? user.email.split('@')[0] : null)
 
   return (
     <div className="min-h-screen bg-soft-cream">
@@ -27,18 +34,27 @@ export default function HomePage() {
         {/* Top bar */}
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-[18px] font-semibold text-calm-navy">Hi there 👋</h1>
+            <h1 className="text-[18px] font-semibold text-calm-navy">
+              {ownerName ? `Hi, ${ownerName} 👋` : 'Hi there 👋'}
+            </h1>
             <p className="text-sm text-medium-gray mt-0.5">
               {activePet ? `${petName}'s dashboard` : 'Welcome to PawCalm'}
             </p>
           </div>
-          <button
-            type="button"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-warm-gray shadow-sm"
-            aria-label="Notifications"
-          >
-            <Bell size={20} strokeWidth={1.5} className="text-medium-gray" />
-          </button>
+          <div className="flex items-center gap-2">
+            {!isConfigured && (
+              <span className="text-[11px] font-semibold text-pawcalm-teal bg-light-teal px-2 py-0.5 rounded-full">
+                Demo
+              </span>
+            )}
+            <button
+              type="button"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-warm-gray shadow-sm"
+              aria-label="Notifications"
+            >
+              <Bell size={20} strokeWidth={1.5} className="text-medium-gray" />
+            </button>
+          </div>
         </div>
 
         {/* Pet switcher */}
