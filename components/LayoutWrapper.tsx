@@ -9,7 +9,7 @@ import { useAuth } from '@/contexts/AuthContext'
 
 const PATHS_WITHOUT_NAV = [
   '/onboarding', '/concern', '/processing', '/results', '/assessment',
-  '/login', '/signup', '/forgot-password'
+  '/login', '/signup', '/forgot-password', '/welcome'
 ]
 
 const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('.supabase.co') ?? false

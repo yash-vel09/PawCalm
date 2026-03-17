@@ -6,6 +6,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft } from 'lucide-react'
 import { useAppStore, DogProfile, DogProfileDraft } from '@/store'
 import { saveDogProfile } from '@/lib/mockDataService'
+import { createClient } from '@/lib/supabase/client'
+
+const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('.supabase.co') ?? false
 import ProgressBar from '@/components/onboarding/ProgressBar'
 import Step0_SpeciesPicker from '@/components/onboarding/Step0_SpeciesPicker'
 import Step1_NamePhoto from '@/components/onboarding/Step1_NamePhoto'
@@ -174,6 +177,10 @@ function OnboardingContent() {
       await saveDogProfile(completedProfile)
       addPet(completedProfile)
       setActivePet(completedProfile.id)
+      if (isConfigured) {
+        const supabase = createClient()
+        await supabase.auth.updateUser({ data: { onboarding_complete: true } })
+      }
       router.push('/')
     } finally {
       setIsLoading(false)

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { PawPrint, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
@@ -15,6 +15,8 @@ export default function ForgotPasswordPage() {
   const [error, setError] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
+  useEffect(() => { document.title = 'Reset password — PawCalm' }, [])
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
@@ -26,9 +28,12 @@ export default function ForgotPasswordPage() {
 
     setIsLoading(true)
     const supabase = createClient()
+    const [start] = [Date.now()]
     await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/auth/callback`,
     })
+    const elapsed = Date.now() - start
+    if (elapsed < 500) await new Promise((r) => setTimeout(r, 500 - elapsed))
     setIsLoading(false)
     setSubmitted(true) // always show success — don't leak email existence
   }
@@ -83,7 +88,7 @@ export default function ForgotPasswordPage() {
               </div>
 
               {error && (
-                <div className="text-xs text-call-vet-red bg-red-50 rounded-button px-3 py-2">
+                <div className="text-sm text-call-vet-red bg-soft-red-bg rounded-button px-3 py-2.5 leading-snug">
                   {error}
                 </div>
               )}
@@ -95,10 +100,11 @@ export default function ForgotPasswordPage() {
                     type="email"
                     autoFocus
                     required
+                    disabled={isLoading}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@example.com"
-                    className="w-full border-2 border-warm-gray rounded-button px-4 py-3 text-sm text-calm-navy placeholder-medium-gray focus:outline-none focus:border-pawcalm-teal transition-colors min-h-[48px]"
+                    className="w-full border-2 border-warm-gray rounded-button px-4 py-3 text-sm text-calm-navy placeholder-medium-gray focus:outline-none focus:border-pawcalm-teal transition-colors min-h-[48px] disabled:opacity-60"
                   />
                 </div>
 

@@ -4,16 +4,22 @@ import { createClient } from '@/lib/supabase/server'
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
-  const next = searchParams.get('next') ?? '/'
+  const next = searchParams.get('next')
 
   if (code) {
     const supabase = await createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
     if (!error) {
-      return NextResponse.redirect(new URL(next, origin))
+      // Explicit ?next param overrides (e.g. password reset)
+      if (next) return NextResponse.redirect(new URL(next, origin))
+
+      // New users (onboarding_complete not set) go to welcome screen
+      const onboardingComplete = data.user?.user_metadata?.onboarding_complete
+      return NextResponse.redirect(
+        new URL(onboardingComplete ? '/' : '/welcome', origin)
+      )
     }
   }
 
-  // Code missing or exchange failed — send back to login with error hint
   return NextResponse.redirect(new URL('/login?error=auth', origin))
 }
