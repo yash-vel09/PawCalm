@@ -7,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import DogProfileCard from '@/components/home/DogProfileCard'
 import LogConcernButton from '@/components/home/LogConcernButton'
 import RecentAssessments from '@/components/home/RecentAssessments'
-import QuickLog from '@/components/home/QuickLog'
+import WeeklyWellnessCard from '@/components/home/WeeklyWellnessCard'
 import FollowUpBanner from '@/components/home/FollowUpBanner'
 import PetSwitcher from '@/components/home/PetSwitcher'
 
@@ -71,6 +71,9 @@ export default function HomePage() {
             {/* Pet profile card */}
             <DogProfileCard profile={activePet} lastAssessment={lastAssessment} />
 
+            {/* Weekly wellness overview */}
+            <WeeklyWellnessCard petType={activePet?.type ?? 'dog'} />
+
             {/* Primary CTA */}
             <LogConcernButton />
 
@@ -79,12 +82,6 @@ export default function HomePage() {
 
             {/* Recent assessments */}
             <RecentAssessments assessments={petHistory.slice(0, 3)} dogName={petName} />
-
-            {/* Divider */}
-            <div className="border-t border-warm-gray" />
-
-            {/* Quick log */}
-            <QuickLog petType={activePet?.type ?? 'dog'} />
           </div>
         </motion.div>
 

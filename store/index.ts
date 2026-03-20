@@ -69,6 +69,7 @@ export type HealthCondition =
   | 'urinary_kidney' | 'dental_disease' | 'thyroid_issues' | 'asthma'
   | 'none' | 'other'
 export type PetType = 'dog' | 'cat'
+export type WellnessStatus = 'normal' | 'off'
 
 export interface PetProfile {
   id: string
@@ -92,6 +93,48 @@ export interface PetProfile {
   indoorOutdoor?: 'indoor' | 'outdoor' | 'both'
   normalLitterBox?: string
   normalGrooming?: string
+}
+
+// Mock wellness data for the current week (week of 2026-03-16)
+// Luna (dog): Mon–Fri logged, matching the PRD spec grid pattern
+const MOCK_WELLNESS_LOGS: Record<string, WellnessStatus> = {
+  'mock-profile-1_2026-03-16_eating': 'normal',
+  'mock-profile-1_2026-03-16_energy': 'normal',
+  'mock-profile-1_2026-03-16_bathroom': 'normal',
+  'mock-profile-1_2026-03-16_mood': 'normal',
+  'mock-profile-1_2026-03-17_eating': 'normal',
+  'mock-profile-1_2026-03-17_energy': 'normal',
+  'mock-profile-1_2026-03-17_bathroom': 'normal',
+  'mock-profile-1_2026-03-17_mood': 'off',
+  'mock-profile-1_2026-03-18_eating': 'off',
+  'mock-profile-1_2026-03-18_energy': 'normal',
+  'mock-profile-1_2026-03-18_bathroom': 'normal',
+  'mock-profile-1_2026-03-18_mood': 'normal',
+  'mock-profile-1_2026-03-19_eating': 'normal',
+  'mock-profile-1_2026-03-19_energy': 'off',
+  'mock-profile-1_2026-03-19_bathroom': 'normal',
+  'mock-profile-1_2026-03-19_mood': 'normal',
+  'mock-profile-1_2026-03-20_eating': 'normal',
+  'mock-profile-1_2026-03-20_energy': 'normal',
+  'mock-profile-1_2026-03-20_bathroom': 'normal',
+  'mock-profile-1_2026-03-20_mood': 'normal',
+  // Mochi (cat): Mon–Thu logged
+  'mock-cat-1_2026-03-16_eating': 'normal',
+  'mock-cat-1_2026-03-16_energy': 'normal',
+  'mock-cat-1_2026-03-16_litter': 'normal',
+  'mock-cat-1_2026-03-16_mood': 'normal',
+  'mock-cat-1_2026-03-17_eating': 'normal',
+  'mock-cat-1_2026-03-17_energy': 'normal',
+  'mock-cat-1_2026-03-17_litter': 'normal',
+  'mock-cat-1_2026-03-17_mood': 'normal',
+  'mock-cat-1_2026-03-18_eating': 'normal',
+  'mock-cat-1_2026-03-18_energy': 'off',
+  'mock-cat-1_2026-03-18_litter': 'normal',
+  'mock-cat-1_2026-03-18_mood': 'off',
+  'mock-cat-1_2026-03-19_eating': 'normal',
+  'mock-cat-1_2026-03-19_energy': 'normal',
+  'mock-cat-1_2026-03-19_litter': 'normal',
+  'mock-cat-1_2026-03-19_mood': 'normal',
 }
 
 // Keep aliases so existing imports don't break
@@ -123,6 +166,10 @@ interface AppState {
   assessmentHistory: HistoryEntry[]
   addToHistory: (entry: HistoryEntry) => void
   resolveAssessment: (id: string, outcome: ResolutionOutcome, notes: string) => void
+
+  // Wellness logs
+  wellnessLogs: Record<string, WellnessStatus>
+  setWellnessLog: (petId: string, dateKey: string, categoryKey: string, status: WellnessStatus) => void
 
   // Auth
   reset: () => void
@@ -203,6 +250,16 @@ export const useAppStore = create<AppState>((set, get) => ({
   assessmentResult: null,
   setAssessmentResult: (result) => set({ assessmentResult: result }),
   assessmentHistory: [...MOCK_HISTORY],
+
+  wellnessLogs: { ...MOCK_WELLNESS_LOGS },
+  setWellnessLog: (petId, dateKey, categoryKey, status) =>
+    set((s) => ({
+      wellnessLogs: {
+        ...s.wellnessLogs,
+        [`${petId}_${dateKey}_${categoryKey}`]: status,
+      },
+    })),
+
   addToHistory: (entry) =>
     set((s) => ({
       assessmentHistory: [
@@ -227,5 +284,6 @@ export const useAppStore = create<AppState>((set, get) => ({
       currentAssessment: null,
       assessmentResult: null,
       assessmentHistory: [],
+      wellnessLogs: {},
     }),
 }))

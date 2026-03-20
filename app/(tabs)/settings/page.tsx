@@ -569,7 +569,7 @@ export default function SettingsPage() {
             />
             <SettingsRow
               label="Daily check-in reminder"
-              sublabel="A gentle nudge to log any concerns each morning"
+              sublabel="A daily reminder to check in on how your pet is doing"
               right={<TealToggle checked={dailyCheckin} onChange={setDailyCheckin} label="Daily check-in reminder" />}
               borderBottom={false}
             />
