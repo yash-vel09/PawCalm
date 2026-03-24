@@ -13,7 +13,7 @@ interface Category {
   label: string
   Icon: typeof Utensils
   question: (name: string) => string
-  options: { label: string; isNormal: boolean }[]
+  options: { label: string; value: WellnessStatus; isNormal: boolean }[]
 }
 
 const DOG_CATEGORIES: Category[] = [
@@ -23,10 +23,10 @@ const DOG_CATEGORIES: Category[] = [
     Icon: Utensils,
     question: (name) => `How was ${name}'s eating?`,
     options: [
-      { label: 'Normal', isNormal: true },
-      { label: 'Less than usual', isNormal: false },
-      { label: 'More than usual', isNormal: false },
-      { label: "Didn't eat", isNormal: false },
+      { label: 'Normal', value: 'normal', isNormal: true },
+      { label: 'Less than usual', value: 'less', isNormal: false },
+      { label: 'More than usual', value: 'more', isNormal: false },
+      { label: "Didn't eat", value: 'none', isNormal: false },
     ],
   },
   {
@@ -35,9 +35,9 @@ const DOG_CATEGORIES: Category[] = [
     Icon: Zap,
     question: (name) => `How was ${name}'s energy?`,
     options: [
-      { label: 'Normal', isNormal: true },
-      { label: 'Low', isNormal: false },
-      { label: 'High', isNormal: false },
+      { label: 'Normal', value: 'normal', isNormal: true },
+      { label: 'Low', value: 'low', isNormal: false },
+      { label: 'High', value: 'high', isNormal: false },
     ],
   },
   {
@@ -46,8 +46,8 @@ const DOG_CATEGORIES: Category[] = [
     Icon: Droplets,
     question: (name) => `How was ${name}'s bathroom?`,
     options: [
-      { label: 'Normal', isNormal: true },
-      { label: 'Irregular', isNormal: false },
+      { label: 'Normal', value: 'normal', isNormal: true },
+      { label: 'Irregular', value: 'irregular', isNormal: false },
     ],
   },
   {
@@ -56,9 +56,9 @@ const DOG_CATEGORIES: Category[] = [
     Icon: Smile,
     question: (name) => `How was ${name}'s mood?`,
     options: [
-      { label: 'Happy', isNormal: true },
-      { label: 'Anxious', isNormal: false },
-      { label: 'Lethargic', isNormal: false },
+      { label: 'Happy', value: 'happy', isNormal: true },
+      { label: 'Anxious', value: 'anxious', isNormal: false },
+      { label: 'Lethargic', value: 'lethargic', isNormal: false },
     ],
   },
 ]
@@ -70,10 +70,10 @@ const CAT_CATEGORIES: Category[] = [
     Icon: Utensils,
     question: (name) => `How was ${name}'s eating?`,
     options: [
-      { label: 'Normal', isNormal: true },
-      { label: 'Less than usual', isNormal: false },
-      { label: 'More than usual', isNormal: false },
-      { label: "Didn't eat", isNormal: false },
+      { label: 'Normal', value: 'normal', isNormal: true },
+      { label: 'Less than usual', value: 'less', isNormal: false },
+      { label: 'More than usual', value: 'more', isNormal: false },
+      { label: "Didn't eat", value: 'none', isNormal: false },
     ],
   },
   {
@@ -82,9 +82,9 @@ const CAT_CATEGORIES: Category[] = [
     Icon: Zap,
     question: (name) => `How was ${name}'s energy?`,
     options: [
-      { label: 'Normal', isNormal: true },
-      { label: 'Low', isNormal: false },
-      { label: 'High', isNormal: false },
+      { label: 'Normal', value: 'normal', isNormal: true },
+      { label: 'Low', value: 'low', isNormal: false },
+      { label: 'High', value: 'high', isNormal: false },
     ],
   },
   {
@@ -93,8 +93,8 @@ const CAT_CATEGORIES: Category[] = [
     Icon: Box,
     question: (name) => `How was ${name}'s litter box?`,
     options: [
-      { label: 'Normal', isNormal: true },
-      { label: 'Irregular', isNormal: false },
+      { label: 'Normal', value: 'normal', isNormal: true },
+      { label: 'Irregular', value: 'irregular', isNormal: false },
     ],
   },
   {
@@ -103,12 +103,50 @@ const CAT_CATEGORIES: Category[] = [
     Icon: Smile,
     question: (name) => `How was ${name}'s mood?`,
     options: [
-      { label: 'Happy', isNormal: true },
-      { label: 'Anxious', isNormal: false },
-      { label: 'Lethargic', isNormal: false },
+      { label: 'Happy', value: 'happy', isNormal: true },
+      { label: 'Anxious', value: 'anxious', isNormal: false },
+      { label: 'Lethargic', value: 'lethargic', isNormal: false },
     ],
   },
 ]
+
+const STATUS_BAR: Record<WellnessStatus, { height: number; color: string; topBorderColor?: string }> = {
+  // shared normal
+  normal:    { height: 28, color: 'rgba(34, 197, 94, 0.7)' },
+  // eating
+  less:      { height: 18, color: 'rgba(245, 158, 11, 0.7)' },
+  more:      { height: 32, color: 'rgba(13, 148, 136, 0.7)' },
+  none:      { height: 6,  color: 'rgba(239, 68, 68, 0.7)' },
+  // energy
+  low:       { height: 14, color: 'rgba(245, 158, 11, 0.7)' },
+  high:      { height: 32, color: 'rgba(13, 148, 136, 0.7)' },
+  // bathroom / litter
+  irregular: { height: 14, color: 'rgba(245, 158, 11, 0.7)' },
+  // mood
+  happy:     { height: 28, color: 'rgba(34, 197, 94, 0.7)' },
+  anxious:   { height: 18, color: 'rgba(245, 158, 11, 0.7)' },
+  lethargic: { height: 8,  color: 'rgba(239, 68, 68, 0.7)' },
+}
+
+const STATUS_LABEL: Record<WellnessStatus, string> = {
+  normal:    'Normal',
+  less:      'Less than usual',
+  more:      'More than usual',
+  none:      "Didn't eat",
+  low:       'Low energy',
+  high:      'High energy',
+  irregular: 'Irregular',
+  happy:     'Happy',
+  anxious:   'Anxious',
+  lethargic: 'Lethargic',
+}
+
+function getBarSpec(status: WellnessStatus | null): { height: number; color: string; topBorderColor?: string } {
+  if (status === null) return { height: 10, color: '#E5E5E5' }
+  return STATUS_BAR[status] ?? { height: 10, color: '#E5E5E5' }
+}
+
+const NORMAL_STATUSES = new Set<WellnessStatus>(['normal', 'happy'])
 
 function getWeekDays(): Date[] {
   const today = new Date()
@@ -233,10 +271,9 @@ export default function WeeklyWellnessCard({ petType }: Props) {
     })
   }
 
-  function handleSheetOption(isNormal: boolean) {
+  function handleSheetOption(value: WellnessStatus) {
     if (!sheet || !activePetId) return
-    const status: WellnessStatus = isNormal ? 'normal' : 'off'
-    setWellnessLog(activePetId, sheet.dateKey, sheet.categoryKey, status)
+    setWellnessLog(activePetId, sheet.dateKey, sheet.categoryKey, value)
     const loggedKey = `${sheet.dateKey}_${sheet.categoryKey}`
     setJustLogged(loggedKey)
     setTimeout(() => setJustLogged(null), 600)
@@ -294,7 +331,7 @@ export default function WeeklyWellnessCard({ petType }: Props) {
                     <p className="text-[15px] font-semibold text-calm-navy mb-1.5">How this works</p>
                     <p className="text-[13px] text-medium-gray leading-relaxed">
                       Track your pet&apos;s daily patterns at a glance. Green means normal, amber means
-                      something seemed off. Tap any dot to log or view details. Consistent tracking
+                      something seemed off. Tap any bar to log or view details. Consistent tracking
                       helps PawCalm spot changes early.
                     </p>
                   </motion.div>
@@ -306,7 +343,7 @@ export default function WeeklyWellnessCard({ petType }: Props) {
         <p className="text-[13px] text-medium-gray mb-4">Last 7 days</p>
 
         {/* Column headers */}
-        <div className="flex items-end mb-2" style={{ paddingLeft: 68 }}>
+        <div className="flex items-end mb-2" style={{ paddingLeft: 70 }}>
           {weekDays.map((day, i) => {
             const dateKey = toDateKey(day)
             const isToday = dateKey === todayKey
@@ -328,108 +365,102 @@ export default function WeeklyWellnessCard({ petType }: Props) {
           })}
         </div>
 
-        {/* Category rows */}
+        {/* Category rows — Bar Grid */}
         <div className="flex flex-col gap-2.5">
-          {categories.map((category, rowIdx) => (
-            <div key={category.key} className="flex items-center">
-              {/* Row label */}
-              <div className="shrink-0" style={{ width: 68 }}>
+          {categories.map((category) => (
+            <div key={category.key} className="flex" style={{ height: 44 }}>
+              {/* Row label — vertically centered */}
+              <div className="shrink-0 self-center" style={{ width: 70 }}>
                 <span className="text-[12px] text-medium-gray leading-none">{category.label}</span>
               </div>
 
-              {/* Dots */}
-              {weekDays.map((day, colIdx) => {
-                const dateKey = toDateKey(day)
-                const status = getStatus(dateKey, category.key)
-                const future = isFuture(day)
-                const dotKey = `${dateKey}_${category.key}`
-                const isJustLogged = justLogged === dotKey
+              {/* Bars — bottom-aligned */}
+              <div className="flex-1 flex items-end">
+                {weekDays.map((day, colIdx) => {
+                  const dateKey = toDateKey(day)
+                  const status = getStatus(dateKey, category.key)
+                  const future = isFuture(day)
+                  const barKey = `${dateKey}_${category.key}`
+                  const isLogged = status !== null
+                  const showHoverTooltip = isLogged && !future && hoveredDot === barKey
+                  const barSpec = getBarSpec(status)
 
-                let bgColor = '#D4D4D4'
-                if (status === 'normal') bgColor = 'rgba(34, 197, 94, 0.8)'
-                else if (status === 'off') bgColor = 'rgba(245, 158, 11, 0.8)'
-
-                const isLogged = status !== null
-                const showHoverTooltip = isLogged && !future && hoveredDot === dotKey
-
-                return (
-                  <div key={dateKey} className="flex-1 flex items-center justify-center relative">
-                    {/* Hover tooltip — desktop only */}
-                    <AnimatePresence>
-                      {showHoverTooltip && (
-                        <motion.div
-                          key="hover-tip"
-                          initial={{ opacity: 0, y: 3, x: '-50%' }}
-                          animate={{ opacity: 1, y: 0, x: '-50%' }}
-                          exit={{ opacity: 0, y: 3, x: '-50%' }}
-                          transition={{ duration: 0.12 }}
-                          className="absolute bottom-full mb-2 left-1/2 z-30 pointer-events-none"
-                        >
-                          <div
-                            className="relative bg-calm-navy text-white text-[12px] rounded-[8px] shadow-md"
-                            style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
+                  return (
+                    <div
+                      key={dateKey}
+                      className="flex-1 flex flex-col items-center justify-end relative"
+                      style={{ height: 44 }}
+                    >
+                      {/* Hover tooltip — desktop only */}
+                      <AnimatePresence>
+                        {showHoverTooltip && (
+                          <motion.div
+                            key="hover-tip"
+                            initial={{ opacity: 0, y: 3, x: '-50%' }}
+                            animate={{ opacity: 1, y: 0, x: '-50%' }}
+                            exit={{ opacity: 0, y: 3, x: '-50%' }}
+                            transition={{ duration: 0.12 }}
+                            className="absolute bottom-full mb-2 left-1/2 z-30 pointer-events-none"
                           >
-                            {category.label}: {status === 'normal' ? 'Normal' : 'Off'}
-                            {/* Downward caret */}
                             <div
-                              className="absolute top-full left-1/2 -translate-x-1/2"
-                              style={{
-                                width: 0,
-                                height: 0,
-                                borderLeft: '5px solid transparent',
-                                borderRight: '5px solid transparent',
-                                borderTop: '5px solid #1E293B',
-                              }}
-                            />
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                              className="relative bg-calm-navy text-white text-[12px] rounded-[8px] shadow-md"
+                              style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
+                            >
+                              {category.label}: {status ? STATUS_LABEL[status] : ''}
+                              {/* Downward caret */}
+                              <div
+                                className="absolute top-full left-1/2 -translate-x-1/2"
+                                style={{
+                                  width: 0,
+                                  height: 0,
+                                  borderLeft: '5px solid transparent',
+                                  borderRight: '5px solid transparent',
+                                  borderTop: '5px solid #1E293B',
+                                }}
+                              />
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
 
-                    <motion.button
-                      type="button"
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={
-                        isJustLogged
-                          ? { scale: [1, 1.4, 1] as number[], opacity: 1 }
-                          : { scale: 1, opacity: 1 }
-                      }
-                      transition={
-                        isJustLogged
-                          ? { duration: 0.25, times: [0, 0.5, 1] }
-                          : {
-                              delay: initialAnimDoneRef.current ? 0 : colIdx * 0.05,
-                              duration: 0.2,
-                              type: 'spring',
-                              stiffness: 300,
-                              damping: 20,
-                            }
-                      }
-                      onClick={() => handleDotClick(day, category)}
-                      onMouseEnter={() => { if (isLogged && !future) handleDotMouseEnter(dotKey) }}
-                      onMouseLeave={handleDotMouseLeave}
-                      disabled={future}
-                      aria-label={`${category.label} ${DAY_ABBRS[colIdx]}: ${
-                        status === 'normal'
-                          ? 'Normal'
-                          : status === 'off'
-                          ? 'Off'
-                          : future
-                          ? 'Not yet'
-                          : 'Not logged — tap to log'
-                      }`}
-                      className={`rounded-full shrink-0 ${
-                        !future && status === null
-                          ? 'cursor-pointer hover:scale-125 transition-transform'
-                          : future
-                          ? 'cursor-default opacity-60'
-                          : 'cursor-pointer'
-                      }`}
-                      style={{ width: 12, height: 12, backgroundColor: bgColor }}
-                    />
-                  </div>
-                )
-              })}
+                      <motion.button
+                        type="button"
+                        initial={{ height: 10 }}
+                        animate={{ height: barSpec.height }}
+                        transition={{
+                          duration: 0.2,
+                          ease: 'easeOut',
+                          delay: initialAnimDoneRef.current ? 0 : colIdx * 0.05,
+                        }}
+                        onClick={() => handleDotClick(day, category)}
+                        onMouseEnter={() => { if (isLogged && !future) handleDotMouseEnter(barKey) }}
+                        onMouseLeave={handleDotMouseLeave}
+                        disabled={future}
+                        aria-label={`${category.label} ${DAY_ABBRS[colIdx]}: ${
+                          status !== null
+                            ? STATUS_LABEL[status]
+                            : future
+                            ? 'Not yet'
+                            : 'Not logged — tap to log'
+                        }`}
+                        className={`shrink-0 ${
+                          !future && status === null
+                            ? 'cursor-pointer'
+                            : future
+                            ? 'cursor-default opacity-40'
+                            : 'cursor-pointer'
+                        }`}
+                        style={{
+                          width: 16,
+                          backgroundColor: barSpec.color,
+                          borderRadius: '4px 4px 0 0',
+                          ...(barSpec.topBorderColor && { borderTop: `2px solid ${barSpec.topBorderColor}` }),
+                        }}
+                      />
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           ))}
         </div>
@@ -448,15 +479,12 @@ export default function WeeklyWellnessCard({ petType }: Props) {
               <div
                 className="w-2.5 h-2.5 rounded-full shrink-0"
                 style={{
-                  backgroundColor:
-                    activeTooltip.status === 'normal'
-                      ? 'rgba(34, 197, 94, 0.9)'
-                      : 'rgba(245, 158, 11, 0.9)',
+                  backgroundColor: STATUS_BAR[activeTooltip.status]?.color ?? '#E5E5E5',
                 }}
               />
               <span className="text-[12px] text-white">
                 {activeTooltip.categoryLabel}:{' '}
-                {activeTooltip.status === 'normal' ? 'Normal' : 'Off'} — logged{' '}
+                {STATUS_LABEL[activeTooltip.status]} —{' '}
                 {activeTooltip.dateLabel}
               </span>
             </motion.div>
@@ -467,7 +495,7 @@ export default function WeeklyWellnessCard({ petType }: Props) {
         <div className="mt-3 pt-3 border-t border-warm-gray">
           {loggedDaysCount === 0 ? (
             <p className="text-[13px] text-medium-gray">
-              Tap a dot to start tracking {petName}&apos;s week
+              Tap a bar to start tracking {petName}&apos;s week
             </p>
           ) : loggedDaysCount === 7 ? (
             <p className="text-[13px] font-semibold text-pawcalm-teal">All caught up!</p>
@@ -500,8 +528,8 @@ export default function WeeklyWellnessCard({ petType }: Props) {
           <div className="flex gap-2 overflow-x-auto -mx-0.5 px-0.5">
             {categories.map((category) => {
               const status = getStatus(todayKey, category.key)
-              const isNormal = status === 'normal'
-              const isOff = status === 'off'
+              const isNormal = status !== null && NORMAL_STATUSES.has(status)
+              const isOff = status !== null && !NORMAL_STATUSES.has(status)
 
               return (
                 <motion.button
@@ -596,7 +624,7 @@ export default function WeeklyWellnessCard({ petType }: Props) {
                     <button
                       key={option.label}
                       type="button"
-                      onClick={() => handleSheetOption(option.isNormal)}
+                      onClick={() => handleSheetOption(option.value)}
                       className={`w-full text-left px-4 py-4 rounded-button font-medium text-[15px] transition-colors duration-150 ${
                         option.isNormal
                           ? 'bg-soft-green-bg text-calm-navy active:bg-green-100'

@@ -69,7 +69,17 @@ export type HealthCondition =
   | 'urinary_kidney' | 'dental_disease' | 'thyroid_issues' | 'asthma'
   | 'none' | 'other'
 export type PetType = 'dog' | 'cat'
-export type WellnessStatus = 'normal' | 'off'
+export type WellnessStatus =
+  | 'normal'     // eating / energy / bathroom / litter — all fine
+  | 'less'       // eating: less than usual
+  | 'more'       // eating: more than usual
+  | 'none'       // eating: didn't eat
+  | 'low'        // energy: low
+  | 'high'       // energy: high
+  | 'irregular'  // bathroom / litter: irregular
+  | 'happy'      // mood: happy
+  | 'anxious'    // mood: anxious
+  | 'lethargic'  // mood: lethargic
 
 export interface PetProfile {
   id: string
@@ -95,46 +105,26 @@ export interface PetProfile {
   normalGrooming?: string
 }
 
-// Mock wellness data for the current week (week of 2026-03-16)
-// Luna (dog): Mon–Fri logged, matching the PRD spec grid pattern
+// Mock wellness data for the current week (week of 2026-03-23)
+// Luna (dog): Mon–Tue logged with varied specific statuses
 const MOCK_WELLNESS_LOGS: Record<string, WellnessStatus> = {
-  'mock-profile-1_2026-03-16_eating': 'normal',
-  'mock-profile-1_2026-03-16_energy': 'normal',
-  'mock-profile-1_2026-03-16_bathroom': 'normal',
-  'mock-profile-1_2026-03-16_mood': 'normal',
-  'mock-profile-1_2026-03-17_eating': 'normal',
-  'mock-profile-1_2026-03-17_energy': 'normal',
-  'mock-profile-1_2026-03-17_bathroom': 'normal',
-  'mock-profile-1_2026-03-17_mood': 'off',
-  'mock-profile-1_2026-03-18_eating': 'off',
-  'mock-profile-1_2026-03-18_energy': 'normal',
-  'mock-profile-1_2026-03-18_bathroom': 'normal',
-  'mock-profile-1_2026-03-18_mood': 'normal',
-  'mock-profile-1_2026-03-19_eating': 'normal',
-  'mock-profile-1_2026-03-19_energy': 'off',
-  'mock-profile-1_2026-03-19_bathroom': 'normal',
-  'mock-profile-1_2026-03-19_mood': 'normal',
-  'mock-profile-1_2026-03-20_eating': 'normal',
-  'mock-profile-1_2026-03-20_energy': 'normal',
-  'mock-profile-1_2026-03-20_bathroom': 'normal',
-  'mock-profile-1_2026-03-20_mood': 'normal',
-  // Mochi (cat): Mon–Thu logged
-  'mock-cat-1_2026-03-16_eating': 'normal',
-  'mock-cat-1_2026-03-16_energy': 'normal',
-  'mock-cat-1_2026-03-16_litter': 'normal',
-  'mock-cat-1_2026-03-16_mood': 'normal',
-  'mock-cat-1_2026-03-17_eating': 'normal',
-  'mock-cat-1_2026-03-17_energy': 'normal',
-  'mock-cat-1_2026-03-17_litter': 'normal',
-  'mock-cat-1_2026-03-17_mood': 'normal',
-  'mock-cat-1_2026-03-18_eating': 'normal',
-  'mock-cat-1_2026-03-18_energy': 'off',
-  'mock-cat-1_2026-03-18_litter': 'normal',
-  'mock-cat-1_2026-03-18_mood': 'off',
-  'mock-cat-1_2026-03-19_eating': 'normal',
-  'mock-cat-1_2026-03-19_energy': 'normal',
-  'mock-cat-1_2026-03-19_litter': 'normal',
-  'mock-cat-1_2026-03-19_mood': 'normal',
+  'mock-profile-1_2026-03-23_eating': 'normal',
+  'mock-profile-1_2026-03-23_energy': 'high',
+  'mock-profile-1_2026-03-23_bathroom': 'normal',
+  'mock-profile-1_2026-03-23_mood': 'happy',
+  'mock-profile-1_2026-03-24_eating': 'less',
+  'mock-profile-1_2026-03-24_energy': 'normal',
+  'mock-profile-1_2026-03-24_bathroom': 'irregular',
+  'mock-profile-1_2026-03-24_mood': 'anxious',
+  // Mochi (cat): Mon–Tue logged with varied specific statuses
+  'mock-cat-1_2026-03-23_eating': 'more',
+  'mock-cat-1_2026-03-23_energy': 'normal',
+  'mock-cat-1_2026-03-23_litter': 'normal',
+  'mock-cat-1_2026-03-23_mood': 'happy',
+  'mock-cat-1_2026-03-24_eating': 'none',
+  'mock-cat-1_2026-03-24_energy': 'low',
+  'mock-cat-1_2026-03-24_litter': 'irregular',
+  'mock-cat-1_2026-03-24_mood': 'lethargic',
 }
 
 // Keep aliases so existing imports don't break
