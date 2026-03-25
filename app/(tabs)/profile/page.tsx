@@ -86,7 +86,7 @@ function EditActions({ onSave, onCancel }: { onSave: () => void; onCancel: () =>
       <button type="button" onClick={onCancel} className="flex-1 py-2.5 border-2 border-warm-gray rounded-button text-sm font-semibold text-medium-gray">
         Cancel
       </button>
-      <button type="button" onClick={onSave} className="flex-1 py-2.5 bg-pawcalm-teal rounded-button text-sm font-semibold text-white">
+      <button type="button" onClick={onSave} className="flex-1 bg-teal-700 rounded-button text-sm font-semibold text-white shadow-sm" style={{ height: 52 }}>
         Save changes
       </button>
     </div>
@@ -364,28 +364,60 @@ export default function ProfilePage() {
                   </span>
                 </label>
                 {!draft.isPuppy && (
-                  <input
-                    type="number"
-                    min={1}
-                    max={25}
-                    value={draft.ageYears ?? ''}
-                    onChange={(e) => patchDraft({ ageYears: e.target.value ? Number(e.target.value) : null })}
-                    placeholder="Age in years"
-                    className={INPUT}
-                  />
+                  <>
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      max={30}
+                      value={draft.ageYears ?? ''}
+                      onChange={(e) => patchDraft({ ageYears: e.target.value ? Number(e.target.value) : null })}
+                      onBlur={(e) => {
+                        if (!e.target.value) return
+                        const v = Number(e.target.value)
+                        if (v > 30) patchDraft({ ageYears: 30 })
+                        else if (v < 0) patchDraft({ ageYears: 0 })
+                      }}
+                      onKeyDown={(e) => {
+                        if (!['Backspace','Delete','Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key) && !/^\d$/.test(e.key)) {
+                          e.preventDefault()
+                        }
+                      }}
+                      placeholder="e.g. 4"
+                      className={INPUT}
+                    />
+                    {draft.ageYears !== null && draft.ageYears !== undefined && (draft.ageYears > 30 || draft.ageYears < 0) && (
+                      <p className="text-call-vet-red text-xs mt-1">Age must be between 0 and 30 years</p>
+                    )}
+                  </>
                 )}
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-semibold text-calm-navy mb-1.5">Weight (lbs)</label>
                 <input
                   type="number"
+                  inputMode="decimal"
                   min={1}
                   max={300}
                   value={draft.weightLbs || ''}
                   onChange={(e) => patchDraft({ weightLbs: e.target.value ? Number(e.target.value) : 0 })}
-                  placeholder="e.g. 45"
+                  onBlur={(e) => {
+                    if (!e.target.value) return
+                    const v = Number(e.target.value)
+                    if (v > 300) patchDraft({ weightLbs: 300 })
+                    else if (v < 1) patchDraft({ weightLbs: 1 })
+                  }}
+                  onKeyDown={(e) => {
+                    if (!['Backspace','Delete','Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','.'].includes(e.key) && !/^\d$/.test(e.key)) {
+                      e.preventDefault()
+                    }
+                  }}
+                  placeholder="65"
                   className={INPUT}
                 />
+                {!!draft.weightLbs && (draft.weightLbs > 300 || draft.weightLbs < 1) && (
+                  <p className="text-call-vet-red text-xs mt-1">Weight must be between 1 and 300 lbs</p>
+                )}
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-semibold text-calm-navy mb-1.5">Sex</label>

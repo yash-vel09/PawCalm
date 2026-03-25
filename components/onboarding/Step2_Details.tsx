@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { DogProfileDraft } from '@/store'
 import { BREEDS, CAT_BREEDS } from '@/lib/breeds'
 import SearchableBreedSelect from './SearchableBreedSelect'
@@ -29,6 +30,8 @@ const INDOOR_OUTDOOR_OPTIONS = [
 
 export default function Step2_Details({ draft, onChange, errors, petType }: Step2Props) {
   const dogName = draft.name || 'your dog'
+  const [ageMsg, setAgeMsg] = useState('')
+  const [weightMsg, setWeightMsg] = useState('')
 
   return (
     <div className="flex flex-col gap-5 px-6 pt-4 pb-8">
@@ -69,17 +72,30 @@ export default function Step2_Details({ draft, onChange, errors, petType }: Step
         {!draft.isPuppy && (
           <input
             type="number"
-            min={1}
-            max={25}
+            inputMode="numeric"
+            min={0}
+            max={30}
             value={draft.ageYears ?? ''}
-            onChange={(e) => onChange({ ageYears: e.target.value ? Number(e.target.value) : null })}
-            placeholder="Age in years"
+            onChange={(e) => { onChange({ ageYears: e.target.value ? Number(e.target.value) : null }); setAgeMsg('') }}
+            onBlur={(e) => {
+              if (!e.target.value) { setAgeMsg(''); return }
+              const v = Number(e.target.value)
+              if (v > 30) { onChange({ ageYears: 30 }); setAgeMsg('Age must be between 0 and 30 years') }
+              else if (v < 0) { onChange({ ageYears: 0 }); setAgeMsg('Age must be between 0 and 30 years') }
+              else setAgeMsg('')
+            }}
+            onKeyDown={(e) => {
+              if (!['Backspace','Delete','Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key) && !/^\d$/.test(e.key)) {
+                e.preventDefault()
+              }
+            }}
+            placeholder="e.g. 4"
             className={`w-full border-2 rounded-button px-4 py-2.5 text-sm text-calm-navy placeholder-medium-gray focus:outline-none transition-colors ${
-              errors.ageYears ? 'border-call-vet-red' : 'border-warm-gray focus:border-pawcalm-teal'
+              errors.ageYears || ageMsg ? 'border-call-vet-red' : 'border-warm-gray focus:border-pawcalm-teal'
             }`}
           />
         )}
-        {errors.ageYears && <p className="text-call-vet-red text-xs mt-1">{errors.ageYears}</p>}
+        {(errors.ageYears || ageMsg) && <p className="text-call-vet-red text-xs mt-1">{errors.ageYears || ageMsg}</p>}
       </div>
 
       {/* Weight */}
@@ -89,16 +105,29 @@ export default function Step2_Details({ draft, onChange, errors, petType }: Step
         </label>
         <input
           type="number"
+          inputMode="decimal"
           min={1}
           max={300}
           value={draft.weightLbs ?? ''}
-          onChange={(e) => onChange({ weightLbs: e.target.value ? Number(e.target.value) : undefined })}
-          placeholder="e.g. 45"
+          onChange={(e) => { onChange({ weightLbs: e.target.value ? Number(e.target.value) : undefined }); setWeightMsg('') }}
+          onBlur={(e) => {
+            if (!e.target.value) { setWeightMsg(''); return }
+            const v = Number(e.target.value)
+            if (v > 300) { onChange({ weightLbs: 300 }); setWeightMsg('Weight must be between 1 and 300 lbs') }
+            else if (v < 1) { onChange({ weightLbs: 1 }); setWeightMsg('Weight must be between 1 and 300 lbs') }
+            else setWeightMsg('')
+          }}
+          onKeyDown={(e) => {
+            if (!['Backspace','Delete','Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','.'].includes(e.key) && !/^\d$/.test(e.key)) {
+              e.preventDefault()
+            }
+          }}
+          placeholder="65"
           className={`w-full border-2 rounded-button px-4 py-2.5 text-sm text-calm-navy placeholder-medium-gray focus:outline-none transition-colors ${
-            errors.weightLbs ? 'border-call-vet-red' : 'border-warm-gray focus:border-pawcalm-teal'
+            errors.weightLbs || weightMsg ? 'border-call-vet-red' : 'border-warm-gray focus:border-pawcalm-teal'
           }`}
         />
-        {errors.weightLbs && <p className="text-call-vet-red text-xs mt-1">{errors.weightLbs}</p>}
+        {(errors.weightLbs || weightMsg) && <p className="text-call-vet-red text-xs mt-1">{errors.weightLbs || weightMsg}</p>}
       </div>
 
       {/* Sex */}

@@ -389,7 +389,7 @@ function AccountSection() {
           <div className="flex-1 min-w-0">
             {/* Name row */}
             {isEditingName ? (
-              <div className="flex items-center gap-2 mb-1">
+              <div className="mb-1">
                 <input
                   autoFocus
                   value={nameInput}
@@ -398,16 +398,18 @@ function AccountSection() {
                     if (e.key === 'Enter') handleSaveName()
                     if (e.key === 'Escape') setIsEditingName(false)
                   }}
-                  className="flex-1 min-w-0 border-2 border-pawcalm-teal rounded-button px-3 py-1.5 text-[16px] font-bold text-calm-navy focus:outline-none"
+                  className="w-full border-2 border-pawcalm-teal rounded-button px-3 py-1.5 text-[16px] font-bold text-calm-navy focus:outline-none"
                 />
-                <button type="button" onClick={handleSaveName} disabled={isSavingName}
-                  className="text-xs font-semibold text-white bg-pawcalm-teal px-3 py-1.5 rounded-button shrink-0 disabled:opacity-60">
-                  {isSavingName ? '…' : 'Save'}
-                </button>
-                <button type="button" onClick={() => setIsEditingName(false)}
-                  className="text-medium-gray shrink-0">
-                  <X size={16} />
-                </button>
+                <div className="flex items-center gap-2 mt-3">
+                  <button type="button" onClick={handleSaveName} disabled={isSavingName}
+                    className="flex-1 text-sm font-semibold text-white bg-pawcalm-teal px-3 py-2 rounded-button disabled:opacity-60">
+                    {isSavingName ? '…' : 'Save'}
+                  </button>
+                  <button type="button" onClick={() => setIsEditingName(false)}
+                    className="flex-1 text-sm font-semibold text-medium-gray border-2 border-warm-gray px-3 py-2 rounded-button">
+                    Cancel
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="flex items-center gap-2 mb-0.5">

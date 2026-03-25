@@ -180,12 +180,6 @@ interface SheetState {
   dateLabel: string
 }
 
-interface ActiveTooltip {
-  status: WellnessStatus
-  categoryLabel: string
-  dateLabel: string
-}
-
 interface Props {
   petType: PetType
 }
@@ -206,11 +200,10 @@ export default function WeeklyWellnessCard({ petType }: Props) {
 
   const [showInfo, setShowInfo] = useState(false)
   const [sheet, setSheet] = useState<SheetState | null>(null)
-  const [activeTooltip, setActiveTooltip] = useState<ActiveTooltip | null>(null)
   const [justLogged, setJustLogged] = useState<string | null>(null)
   const [hoveredDot, setHoveredDot] = useState<string | null>(null)
-  const tooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const tapTooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const initialAnimDoneRef = useRef(false)
 
   useEffect(() => {
@@ -222,8 +215,8 @@ export default function WeeklyWellnessCard({ petType }: Props) {
 
   useEffect(() => {
     return () => {
-      if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current)
       if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
+      if (tapTooltipTimerRef.current) clearTimeout(tapTooltipTimerRef.current)
     }
   }, [])
 
@@ -241,13 +234,11 @@ export default function WeeklyWellnessCard({ petType }: Props) {
     const dateKey = toDateKey(day)
     const status = getStatus(dateKey, category.key)
     if (status !== null) {
-      if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current)
-      setActiveTooltip({
-        status,
-        categoryLabel: category.label,
-        dateLabel: formatDateLabel(day),
-      })
-      tooltipTimerRef.current = setTimeout(() => setActiveTooltip(null), 2500)
+      // Show the hover tooltip above the bar (works on both tap and click)
+      const barKey = `${dateKey}_${category.key}`
+      if (tapTooltipTimerRef.current) clearTimeout(tapTooltipTimerRef.current)
+      setHoveredDot(barKey)
+      tapTooltipTimerRef.current = setTimeout(() => setHoveredDot(null), 2500)
       return
     }
     setSheet({ categoryKey: category.key, dateKey, dateLabel: formatDateLabel(day) })
@@ -406,7 +397,7 @@ export default function WeeklyWellnessCard({ petType }: Props) {
                               className="relative bg-calm-navy text-white text-[12px] rounded-[8px] shadow-md"
                               style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
                             >
-                              {category.label}: {status ? STATUS_LABEL[status] : ''}
+                              {category.label}: {status ? STATUS_LABEL[status] : ''} — {formatDateLabel(day)}
                               {/* Downward caret */}
                               <div
                                 className="absolute top-full left-1/2 -translate-x-1/2"
@@ -464,32 +455,6 @@ export default function WeeklyWellnessCard({ petType }: Props) {
             </div>
           ))}
         </div>
-
-        {/* Tooltip info strip */}
-        <AnimatePresence>
-          {activeTooltip && (
-            <motion.div
-              key="tooltip"
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.15 }}
-              className="mt-3 px-3 py-2 bg-calm-navy rounded-[10px] flex items-center gap-2"
-            >
-              <div
-                className="w-2.5 h-2.5 rounded-full shrink-0"
-                style={{
-                  backgroundColor: STATUS_BAR[activeTooltip.status]?.color ?? '#E5E5E5',
-                }}
-              />
-              <span className="text-[12px] text-white">
-                {activeTooltip.categoryLabel}:{' '}
-                {STATUS_LABEL[activeTooltip.status]} —{' '}
-                {activeTooltip.dateLabel}
-              </span>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Summary row */}
         <div className="mt-3 pt-3 border-t border-warm-gray">

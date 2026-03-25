@@ -1,3 +1,4 @@
+import { Pencil } from 'lucide-react'
 import { DogProfile } from '@/store'
 
 interface Step5Props {
@@ -5,6 +6,7 @@ interface Step5Props {
   onConfirm: () => void
   isLoading: boolean
   isAddMode: boolean
+  onEditStep: (step: number) => void
 }
 
 const EATING_LABELS: Record<string, string> = {
@@ -28,7 +30,7 @@ const MOOD_LABELS: Record<string, string> = {
   anxious: 'Anxious',
 }
 
-export default function Step5_Complete({ profile, onConfirm, isLoading, isAddMode }: Step5Props) {
+export default function Step5_Complete({ profile, onConfirm, isLoading, isAddMode, onEditStep }: Step5Props) {
   const ageDisplay = profile.isPuppy ? 'Puppy (< 1 year)' : `${profile.ageYears} year${profile.ageYears === 1 ? '' : 's'}`
 
   return (
@@ -53,22 +55,22 @@ export default function Step5_Complete({ profile, onConfirm, isLoading, isAddMod
 
       {/* Summary card */}
       <div className="w-full bg-white rounded-card p-4 shadow-sm space-y-3">
+        {/* Section: Name / Photo — Step 1 */}
+        <SectionHeader label="Name & photo" onEdit={() => onEditStep(1)} />
         <SummaryRow label="Name" value={profile.name} />
-        <SummaryRow label="Breed" value={profile.breed} />
-        <SummaryRow label="Age" value={ageDisplay} />
-        <SummaryRow label="Weight" value={`${profile.weightLbs} lbs`} />
-        <SummaryRow label="Sex" value={profile.sex === 'male' ? 'Male' : 'Female'} />
-        <SummaryRow
-          label="Spayed/Neutered"
-          value={profile.spayedNeutered === 'yes' ? 'Yes' : profile.spayedNeutered === 'no' ? 'No' : 'Not sure'}
-        />
+
+        {/* Section: Details — Step 2 */}
         <div className="border-t border-warm-gray pt-3 space-y-3">
-          <SummaryRow label="Eating" value={EATING_LABELS[profile.normalEating] ?? profile.normalEating} />
-          <SummaryRow label="Energy" value={ENERGY_LABELS[profile.normalEnergy] ?? profile.normalEnergy} />
-          <SummaryRow label="Mood" value={MOOD_LABELS[profile.normalMood] ?? profile.normalMood} />
-        </div>
-        {profile.type === 'cat' && profile.indoorOutdoor && (
-          <div className="border-t border-warm-gray pt-3">
+          <SectionHeader label="Details" onEdit={() => onEditStep(2)} />
+          <SummaryRow label="Breed" value={profile.breed} />
+          <SummaryRow label="Age" value={ageDisplay} />
+          <SummaryRow label="Weight" value={`${profile.weightLbs} lbs`} />
+          <SummaryRow label="Sex" value={profile.sex === 'male' ? 'Male' : 'Female'} />
+          <SummaryRow
+            label="Spayed/Neutered"
+            value={profile.spayedNeutered === 'yes' ? 'Yes' : profile.spayedNeutered === 'no' ? 'No' : 'Not sure'}
+          />
+          {profile.type === 'cat' && profile.indoorOutdoor && (
             <SummaryRow
               label="Living"
               value={
@@ -77,16 +79,27 @@ export default function Step5_Complete({ profile, onConfirm, isLoading, isAddMod
                 : 'Indoor & Outdoor'
               }
             />
-          </div>
-        )}
-        {profile.healthConditions.length > 0 && (
-          <div className="border-t border-warm-gray pt-3">
-            <SummaryRow
-              label="Health"
-              value={profile.healthConditions.join(', ')}
-            />
-          </div>
-        )}
+          )}
+        </div>
+
+        {/* Section: Baseline patterns — Step 3 */}
+        <div className="border-t border-warm-gray pt-3 space-y-3">
+          <SectionHeader label="Baseline patterns" onEdit={() => onEditStep(3)} />
+          <SummaryRow label="Eating" value={EATING_LABELS[profile.normalEating] ?? profile.normalEating} />
+          <SummaryRow label="Energy" value={ENERGY_LABELS[profile.normalEnergy] ?? profile.normalEnergy} />
+          <SummaryRow label="Mood" value={MOOD_LABELS[profile.normalMood] ?? profile.normalMood} />
+        </div>
+
+        {/* Section: Health — Step 4 */}
+        <div className="border-t border-warm-gray pt-3 space-y-3">
+          <SectionHeader label="Health & medications" onEdit={() => onEditStep(4)} />
+          {profile.healthConditions.length > 0 && (
+            <SummaryRow label="Health" value={profile.healthConditions.join(', ')} />
+          )}
+          {profile.medications && (
+            <SummaryRow label="Medications" value={profile.medications} />
+          )}
+        </div>
       </div>
 
       {/* CTA */}
@@ -117,6 +130,22 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
     <div className="flex justify-between items-start gap-4">
       <span className="text-sm text-medium-gray shrink-0">{label}</span>
       <span className="text-sm font-semibold text-calm-navy text-right">{value}</span>
+    </div>
+  )
+}
+
+function SectionHeader({ label, onEdit }: { label: string; onEdit: () => void }) {
+  return (
+    <div className="flex items-center justify-between">
+      <span className="text-xs font-bold text-medium-gray uppercase tracking-wide">{label}</span>
+      <button
+        type="button"
+        onClick={onEdit}
+        className="flex items-center gap-1 text-pawcalm-teal text-xs font-semibold"
+      >
+        <Pencil size={12} strokeWidth={2} />
+        Edit
+      </button>
     </div>
   )
 }

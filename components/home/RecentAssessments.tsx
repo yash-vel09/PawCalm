@@ -19,9 +19,13 @@ export default function RecentAssessments({ assessments, dogName }: RecentAssess
             <ClipboardList size={22} className="text-medium-gray" />
           </div>
           <div>
-            <p className="text-sm font-semibold text-calm-navy">Welcome, {dogName}!</p>
+            <p className="text-sm font-semibold text-calm-navy">No assessments yet for {dogName}.</p>
             <p className="text-xs text-medium-gray mt-1 leading-relaxed">
-              When you notice something that concerns you about {dogName}, tap &ldquo;Log a Concern&rdquo; below.
+              When something seems off,{' '}
+              <Link href="/concern" className="text-pawcalm-teal underline underline-offset-2">
+                log a concern
+              </Link>{' '}
+              to get guidance.
             </p>
           </div>
         </div>

@@ -12,7 +12,7 @@ export default function PetSwitcher() {
 
   return (
     <div className="-mx-4 px-4">
-      <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden">
+      <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
         {pets.map((pet) => {
           const isActive = pet.id === activePetId
           return (

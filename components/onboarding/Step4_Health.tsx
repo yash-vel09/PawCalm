@@ -73,26 +73,15 @@ export default function Step4_Health({ draft, onChange, petType }: Step4Props) {
       {/* Medications */}
       <div>
         <label className="block text-sm font-semibold text-calm-navy mb-1.5">
-          Current medications
+          Current medications <span className="text-medium-gray font-normal">(optional)</span>
         </label>
-        <div className="relative">
-          <textarea
-            value={draft.medications ?? ''}
-            onChange={(e) => onChange({ medications: e.target.value })}
-            placeholder="List any current medications..."
-            rows={3}
-            className="w-full border-2 border-warm-gray rounded-button px-4 py-2.5 text-sm text-calm-navy placeholder-medium-gray focus:outline-none focus:border-pawcalm-teal resize-none"
-          />
-        </div>
-        {!draft.medications && (
-          <button
-            type="button"
-            onClick={() => onChange({ medications: 'None' })}
-            className="text-xs text-pawcalm-teal font-semibold mt-1"
-          >
-            Quick fill: None
-          </button>
-        )}
+        <textarea
+          value={draft.medications ?? ''}
+          onChange={(e) => onChange({ medications: e.target.value })}
+          placeholder="e.g. Monthly heartworm preventative"
+          rows={3}
+          className="w-full border-2 border-warm-gray rounded-button px-4 py-2.5 text-sm text-calm-navy placeholder-medium-gray focus:outline-none focus:border-pawcalm-teal resize-none"
+        />
       </div>
 
       {/* Vet clinic */}

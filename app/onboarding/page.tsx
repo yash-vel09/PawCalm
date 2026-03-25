@@ -94,6 +94,7 @@ function OnboardingContent() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(false)
   const [completedProfile, setCompletedProfile] = useState<DogProfile | null>(null)
+  const [returnToSummary, setReturnToSummary] = useState(false)
 
   function updateDraft(updates: Partial<DogProfileDraft>) {
     setDraft((prev) => ({ ...prev, ...updates }))
@@ -138,6 +139,16 @@ function OnboardingContent() {
 
     setErrors({})
 
+    // If editing from summary, rebuild the profile and return to step 5
+    if (returnToSummary && step < 4) {
+      const profile = buildProfile(draft, petType!)
+      setCompletedProfile(profile)
+      setReturnToSummary(false)
+      setDirection(1)
+      setStep(5)
+      return
+    }
+
     if (step === 3) {
       const profile = buildProfile(draft, petType!)
       setCompletedProfile(profile)
@@ -166,6 +177,7 @@ function OnboardingContent() {
       vetClinicName: draft.vetClinicName ?? '',
     }
     setCompletedProfile(updated)
+    setReturnToSummary(false)
     setDirection(1)
     setStep(5)
   }
@@ -252,6 +264,12 @@ function OnboardingContent() {
                 onConfirm={handleComplete}
                 isLoading={isLoading}
                 isAddMode={isAddMode}
+                onEditStep={(targetStep) => {
+                  setReturnToSummary(true)
+                  setErrors({})
+                  setDirection(-1)
+                  setStep(targetStep)
+                }}
               />
             )}
           </motion.div>
