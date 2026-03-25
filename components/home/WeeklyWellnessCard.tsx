@@ -178,6 +178,7 @@ interface SheetState {
   categoryKey: CategoryKey
   dateKey: string
   dateLabel: string
+  currentValue: WellnessStatus | null
 }
 
 interface Props {
@@ -203,7 +204,6 @@ export default function WeeklyWellnessCard({ petType }: Props) {
   const [justLogged, setJustLogged] = useState<string | null>(null)
   const [hoveredDot, setHoveredDot] = useState<string | null>(null)
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const tapTooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const initialAnimDoneRef = useRef(false)
 
   useEffect(() => {
@@ -216,7 +216,6 @@ export default function WeeklyWellnessCard({ petType }: Props) {
   useEffect(() => {
     return () => {
       if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
-      if (tapTooltipTimerRef.current) clearTimeout(tapTooltipTimerRef.current)
     }
   }, [])
 
@@ -233,15 +232,7 @@ export default function WeeklyWellnessCard({ petType }: Props) {
     if (isFuture(day)) return
     const dateKey = toDateKey(day)
     const status = getStatus(dateKey, category.key)
-    if (status !== null) {
-      // Show the hover tooltip above the bar (works on both tap and click)
-      const barKey = `${dateKey}_${category.key}`
-      if (tapTooltipTimerRef.current) clearTimeout(tapTooltipTimerRef.current)
-      setHoveredDot(barKey)
-      tapTooltipTimerRef.current = setTimeout(() => setHoveredDot(null), 2500)
-      return
-    }
-    setSheet({ categoryKey: category.key, dateKey, dateLabel: formatDateLabel(day) })
+    setSheet({ categoryKey: category.key, dateKey, dateLabel: formatDateLabel(day), currentValue: status })
   }
 
   function handleDotMouseEnter(dotKey: string) {
@@ -255,11 +246,8 @@ export default function WeeklyWellnessCard({ petType }: Props) {
   }
 
   function handleTodayButtonClick(category: Category) {
-    setSheet({
-      categoryKey: category.key,
-      dateKey: todayKey,
-      dateLabel: formatDateLabel(today),
-    })
+    const currentValue = getStatus(todayKey, category.key)
+    setSheet({ categoryKey: category.key, dateKey: todayKey, dateLabel: formatDateLabel(today), currentValue })
   }
 
   function handleSheetOption(value: WellnessStatus) {
@@ -585,20 +573,26 @@ export default function WeeklyWellnessCard({ petType }: Props) {
 
                 {/* Options */}
                 <div className="space-y-2.5">
-                  {currentCategory.options.map((option) => (
-                    <button
-                      key={option.label}
-                      type="button"
-                      onClick={() => handleSheetOption(option.value)}
-                      className={`w-full text-left px-4 py-4 rounded-button font-medium text-[15px] transition-colors duration-150 ${
-                        option.isNormal
-                          ? 'bg-soft-green-bg text-calm-navy active:bg-green-100'
-                          : 'bg-warm-gray text-calm-navy active:bg-stone-200'
-                      }`}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
+                  {currentCategory.options.map((option) => {
+                    const isSelected = sheet.currentValue === option.value
+                    return (
+                      <button
+                        key={option.label}
+                        type="button"
+                        onClick={() => handleSheetOption(option.value)}
+                        className={`w-full text-left px-4 py-4 rounded-button font-medium text-[15px] transition-colors duration-150 flex items-center justify-between ${
+                          isSelected
+                            ? 'bg-soft-green-bg border-2 border-pawcalm-teal text-calm-navy'
+                            : option.isNormal
+                            ? 'bg-soft-green-bg text-calm-navy active:bg-green-100'
+                            : 'bg-warm-gray text-calm-navy active:bg-stone-200'
+                        }`}
+                      >
+                        {option.label}
+                        {isSelected && <Check size={16} strokeWidth={2.5} className="text-pawcalm-teal shrink-0" />}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             </motion.div>
