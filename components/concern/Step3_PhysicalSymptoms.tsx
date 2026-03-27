@@ -36,9 +36,11 @@ interface Step3Props {
   values: PhysicalSymptom[]
   onChange: (v: PhysicalSymptom[]) => void
   petType: 'dog' | 'cat'
+  symptomNotes: string
+  onSymptomNotesChange: (v: string) => void
 }
 
-export default function Step3_PhysicalSymptoms({ values, onChange, petType }: Step3Props) {
+export default function Step3_PhysicalSymptoms({ values, onChange, petType, symptomNotes, onSymptomNotesChange }: Step3Props) {
   const SYMPTOMS = petType === 'cat' ? CAT_SYMPTOMS : DOG_SYMPTOMS
 
   const hasRedFlag = petType === 'cat' && values.some(
@@ -84,6 +86,22 @@ export default function Step3_PhysicalSymptoms({ values, onChange, petType }: St
           </p>
         </div>
       )}
+      <div className="mt-4">
+        <label className="block text-sm font-semibold text-calm-navy mb-1.5">
+          Tell us more (optional)
+        </label>
+        <textarea
+          value={symptomNotes}
+          onChange={(e) => onSymptomNotesChange(e.target.value)}
+          maxLength={500}
+          rows={3}
+          placeholder="Describe what you're seeing..."
+          className="w-full rounded-button border-2 border-warm-gray bg-white px-4 py-3 text-sm text-calm-navy placeholder:text-medium-gray focus:outline-none focus:border-pawcalm-teal resize-none"
+        />
+        <div className="flex justify-end mt-1">
+          <span className="text-xs text-medium-gray">{symptomNotes.length}/500</span>
+        </div>
+      </div>
     </div>
   )
 }

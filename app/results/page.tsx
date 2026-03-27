@@ -1,17 +1,43 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import {
   X, Phone, Eye, CheckCircle, Check, Stethoscope, Copy,
   Bookmark, BookmarkPlus, Share2, ThumbsUp, ThumbsDown, ClipboardList,
+  ChevronDown, ChevronUp,
 } from 'lucide-react'
 import { useAppStore } from '@/store'
 import type { ConcernAssessmentInput, ConcernType, Recommendation } from '@/store'
 import { useToast } from '@/lib/toast'
+import ConfirmDialog from '@/components/ui/ConfirmDialog'
 
 // ─── Labels ────────────────────────────────────────────────────────────────
+
+const ONSET_LABEL: Record<string, string> = {
+  within_the_hour: 'Within the last hour',
+  earlier_today:   'Earlier today',
+  yesterday:       'Yesterday',
+  few_days:        'A few days ago',
+  week_or_more:    'A week or more ago',
+}
+const SYMPTOM_LABEL: Record<string, string> = {
+  excessive_drooling: 'Excessive drooling', shaking: 'Shaking / trembling',
+  coughing: 'Coughing', sneezing: 'Sneezing', eye_discharge: 'Eye discharge',
+  swelling: 'Swelling', skin_changes: 'Skin changes', bad_breath: 'Bad breath',
+  excessive_thirst: 'Excessive thirst', weight_change: 'Weight change',
+  diarrhea: 'Diarrhea', constipation: 'Constipation',
+  straining_litter_box: 'Straining in litter box', blood_in_urine: 'Blood in urine',
+  watery_eyes: 'Watery eyes', bald_patches: 'Skin changes / bald patches', drooling: 'Drooling (unusual)',
+}
+const CHANGE_LABEL: Record<string, string> = {
+  new_food: 'New food or treats', moved_home: 'Moved to new home',
+  new_pet: 'New pet in household', new_family_member: 'New baby / family member',
+  schedule_change: 'Change in schedule', boarding_travel: 'Recent boarding / travel',
+  weather_change: 'Weather change', new_medication: 'New medication',
+  vet_visit: 'Recent vet visit', loss_of_companion: 'Loss of companion',
+}
 
 const CONCERN_LABEL: Record<ConcernType, string> = {
   not_eating:        'Not eating / eating less',
@@ -80,6 +106,17 @@ function deriveRec(a: ConcernAssessmentInput): Recommendation {
   return 'monitor'
 }
 
+// ─── Input summary helper ──────────────────────────────────────────────────
+
+function InputRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-[11px] font-semibold text-medium-gray uppercase tracking-wide mb-0.5">{label}</p>
+      <p className="text-[14px] text-calm-navy leading-snug">{value}</p>
+    </div>
+  )
+}
+
 // ─── Framer Motion variants ────────────────────────────────────────────────
 
 const container = {
@@ -94,11 +131,13 @@ const item = {
 // ─── Page ──────────────────────────────────────────────────────────────────
 
 export default function ResultsPage() {
-  const router       = useRouter()
-  const dogProfile   = useAppStore((s) => s.dogProfile)
-  const assessment   = useAppStore((s) => s.currentAssessment)
-  const result       = useAppStore((s) => s.assessmentResult)
-  const addToHistory = useAppStore((s) => s.addToHistory)
+  const router                = useRouter()
+  const dogProfile            = useAppStore((s) => s.dogProfile)
+  const assessment            = useAppStore((s) => s.currentAssessment)
+  const result                = useAppStore((s) => s.assessmentResult)
+  const addToHistory          = useAppStore((s) => s.addToHistory)
+  const deleteAssessment      = useAppStore((s) => s.deleteAssessment)
+  const currentAssessmentId   = useAppStore((s) => s.currentAssessmentId)
   const petName      = dogProfile?.name ?? (dogProfile?.type === 'cat' ? 'Your cat' : 'Your dog')
   const dogName      = petName
 
@@ -106,6 +145,8 @@ export default function ResultsPage() {
   const [feedback, setFeedback]             = useState<'up' | 'down' | null>(null)
   const [saved, setSaved]                   = useState(false)
   const [copied, setCopied]                 = useState(false)
+  const [inputOpen, setInputOpen]           = useState(false)
+  const [showDiscard, setShowDiscard]       = useState(false)
   const { show } = useToast()
 
   const rec = useMemo(() => {
@@ -118,6 +159,23 @@ export default function ResultsPage() {
   const actions   = result?.suggested_actions ?? []
   const questions = result?.questions_for_vet ?? []
   const showVetQs = (rec === 'try_this' || rec === 'call_vet') && questions.length > 0
+
+  // Auto-save to history when the assessment ID is set by the processing page.
+  // The stable ID from the store means addToHistory deduplicates on any re-run.
+  useEffect(() => {
+    if (!assessment || !currentAssessmentId) return
+    addToHistory({
+      id: currentAssessmentId,
+      concernSummary: assessment.concernTypes.map((ct) => CONCERN_LABEL[ct]).join(', '),
+      recommendation: rec,
+      createdAt: new Date(),
+      resolved: null,
+      result: result ?? undefined,
+      assessment,
+    })
+    setSaved(true)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentAssessmentId])
 
   if (!assessment) {
     return (
@@ -155,17 +213,8 @@ export default function ResultsPage() {
   }
 
   function handleSave() {
-    if (saved || !assessment) return
-    addToHistory({
-      id: Date.now().toString(),
-      concernSummary: assessment.concernTypes.map((ct) => CONCERN_LABEL[ct]).join(', '),
-      recommendation: rec,
-      createdAt: new Date(),
-      resolved: null,
-      result: result ?? undefined,
-    })
-    setSaved(true)
-    show('Assessment saved!', 'success')
+    // Assessment is auto-saved on mount — button is kept as visual confirmation only
+    if (!saved) show('Saved to history!', 'success')
   }
 
   async function handleShare() {
@@ -215,6 +264,55 @@ export default function ResultsPage() {
         initial="hidden"
         animate="visible"
       >
+
+        {/* Section: Your Concern Details (collapsible) */}
+        <motion.div variants={item} className="bg-white rounded-card overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setInputOpen((o) => !o)}
+            className="w-full flex items-center justify-between px-4 py-3.5"
+          >
+            <div className="flex items-center gap-2">
+              <ClipboardList size={15} className="text-medium-gray" />
+              <span className="text-xs font-bold text-medium-gray uppercase tracking-wide">Your Concern Details</span>
+            </div>
+            {inputOpen
+              ? <ChevronUp size={16} className="text-medium-gray" />
+              : <ChevronDown size={16} className="text-medium-gray" />}
+          </button>
+          {inputOpen && (
+            <div className="border-t border-warm-gray px-4 pt-3 pb-4 space-y-3">
+              <InputRow label="Concern" value={assessment.concernTypes.map(t => CONCERN_LABEL[t]).join(', ')} />
+              {assessment.additionalNotes.trim() && (
+                <InputRow label="Additional context" value={assessment.additionalNotes.trim()} />
+              )}
+              {assessment.onsetTiming && (
+                <InputRow label="When it started" value={ONSET_LABEL[assessment.onsetTiming] ?? assessment.onsetTiming} />
+              )}
+              {assessment.physicalSymptoms.some(s => s !== 'none') && (
+                <InputRow
+                  label="Physical symptoms"
+                  value={assessment.physicalSymptoms.filter(s => s !== 'none').map(s => SYMPTOM_LABEL[s] ?? s).join(', ')}
+                />
+              )}
+              {assessment.symptomNotes.trim() && (
+                <InputRow label="Symptom details" value={assessment.symptomNotes.trim()} />
+              )}
+              {assessment.recentChanges.some(c => c !== 'nothing_changed') && (
+                <InputRow
+                  label="Recent changes"
+                  value={assessment.recentChanges.filter(c => c !== 'nothing_changed').map(c => CHANGE_LABEL[c] ?? c).join(', ')}
+                />
+              )}
+              {assessment.recentChangesNotes.trim() && (
+                <InputRow label="Change details" value={assessment.recentChangesNotes.trim()} />
+              )}
+              {assessment.worryLevel && (
+                <InputRow label="Worry level" value={`${assessment.worryLevel} out of 5`} />
+              )}
+            </div>
+          )}
+        </motion.div>
 
         {/* Section 2: What might be going on */}
         {result && result.likely_explanations.length > 0 && (
@@ -371,9 +469,34 @@ export default function ResultsPage() {
               Log another concern
             </button>
           </div>
+
+          {/* Discard link */}
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={() => setShowDiscard(true)}
+              className="text-xs text-medium-gray/70 hover:text-medium-gray transition-colors"
+            >
+              Discard this assessment
+            </button>
+          </div>
         </motion.div>
 
       </motion.div>
+
+      {/* ── Discard confirmation ── */}
+      {showDiscard && (
+        <ConfirmDialog
+          title="Discard this assessment?"
+          message="It will be removed from your history."
+          confirmLabel="Discard"
+          onConfirm={() => {
+            if (currentAssessmentId) deleteAssessment(currentAssessmentId)
+            router.push('/')
+          }}
+          onCancel={() => setShowDiscard(false)}
+        />
+      )}
 
       {/* ── Sticky footer (call_vet only) ── */}
       {rec === 'call_vet' && (

@@ -1,9 +1,113 @@
 'use client'
 
+import { useState } from 'react'
 import { useAppStore } from '@/store'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Eye, CheckCircle, Stethoscope, Phone, Search } from 'lucide-react'
-import type { Recommendation } from '@/store'
+import { ArrowLeft, Eye, CheckCircle, Stethoscope, Phone, Search, ClipboardList, ChevronDown, ChevronUp } from 'lucide-react'
+import type { Recommendation, ConcernAssessmentInput, ConcernType } from '@/store'
+
+// ─── Label maps ────────────────────────────────────────────────────────────
+
+const CONCERN_LABEL: Record<ConcernType, string> = {
+  not_eating:        'Not eating / eating less',
+  low_energy:        'Low energy / lethargy',
+  vomiting:          'Vomiting / upset stomach',
+  bathroom_issues:   'Bathroom issues',
+  unusual_barking:   'Unusual barking / whining',
+  aggression:        'Aggression / behavior changes',
+  limping:           'Limping / mobility issues',
+  something_else:    'Something else',
+  litter_box_changes: 'Litter box changes',
+  hiding:             'Hiding more than usual',
+  excessive_grooming: 'Excessive grooming / fur loss',
+  excessive_meowing:  'Excessive meowing / vocalization',
+  hairballs:          'Vomiting / hairballs',
+}
+const ONSET_LABEL: Record<string, string> = {
+  within_the_hour: 'Within the last hour',
+  earlier_today:   'Earlier today',
+  yesterday:       'Yesterday',
+  few_days:        'A few days ago',
+  week_or_more:    'A week or more ago',
+}
+const SYMPTOM_LABEL: Record<string, string> = {
+  excessive_drooling: 'Excessive drooling', shaking: 'Shaking / trembling',
+  coughing: 'Coughing', sneezing: 'Sneezing', eye_discharge: 'Eye discharge',
+  swelling: 'Swelling', skin_changes: 'Skin changes', bad_breath: 'Bad breath',
+  excessive_thirst: 'Excessive thirst', weight_change: 'Weight change',
+  diarrhea: 'Diarrhea', constipation: 'Constipation',
+  straining_litter_box: 'Straining in litter box', blood_in_urine: 'Blood in urine',
+  watery_eyes: 'Watery eyes', bald_patches: 'Skin changes / bald patches', drooling: 'Drooling (unusual)',
+}
+const CHANGE_LABEL: Record<string, string> = {
+  new_food: 'New food or treats', moved_home: 'Moved to new home',
+  new_pet: 'New pet in household', new_family_member: 'New baby / family member',
+  schedule_change: 'Change in schedule', boarding_travel: 'Recent boarding / travel',
+  weather_change: 'Weather change', new_medication: 'New medication',
+  vet_visit: 'Recent vet visit', loss_of_companion: 'Loss of companion',
+}
+
+// ─── Input summary helper ──────────────────────────────────────────────────
+
+function InputRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-[11px] font-semibold text-medium-gray uppercase tracking-wide mb-0.5">{label}</p>
+      <p className="text-[14px] text-calm-navy leading-snug">{value}</p>
+    </div>
+  )
+}
+
+function ConcernDetailsCard({ assessment }: { assessment: ConcernAssessmentInput }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="bg-white rounded-card overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between px-4 py-3.5"
+      >
+        <div className="flex items-center gap-2">
+          <ClipboardList size={15} className="text-medium-gray" />
+          <span className="text-xs font-bold text-medium-gray uppercase tracking-wide">Your Concern Details</span>
+        </div>
+        {open ? <ChevronUp size={16} className="text-medium-gray" /> : <ChevronDown size={16} className="text-medium-gray" />}
+      </button>
+      {open && (
+        <div className="border-t border-warm-gray px-4 pt-3 pb-4 space-y-3">
+          <InputRow label="Concern" value={assessment.concernTypes.map(t => CONCERN_LABEL[t]).join(', ')} />
+          {assessment.additionalNotes.trim() && (
+            <InputRow label="Additional context" value={assessment.additionalNotes.trim()} />
+          )}
+          {assessment.onsetTiming && (
+            <InputRow label="When it started" value={ONSET_LABEL[assessment.onsetTiming] ?? assessment.onsetTiming} />
+          )}
+          {assessment.physicalSymptoms.some(s => s !== 'none') && (
+            <InputRow
+              label="Physical symptoms"
+              value={assessment.physicalSymptoms.filter(s => s !== 'none').map(s => SYMPTOM_LABEL[s] ?? s).join(', ')}
+            />
+          )}
+          {assessment.symptomNotes.trim() && (
+            <InputRow label="Symptom details" value={assessment.symptomNotes.trim()} />
+          )}
+          {assessment.recentChanges.some(c => c !== 'nothing_changed') && (
+            <InputRow
+              label="Recent changes"
+              value={assessment.recentChanges.filter(c => c !== 'nothing_changed').map(c => CHANGE_LABEL[c] ?? c).join(', ')}
+            />
+          )}
+          {assessment.recentChangesNotes.trim() && (
+            <InputRow label="Change details" value={assessment.recentChangesNotes.trim()} />
+          )}
+          {assessment.worryLevel && (
+            <InputRow label="Worry level" value={`${assessment.worryLevel} out of 5`} />
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
 
 // ─── Config (mirrors results page) ────────────────────────────────────────
 
@@ -139,6 +243,9 @@ export default function AssessmentDetailPage({ params }: { params: { id: string 
 
       {/* ── Scrollable sections ── */}
       <div className={`flex-1 overflow-y-auto px-4 pt-5 space-y-4 ${entry.recommendation === 'call_vet' ? 'pb-28' : 'pb-8'}`}>
+
+        {/* Your Concern Details */}
+        {entry.assessment && <ConcernDetailsCard assessment={entry.assessment} />}
 
         {/* What might have been going on */}
         {result && result.likely_explanations.length > 0 && (

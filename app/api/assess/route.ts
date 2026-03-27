@@ -88,7 +88,7 @@ ALWAYS DO:
 - Include a brief disclaimer in the reassurance_note
 - Provide multiple possible explanations (not diagnoses)
 - Give clear, actionable next steps
-- Use the pet's name throughout
+- Use the pet's name throughout — never use "they", "their", or "them" when referring to the pet; use their name or "your dog"/"your cat" instead
 
 SPECIES-SPECIFIC GUIDANCE:
 You support both dogs and cats. Adjust your guidance based on the pet's species.
@@ -132,7 +132,9 @@ interface DogProfileInput {
 }
 interface ConcernInput {
   concern_types: string[]; description: string; onset_timing: string | null
-  physical_symptoms: string[]; recent_changes: string[]; worry_level: number | null
+  physical_symptoms: string[]; symptom_notes?: string
+  recent_changes: string[]; recent_changes_notes?: string
+  worry_level: number | null
 }
 
 function buildUserMessage(dp: DogProfileInput, concern: ConcernInput): string {
@@ -182,8 +184,8 @@ ${catContext ? catContext + '\n' : ''}
 Current concern: ${concernTypes}
 Details: ${concern.description || 'No additional details provided'}
 Started: ${onset}
-Physical symptoms: ${symptoms}
-Recent changes: ${changes}
+Physical symptoms: ${symptoms}${concern.symptom_notes?.trim() ? `\nAdditional symptom details: ${concern.symptom_notes.trim()}` : ''}
+Recent changes: ${changes}${concern.recent_changes_notes?.trim() ? `\nAdditional context about changes: ${concern.recent_changes_notes.trim()}` : ''}
 Owner's worry level: ${concern.worry_level ?? 'Not specified'} out of 5`
 }
 
@@ -210,14 +212,14 @@ const DOG_MOCK_MONITOR = {
     'Simply not hungry — even food-motivated dogs have off days',
   ],
   what_to_watch_for: [
-    'Whether they return to normal eating at the next mealtime',
+    'Whether your dog returns to normal eating at the next mealtime',
     'Any vomiting, diarrhea, or lethargy accompanying the change',
     'Continued disinterest in food beyond 24 hours',
   ],
   suggested_actions: [
-    'Offer their regular food again at the next scheduled mealtime',
-    'Keep their routine as normal as possible',
-    'Note whether they show interest in treats or sniffs food but walks away',
+    "Offer your dog's regular food again at the next scheduled mealtime",
+    "Keep your dog's routine as normal as possible",
+    'Note whether your dog shows interest in treats or sniffs food but walks away',
   ],
   questions_for_vet: [],
   reassurance_note:
@@ -232,13 +234,13 @@ const CAT_MOCK_MONITOR = {
     'Seasonal or temperature changes can affect activity and hiding patterns in cats',
   ],
   what_to_watch_for: [
-    'Whether they return to their usual spots and routine within 24-48 hours',
+    'Whether your cat returns to their usual spots and routine within 24-48 hours',
     'Eating, drinking, and litter box use remaining normal despite hiding',
     'Any signs of physical discomfort — hunched posture, avoiding touch, or vocalizing when moved',
   ],
   suggested_actions: [
-    'Give them space and avoid forcing interaction — let them come to you',
-    'Keep food, water, and litter box easily accessible near their hiding spot',
+    'Give your cat space and avoid forcing interaction — let your cat come to you',
+    "Keep food, water, and litter box easily accessible near your cat's hiding spot",
     'Check for any recent changes that might be causing stress (new smells, visitors, sounds)',
   ],
   questions_for_vet: [],
@@ -260,12 +262,12 @@ const CAT_MOCK_TRY_THIS = {
   ],
   suggested_actions: [
     'Try a hairball-formula food or add a small amount of hairball gel (available at pet stores)',
-    'Brush them more frequently to reduce the amount of hair they swallow',
-    'Ensure they\'re eating at a calm pace — puzzle feeders can help if they eat too fast',
+    'Brush your cat more frequently to reduce the amount of hair swallowed',
+    "Ensure your cat is eating at a calm pace — puzzle feeders can help if eating too fast",
   ],
   questions_for_vet: [
     'Could a dietary change help reduce the frequency of hairballs?',
-    'Is the vomiting frequency within normal range for their age and breed?',
+    "Is the vomiting frequency within normal range for your cat's age and breed?",
   ],
   reassurance_note:
     "Occasional hairballs are a normal part of cat life, but frequent vomiting deserves attention. The good news is there are simple things you can try at home first. This is general guidance and not a substitute for veterinary advice.",
@@ -285,7 +287,7 @@ const CAT_MOCK_CALL_VET = {
   ],
   suggested_actions: [
     'Contact your vet or emergency animal hospital right away — do not wait to see if it resolves',
-    'Keep them calm and restrict movement while you arrange transport',
+    'Keep your cat calm and restrict movement while you arrange transport',
     'Note when you last observed them urinating normally',
   ],
   questions_for_vet: [

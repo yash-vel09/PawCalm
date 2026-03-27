@@ -18,9 +18,11 @@ const CHANGES: { label: string; value: RecentChange }[] = [
 interface Step4Props {
   values: RecentChange[]
   onChange: (v: RecentChange[]) => void
+  recentChangesNotes: string
+  onRecentChangesNotesChange: (v: string) => void
 }
 
-export default function Step4_RecentChanges({ values, onChange }: Step4Props) {
+export default function Step4_RecentChanges({ values, onChange, recentChangesNotes, onRecentChangesNotesChange }: Step4Props) {
   function toggle(val: RecentChange) {
     if (val === 'nothing_changed') {
       onChange(['nothing_changed'])
@@ -47,6 +49,22 @@ export default function Step4_RecentChanges({ values, onChange }: Step4Props) {
             onSelect={() => toggle(c.value)}
           />
         ))}
+      </div>
+      <div className="mt-4">
+        <label className="block text-sm font-semibold text-calm-navy mb-1.5">
+          Tell us more (optional)
+        </label>
+        <textarea
+          value={recentChangesNotes}
+          onChange={(e) => onRecentChangesNotesChange(e.target.value)}
+          maxLength={500}
+          rows={3}
+          placeholder="Any other details about recent changes..."
+          className="w-full rounded-button border-2 border-warm-gray bg-white px-4 py-3 text-sm text-calm-navy placeholder:text-medium-gray focus:outline-none focus:border-pawcalm-teal resize-none"
+        />
+        <div className="flex justify-end mt-1">
+          <span className="text-xs text-medium-gray">{recentChangesNotes.length}/500</span>
+        </div>
       </div>
     </div>
   )

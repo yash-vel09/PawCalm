@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import { MOCK_HISTORY } from '@/lib/mockHistory'
 import { MOCK_DOG_PROFILE } from '@/lib/mockDogProfile'
 import { MOCK_CAT_PROFILE } from '@/lib/mockCatProfile'
@@ -25,7 +26,9 @@ export interface ConcernAssessmentInput {
   additionalNotes: string
   onsetTiming: OnsetTiming | null
   physicalSymptoms: PhysicalSymptom[]
+  symptomNotes: string
   recentChanges: RecentChange[]
+  recentChangesNotes: string
   worryLevel: 1 | 2 | 3 | 4 | 5 | null
 }
 
@@ -47,6 +50,7 @@ export interface HistoryEntry {
   createdAt: Date
   resolved: boolean | null
   result?: AssessmentResult
+  assessment?: ConcernAssessmentInput
   resolution?: Resolution
 }
 
@@ -151,10 +155,13 @@ interface AppState {
   setActiveTab: (tab: string) => void
   currentAssessment: ConcernAssessmentInput | null
   setCurrentAssessment: (input: ConcernAssessmentInput) => void
+  currentAssessmentId: string | null
+  setCurrentAssessmentId: (id: string | null) => void
   assessmentResult: AssessmentResult | null
   setAssessmentResult: (result: AssessmentResult) => void
   assessmentHistory: HistoryEntry[]
   addToHistory: (entry: HistoryEntry) => void
+  deleteAssessment: (id: string) => void
   resolveAssessment: (id: string, outcome: ResolutionOutcome, notes: string) => void
 
   // Wellness logs
@@ -165,7 +172,18 @@ interface AppState {
   reset: () => void
 }
 
-export const useAppStore = create<AppState>((set, get) => ({
+// Revive ISO date strings back to Date objects after JSON.parse
+function reviveDates(_key: string, value: unknown): unknown {
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(value)) {
+    const d = new Date(value)
+    if (!isNaN(d.getTime())) return d
+  }
+  return value
+}
+
+export const useAppStore = create<AppState>()(
+  persist(
+    (set, get) => ({
   pets: [MOCK_DOG_PROFILE, MOCK_CAT_PROFILE],
   activePetId: 'mock-profile-1',
   dogProfile: MOCK_DOG_PROFILE,
@@ -237,6 +255,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   setActiveTab: (tab) => set({ activeTab: tab }),
   currentAssessment: null,
   setCurrentAssessment: (input) => set({ currentAssessment: input }),
+  currentAssessmentId: null,
+  setCurrentAssessmentId: (id) => set({ currentAssessmentId: id }),
   assessmentResult: null,
   setAssessmentResult: (result) => set({ assessmentResult: result }),
   assessmentHistory: [...MOCK_HISTORY],
@@ -251,12 +271,20 @@ export const useAppStore = create<AppState>((set, get) => ({
     })),
 
   addToHistory: (entry) =>
+    set((s) => {
+      if (s.assessmentHistory.some((e) => e.id === entry.id)) return s
+      return {
+        assessmentHistory: [
+          ...s.assessmentHistory,
+          { ...entry, petId: entry.petId ?? s.activePetId ?? undefined },
+        ],
+      }
+    }),
+  deleteAssessment: (id) =>
     set((s) => ({
-      assessmentHistory: [
-        ...s.assessmentHistory,
-        { ...entry, petId: entry.petId ?? s.activePetId ?? undefined },
-      ],
+      assessmentHistory: s.assessmentHistory.filter((e) => e.id !== id),
     })),
+
   resolveAssessment: (id, outcome, notes) =>
     set((s) => ({
       assessmentHistory: s.assessmentHistory.map((e) =>
@@ -276,4 +304,27 @@ export const useAppStore = create<AppState>((set, get) => ({
       assessmentHistory: [],
       wellnessLogs: {},
     }),
-}))
+  }),
+  {
+    name: 'pawcalm-store',
+    version: 1,
+    storage: createJSONStorage(() => localStorage, { reviver: reviveDates }),
+    partialize: (state) => ({
+      assessmentHistory: state.assessmentHistory,
+      wellnessLogs: state.wellnessLogs,
+    }),
+    migrate: (persisted) => {
+      // v0 → v1: deduplicate assessmentHistory entries by id
+      const s = persisted as { assessmentHistory?: HistoryEntry[]; wellnessLogs?: Record<string, WellnessStatus> }
+      if (Array.isArray(s.assessmentHistory)) {
+        const seen = new Set<string>()
+        s.assessmentHistory = s.assessmentHistory.filter((e) => {
+          if (seen.has(e.id)) return false
+          seen.add(e.id)
+          return true
+        })
+      }
+      return s
+    },
+  }
+))

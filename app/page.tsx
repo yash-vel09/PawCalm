@@ -21,7 +21,9 @@ export default function HomePage() {
 
   const activePet = getActivePet()
   const petName = activePet?.name ?? 'your pup'
-  const petHistory = assessmentHistory.filter((e) => e.petId === activePetId)
+  const petHistory = assessmentHistory
+    .filter((e) => e.petId === activePetId)
+    .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
   const lastAssessment = petHistory[0] ?? null
 
   const ownerName = user?.user_metadata?.full_name

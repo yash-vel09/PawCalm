@@ -33,7 +33,9 @@ export default function ConcernPage() {
     concernTypes: [],
     additionalNotes: '',
     physicalSymptoms: [],
+    symptomNotes: '',
     recentChanges: [],
+    recentChangesNotes: '',
     onsetTiming: null,
     worryLevel: null,
   })
@@ -100,7 +102,9 @@ export default function ConcernPage() {
       additionalNotes: draft.additionalNotes ?? '',
       onsetTiming: draft.onsetTiming ?? null,
       physicalSymptoms: draft.physicalSymptoms ?? [],
+      symptomNotes: draft.symptomNotes ?? '',
       recentChanges: draft.recentChanges ?? [],
+      recentChangesNotes: draft.recentChangesNotes ?? '',
       worryLevel: draft.worryLevel ?? null,
     }
 
@@ -163,12 +167,16 @@ export default function ConcernPage() {
                 values={draft.physicalSymptoms as PhysicalSymptom[]}
                 onChange={(v) => updateDraft({ physicalSymptoms: v })}
                 petType={petType}
+                symptomNotes={draft.symptomNotes ?? ''}
+                onSymptomNotesChange={(v) => updateDraft({ symptomNotes: v })}
               />
             )}
             {step === 4 && (
               <Step4_RecentChanges
                 values={draft.recentChanges as RecentChange[]}
                 onChange={(v) => updateDraft({ recentChanges: v })}
+                recentChangesNotes={draft.recentChangesNotes ?? ''}
+                onRecentChangesNotesChange={(v) => updateDraft({ recentChangesNotes: v })}
               />
             )}
             {step === 5 && (

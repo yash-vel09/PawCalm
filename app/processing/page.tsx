@@ -17,10 +17,11 @@ const MESSAGES = (dogName: string) => [
 const MIN_DISPLAY_MS = 2500
 
 export default function ProcessingPage() {
-  const router              = useRouter()
-  const dogProfile          = useAppStore((s) => s.dogProfile)
-  const assessment          = useAppStore((s) => s.currentAssessment)
-  const setAssessmentResult = useAppStore((s) => s.setAssessmentResult)
+  const router                  = useRouter()
+  const dogProfile              = useAppStore((s) => s.dogProfile)
+  const assessment              = useAppStore((s) => s.currentAssessment)
+  const setAssessmentResult     = useAppStore((s) => s.setAssessmentResult)
+  const setCurrentAssessmentId  = useAppStore((s) => s.setCurrentAssessmentId)
 
   const dogName  = dogProfile?.name ?? 'your dog'
   const messages = MESSAGES(dogName)
@@ -69,12 +70,14 @@ export default function ProcessingPage() {
               normal_grooming:   dogProfile?.normalGrooming ?? null,
             },
             concern: {
-              concern_types:    assessment.concernTypes,
-              description:      assessment.additionalNotes,
-              onset_timing:     assessment.onsetTiming,
-              physical_symptoms: assessment.physicalSymptoms,
-              recent_changes:   assessment.recentChanges,
-              worry_level:      assessment.worryLevel,
+              concern_types:         assessment.concernTypes,
+              description:           assessment.additionalNotes,
+              onset_timing:          assessment.onsetTiming,
+              physical_symptoms:     assessment.physicalSymptoms,
+              symptom_notes:         assessment.symptomNotes,
+              recent_changes:        assessment.recentChanges,
+              recent_changes_notes:  assessment.recentChangesNotes,
+              worry_level:           assessment.worryLevel,
             },
           }),
         }).then(async (res) => {
@@ -87,6 +90,7 @@ export default function ProcessingPage() {
 
       const [, result] = await Promise.all([minDelay, apiCall])
       if (cancelled) return
+      setCurrentAssessmentId(Date.now().toString())
       if (result) setAssessmentResult(result)
       router.push('/results')
     }

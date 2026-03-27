@@ -2,10 +2,11 @@
 
 import { useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
-import { Clock, FileDown, ChevronRight } from 'lucide-react'
+import { Clock, FileDown, ChevronRight, Trash2 } from 'lucide-react'
 import { useAppStore } from '@/store'
 import type { Recommendation } from '@/store'
 import { useToast } from '@/lib/toast'
+import ConfirmDialog from '@/components/ui/ConfirmDialog'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -52,8 +53,11 @@ export default function HistoryPage() {
   const activePet   = pets.find((p) => p.id === activePetId) ?? pets[0] ?? null
   const petName     = activePet?.name ?? 'your pet'
 
-  const [recFilter, setRecFilter] = useState<RecFilter>('all')
-  const [petFilter, setPetFilter] = useState<PetFilter>(activePetId ?? 'all')
+  const deleteAssessment = useAppStore((s) => s.deleteAssessment)
+
+  const [recFilter, setRecFilter]     = useState<RecFilter>('all')
+  const [petFilter, setPetFilter]     = useState<PetFilter>(activePetId ?? 'all')
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null)
   const { show } = useToast()
 
   const showingAll = petFilter === 'all'
@@ -209,13 +213,13 @@ export default function HistoryPage() {
                   </div>
 
                   {/* Card */}
-                  <div className={`flex-1 ml-3 ${isLast ? 'pb-2' : 'pb-4'}`}>
+                  <div className={`flex-1 ml-3 relative ${isLast ? 'pb-2' : 'pb-4'}`}>
                     <button
                       type="button"
                       onClick={() => router.push(`/assessment/${entry.id}`)}
                       className="w-full text-left"
                     >
-                      <div className="bg-white rounded-card p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+                      <div className="bg-white rounded-card p-4 pr-10 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
                         {/* Top row */}
                         <div className="flex items-center justify-between mb-2.5">
                           <span className={`${badge.bg} text-white text-xs font-bold px-3 py-1 rounded-full`}>
@@ -255,6 +259,16 @@ export default function HistoryPage() {
                         </div>
                       </div>
                     </button>
+
+                    {/* Delete button — sibling to nav button, never nested inside it */}
+                    <button
+                      type="button"
+                      onClick={() => setDeleteTarget(entry.id)}
+                      className="absolute top-3 right-3 p-1.5 rounded-full text-warm-gray hover:text-call-vet-red transition-colors"
+                      aria-label="Delete assessment"
+                    >
+                      <Trash2 size={14} className="text-medium-gray/50 hover:text-call-vet-red" />
+                    </button>
                   </div>
                 </div>
               )
@@ -263,6 +277,21 @@ export default function HistoryPage() {
 
         )}
       </div>
+
+      {/* Delete confirmation */}
+      {deleteTarget && (
+        <ConfirmDialog
+          title="Delete this assessment?"
+          message="This cannot be undone."
+          confirmLabel="Delete"
+          onConfirm={() => {
+            deleteAssessment(deleteTarget)
+            setDeleteTarget(null)
+            show('Assessment deleted', 'success')
+          }}
+          onCancel={() => setDeleteTarget(null)}
+        />
+      )}
 
     </div>
   )
