@@ -1,0 +1,923 @@
+[
+  {
+    "breed_id": "dog_golden_retriever",
+    "species": "dog",
+    "breed_name": "Golden Retriever",
+    "breed_group": "Sporting",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 55, "max": 75},
+    "life_expectancy_years": {"min": 10, "max": 12},
+    "senior_age_starts": 8,
+    "health_predispositions": [
+      {"condition": "Hip and elbow dysplasia", "description": "Joint malformation causing pain and mobility issues, common in large breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "reluctance to climb stairs", "stiffness after rest", "bunny-hopping gait"]},
+      {"condition": "Cancer (hemangiosarcoma, lymphoma, osteosarcoma)", "description": "One of the highest cancer rates of any breed, particularly after age 6", "urgency_if_symptomatic": "call_vet", "common_signs": ["unexplained weight loss", "lethargy", "lumps or masses", "abdominal swelling", "pale gums"]},
+      {"condition": "Heart disease (subvalvular aortic stenosis)", "description": "Congenital heart condition causing exercise intolerance or sudden collapse", "urgency_if_symptomatic": "call_vet", "common_signs": ["exercise intolerance", "fainting", "coughing after activity"]},
+      {"condition": "Skin allergies and ear infections", "description": "Floppy ears trap moisture; prone to environmental and food allergies", "urgency_if_symptomatic": "try_this", "common_signs": ["ear scratching", "head shaking", "red or smelly ears", "excessive licking of paws"]},
+      {"condition": "Obesity", "description": "Extremely food-motivated breed prone to weight gain, worsening joint and heart issues", "urgency_if_symptomatic": "monitor", "common_signs": ["difficulty feeling ribs", "low energy", "reluctance to exercise"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Friendly, devoted, eager to please. One of the most food-motivated breeds.",
+      "exercise_needs": "High — requires 1-2 hours daily. Loves swimming and retrieving.",
+      "anxiety_profile": "Generally low anxiety but can develop separation anxiety. Sensitive to owner emotions.",
+      "notable_behaviors": ["Exceptionally food-motivated — skipping a meal is highly unusual and noteworthy", "Mouthy breed — likes to carry objects, increasing foreign body ingestion risk", "Loves water — increased ear infection risk after swimming", "Highly social — behavioral changes when isolated may indicate distress"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development critical — avoid high-impact exercise. Monitor growth rate.",
+      "young_adult_1_to_3": "High energy period. Establish exercise routine. Watch for early allergy signs.",
+      "adult_3_to_7": "Maintain healthy weight. Annual vet checkups. Monitor for early joint stiffness.",
+      "senior_7_plus": "Cancer screening becomes important. Joint supplements may help. Watch for cognitive changes, exercise intolerance, unexplained lumps."
+    },
+    "breed_specific_red_flags": ["Sudden collapse or exercise intolerance (heart disease risk)", "Any new lump or mass (high cancer prevalence)", "Skipping meals (extremely unusual for this food-driven breed)", "Persistent ear issues after swimming (chronic infection risk)"],
+    "common_medications": [
+      {"medication": "Galliprant / Rimadyl (NSAIDs)", "used_for": "Arthritis and joint pain", "notes": "Common in senior Goldens. Monitor for GI side effects."},
+      {"medication": "Apoquel / Cytopoint", "used_for": "Allergies and itching", "notes": "May cause increased thirst or lethargy."},
+      {"medication": "Fish oil / glucosamine supplements", "used_for": "Joint health and skin/coat support", "notes": "Fish oil can cause soft stool. Glucosamine generally well-tolerated."}
+    ],
+    "symptom_keywords": ["limping", "joint pain", "ear infection", "ear scratching", "skin itching", "not eating", "lump", "mass", "weight loss", "collapse", "swimming", "obesity", "stiffness"],
+    "embedding_text": "Golden Retriever. Large sporting breed, 55-75 lbs, life expectancy 10-12 years, senior at 8. Extremely food-motivated — skipping meals is highly unusual. Prone to: hip/elbow dysplasia, cancer (hemangiosarcoma, lymphoma, osteosarcoma — one of highest cancer rates), heart disease, ear infections (floppy ears, worse after swimming), skin allergies, obesity. Mouthy breed with foreign body ingestion risk. Loves water. Common meds: NSAIDs for joints, Apoquel for allergies, joint supplements. Red flags: sudden collapse, new lumps, meal skipping, persistent ear issues."
+  },
+  {
+    "breed_id": "dog_labrador_retriever",
+    "species": "dog",
+    "breed_name": "Labrador Retriever",
+    "breed_group": "Sporting",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 55, "max": 80},
+    "life_expectancy_years": {"min": 10, "max": 12},
+    "senior_age_starts": 8,
+    "health_predispositions": [
+      {"condition": "Hip and elbow dysplasia", "description": "Joint malformation common in large breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "stiffness after rest", "difficulty rising", "reluctance to jump"]},
+      {"condition": "Obesity", "description": "POMC gene mutation makes Labs perpetually hungry — most obesity-prone breed", "urgency_if_symptomatic": "try_this", "common_signs": ["difficulty feeling ribs", "low energy", "weight gain despite normal feeding"]},
+      {"condition": "Ear infections", "description": "Floppy ears trap moisture, especially after swimming", "urgency_if_symptomatic": "try_this", "common_signs": ["ear scratching", "head shaking", "red ears", "discharge", "odor"]},
+      {"condition": "Exercise-induced collapse (EIC)", "description": "Genetic condition causing weakness or collapse during intense exercise", "urgency_if_symptomatic": "call_vet", "common_signs": ["wobbling during exercise", "collapse after exertion", "dragging hind legs during play"]},
+      {"condition": "Cruciate ligament tears", "description": "Active breed prone to knee ligament injuries, especially if overweight", "urgency_if_symptomatic": "call_vet", "common_signs": ["sudden lameness in hind leg", "sitting with leg extended", "clicking from knee"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Outgoing, friendly, high energy. Extremely food-motivated due to POMC gene mutation.",
+      "exercise_needs": "High — requires 1-2 hours daily. Loves swimming and fetching.",
+      "anxiety_profile": "Can develop separation anxiety. Generally resilient but needs mental stimulation.",
+      "notable_behaviors": ["Will eat almost anything — very high foreign body ingestion and toxin exposure risk", "Extremely food-motivated — refusal to eat is a significant warning sign", "Loves water — ear care after swimming is essential", "Counter-surfing and trash-raiding are common — increases poisoning risk"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Rapid growth — avoid over-exercise. Very mouthy — ingestion risk high.",
+      "young_adult_1_to_3": "Peak energy. Watch for EIC. Establish weight management early.",
+      "adult_3_to_7": "Weight management critical. Annual joint assessment. Ear care if swimming.",
+      "senior_7_plus": "Arthritis common. Cancer screening. Cognitive decline possible. Maintain lean weight."
+    },
+    "breed_specific_red_flags": ["Refusing food (extremely unusual — investigate immediately)", "Collapse during exercise (EIC or cardiac)", "Sudden hind leg lameness (cruciate tear risk)", "Ingestion of any foreign object or toxin (very common in Labs)"],
+    "common_medications": [
+      {"medication": "Galliprant / Rimadyl / Meloxicam (NSAIDs)", "used_for": "Arthritis and joint pain", "notes": "Dose correctly given obesity tendency."},
+      {"medication": "Apoquel / Cytopoint", "used_for": "Allergies and ear-related itching", "notes": "Common in Labs with chronic ear and skin issues."},
+      {"medication": "Joint supplements (glucosamine, fish oil)", "used_for": "Joint health support", "notes": "Fish oil can cause soft stool."}
+    ],
+    "symptom_keywords": ["limping", "ear infection", "ear scratching", "not eating", "obesity", "weight gain", "collapse", "vomiting", "ate something", "chocolate", "foreign object", "swimming", "stiffness", "hind leg"],
+    "embedding_text": "Labrador Retriever. Large sporting breed, 55-80 lbs, life expectancy 10-12 years, senior at 8. Most food-motivated breed due to POMC gene — refusal to eat is a major warning sign. Prone to: hip/elbow dysplasia, obesity (genetic predisposition), ear infections (floppy ears, worse after swimming), exercise-induced collapse (EIC), cruciate ligament tears. Highest risk breed for foreign body ingestion and poisoning. Common meds: NSAIDs for joints, Apoquel for allergies. Red flags: food refusal, exercise collapse, sudden hind lameness, ingestion of toxins."
+  },
+  {
+    "breed_id": "dog_german_shepherd",
+    "species": "dog",
+    "breed_name": "German Shepherd",
+    "breed_group": "Herding",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 50, "max": 90},
+    "life_expectancy_years": {"min": 9, "max": 13},
+    "senior_age_starts": 8,
+    "health_predispositions": [
+      {"condition": "Hip and elbow dysplasia", "description": "One of the breeds most affected by hip dysplasia", "urgency_if_symptomatic": "call_vet", "common_signs": ["bunny-hopping gait", "difficulty rising", "reluctance to jump", "limping on hind legs"]},
+      {"condition": "Degenerative myelopathy (DM)", "description": "Progressive spinal cord disease causing hind end weakness", "urgency_if_symptomatic": "call_vet", "common_signs": ["dragging hind feet", "knuckling over on back paws", "progressive hind weakness", "loss of coordination"]},
+      {"condition": "Exocrine pancreatic insufficiency (EPI)", "description": "Pancreas doesn't produce enough digestive enzymes — GSDs are the most predisposed breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["chronic soft stool or diarrhea", "weight loss despite eating", "increased appetite", "gas", "poor coat quality"]},
+      {"condition": "GI sensitivity and inflammatory bowel disease", "description": "Notoriously sensitive stomachs, prone to chronic GI issues", "urgency_if_symptomatic": "try_this", "common_signs": ["soft stool", "diarrhea", "vomiting", "gas", "eating grass frequently"]},
+      {"condition": "Bloat / GDV", "description": "Deep-chested breed at elevated bloat risk — life-threatening emergency", "urgency_if_symptomatic": "call_vet", "common_signs": ["hard distended abdomen", "unproductive retching", "restlessness", "pacing", "drooling"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Loyal, confident, courageous. Strong work drive and high intelligence.",
+      "exercise_needs": "High — requires 1-2 hours of physical and mental exercise daily.",
+      "anxiety_profile": "Prone to separation anxiety and noise phobias. Bonds deeply with one person.",
+      "notable_behaviors": ["Naturally protective — sudden aggression may indicate pain rather than behavioral issues", "Stress can manifest as GI issues (nervous stomach is common)", "High pain tolerance — may mask significant discomfort", "Mouthy and curious — moderate foreign body ingestion risk"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development critical. Socialization important. GI sensitivity often appears early.",
+      "young_adult_1_to_3": "Peak energy. Watch for early hip dysplasia signs. Establish GI-friendly diet.",
+      "adult_3_to_7": "Monitor for EPI signs. Annual hip assessment. Manage weight for joints.",
+      "senior_7_plus": "Watch for DM (hind end weakness). Arthritis management. Cancer screening."
+    },
+    "breed_specific_red_flags": ["Progressive hind leg weakness or dragging feet (degenerative myelopathy)", "Weight loss despite good appetite (EPI — GSD is #1 affected breed)", "Hard distended abdomen with retching (bloat/GDV — deep-chested breed)", "Chronic diarrhea not responding to diet changes (IBD or EPI)"],
+    "common_medications": [
+      {"medication": "Pancreatic enzyme supplements (Pancreazyme)", "used_for": "EPI management", "notes": "Lifelong supplementation required. Must be mixed with food."},
+      {"medication": "NSAIDs (Rimadyl, Galliprant)", "used_for": "Arthritis and hip dysplasia pain", "notes": "Monitor for GI side effects — GSDs already have sensitive stomachs."},
+      {"medication": "Probiotics", "used_for": "GI health support", "notes": "Commonly used for chronic soft stool. Generally safe."}
+    ],
+    "symptom_keywords": ["diarrhea", "soft stool", "eating grass", "weight loss", "hind leg weakness", "dragging feet", "limping", "hip pain", "bloat", "vomiting", "gas", "anxiety", "aggression", "stiffness"],
+    "embedding_text": "German Shepherd. Large herding breed, 50-90 lbs, life expectancy 9-13 years, senior at 8. Notoriously sensitive stomach. Prone to: hip/elbow dysplasia, degenerative myelopathy (progressive hind weakness), EPI (most predisposed breed — weight loss despite eating), IBD, bloat/GDV. High pain tolerance masks discomfort. Stress manifests as GI symptoms. Common meds: pancreatic enzymes for EPI, NSAIDs, probiotics. Red flags: progressive hind weakness, weight loss with good appetite, bloat symptoms, chronic diarrhea."
+  },
+  {
+    "breed_id": "dog_french_bulldog",
+    "species": "dog",
+    "breed_name": "French Bulldog",
+    "breed_group": "Non-Sporting",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 16, "max": 28},
+    "life_expectancy_years": {"min": 10, "max": 12},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "Brachycephalic airway syndrome", "description": "Compressed skull anatomy causes narrowed airways, making breathing difficult in heat or during exertion", "urgency_if_symptomatic": "call_vet", "common_signs": ["loud breathing", "snoring", "exercise intolerance", "overheating quickly", "blue-tinged gums"]},
+      {"condition": "Intervertebral disc disease (IVDD)", "description": "Spinal disc herniation causing pain or paralysis", "urgency_if_symptomatic": "call_vet", "common_signs": ["reluctance to jump", "back pain", "hunched posture", "dragging hind legs", "yelping when picked up"]},
+      {"condition": "Skin fold infections", "description": "Facial and body wrinkles trap moisture and bacteria", "urgency_if_symptomatic": "try_this", "common_signs": ["red irritated skin in folds", "odor from wrinkles", "excessive face rubbing"]},
+      {"condition": "Allergies (food and environmental)", "description": "One of the most allergy-prone breeds", "urgency_if_symptomatic": "try_this", "common_signs": ["itching", "ear infections", "paw licking", "red belly", "chronic soft stool"]},
+      {"condition": "Heat intolerance", "description": "Cannot regulate temperature effectively — heat stroke risk is high", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive panting", "drooling", "lethargy in warm weather", "vomiting", "collapse"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Playful, adaptable, affectionate. Moderate energy with couch-potato tendencies.",
+      "exercise_needs": "Low to moderate — short walks, avoid heat and intense exercise.",
+      "anxiety_profile": "Can be clingy and develop separation anxiety.",
+      "notable_behaviors": ["Lower baseline energy than most breeds — moderate lethargy can be normal", "Loud breathing and snoring are typical but worsening indicates a problem", "Heat sensitive — any exercise in warm weather is risky", "Stubborn about eating — but sudden appetite loss is still notable"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Breathing assessment important. Avoid overheating. Wrinkle cleaning routine.",
+      "young_adult_1_to_3": "Allergy signs often first appear. Establish skin care routine.",
+      "adult_3_to_7": "IVDD risk increases. Avoid high-impact jumping. Weight management critical for breathing.",
+      "senior_7_plus": "Breathing may worsen. Spinal issues more common. Joint supplements may help."
+    },
+    "breed_specific_red_flags": ["Any difficulty breathing beyond normal Frenchie snoring (airway emergency)", "Blue or purple gums during or after activity (oxygen deprivation)", "Reluctance to move or yelping when touched (IVDD — spinal emergency)", "Collapse or extreme lethargy in warm weather (heat stroke)"],
+    "common_medications": [
+      {"medication": "Apoquel / Cytopoint", "used_for": "Chronic allergies and itching", "notes": "Very commonly prescribed. May cause increased thirst or mild lethargy."},
+      {"medication": "Medicated wipes/shampoo", "used_for": "Skin fold maintenance", "notes": "Routine use prevents infection."},
+      {"medication": "Gabapentin", "used_for": "IVDD-related nerve pain", "notes": "May cause sedation. Dose carefully for small breed weight."}
+    ],
+    "symptom_keywords": ["breathing", "panting", "overheating", "back pain", "paralysis", "skin infection", "itching", "ear infection", "lethargy", "snoring", "collapse", "heat", "vomiting", "allergy"],
+    "embedding_text": "French Bulldog. Small brachycephalic breed, 16-28 lbs, life expectancy 10-12 years, senior at 9. Compressed airway anatomy — breathing issues are primary concern. Prone to: brachycephalic airway syndrome, IVDD, skin fold infections, allergies (one of most allergy-prone breeds), heat intolerance. Lower baseline energy — some lethargy is normal. Heat sensitive. Common meds: Apoquel for allergies, medicated wipes, gabapentin for nerve pain. Red flags: breathing difficulty beyond normal, blue gums, yelping/reluctance to move (IVDD), collapse in heat."
+  },
+  {
+    "breed_id": "dog_dachshund",
+    "species": "dog",
+    "breed_name": "Dachshund",
+    "breed_group": "Hound",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 11, "max": 32},
+    "life_expectancy_years": {"min": 12, "max": 16},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Intervertebral disc disease (IVDD)", "description": "Elongated spine and short legs create extreme spinal stress — highest IVDD rate of any breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["reluctance to jump", "back pain", "hunched posture", "dragging hind legs", "hind-end weakness", "yelping when picked up"]},
+      {"condition": "Obesity", "description": "Extra weight dramatically increases spinal stress in this long-backed breed", "urgency_if_symptomatic": "try_this", "common_signs": ["difficulty feeling ribs", "belly drag", "reluctance to exercise"]},
+      {"condition": "Dental disease", "description": "Small mouths lead to crowded teeth and early dental disease", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "pawing at mouth", "drooling"]},
+      {"condition": "Patellar luxation", "description": "Kneecap dislocation common in small breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "sudden leg-holding", "intermittent lameness"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Bold, curious, stubborn. Surprisingly brave for their size.",
+      "exercise_needs": "Moderate — daily walks but avoid jumping and stairs.",
+      "anxiety_profile": "Can be anxious and bark-prone. May become possessive.",
+      "notable_behaviors": ["Jumps on/off furniture constantly — every jump stresses the spine", "Burrowing under blankets is normal breed behavior, not hiding", "Back pain may manifest as sudden aggression or reluctance to be touched", "Stubborn about food — but genuine appetite loss is still concerning"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Avoid jumping from height. Use ramps early. Dental care routine.",
+      "young_adult_1_to_3": "Maintain lean weight. Discourage jumping. Monitor for back sensitivity.",
+      "adult_3_to_7": "IVDD risk peaks. Ramps essential. Annual back/spine assessment. Weight critical.",
+      "senior_7_plus": "IVDD risk continues. Arthritis in spine common. Dental disease progression."
+    },
+    "breed_specific_red_flags": ["ANY reluctance to jump or climb (IVDD until proven otherwise)", "Dragging hind legs or hind-end weakness (IVDD emergency)", "Yelping when picked up or touched on back (spinal pain)", "Sudden paralysis (IVDD emergency — time-critical)"],
+    "common_medications": [
+      {"medication": "Gabapentin", "used_for": "Nerve pain from IVDD", "notes": "May cause sedation. Common in Dachshunds with chronic back issues."},
+      {"medication": "Methocarbamol (muscle relaxant)", "used_for": "IVDD-related muscle spasms", "notes": "Used during acute episodes. Causes drowsiness."},
+      {"medication": "NSAIDs (Rimadyl, Meloxicam)", "used_for": "Pain and inflammation", "notes": "Monitor for GI side effects."}
+    ],
+    "symptom_keywords": ["back pain", "paralysis", "dragging legs", "reluctance to jump", "hind weakness", "stiffness", "yelping", "obesity", "dental", "bad breath", "limping"],
+    "embedding_text": "Dachshund. Small hound breed, 11-32 lbs, life expectancy 12-16 years, senior at 10. Elongated spine and short legs make IVDD the #1 concern — highest IVDD rate of any breed. Prone to: IVDD (any reluctance to jump is a warning), obesity (extra weight worsens spinal stress), dental disease, patellar luxation. Every jump stresses the spine. Ramps essential. Back pain may show as aggression. Common meds: gabapentin, muscle relaxants, NSAIDs. Red flags: ANY jump reluctance, dragging hind legs (emergency), yelping when touched, sudden paralysis."
+  },
+  {
+    "breed_id": "dog_border_collie",
+    "species": "dog",
+    "breed_name": "Border Collie",
+    "breed_group": "Herding",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 30, "max": 55},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Hip dysplasia", "description": "Common in active herding breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "reluctance to run", "bunny-hopping", "stiffness after exercise"]},
+      {"condition": "Epilepsy", "description": "Higher-than-average incidence of idiopathic epilepsy", "urgency_if_symptomatic": "call_vet", "common_signs": ["seizures", "staring episodes", "sudden collapse", "paddling legs"]},
+      {"condition": "Collie eye anomaly (CEA)", "description": "Inherited eye condition that can affect vision", "urgency_if_symptomatic": "call_vet", "common_signs": ["bumping into objects", "reluctance in dim light"]},
+      {"condition": "Compulsive behaviors", "description": "High intelligence and drive can develop into compulsive behaviors if understimulated", "urgency_if_symptomatic": "try_this", "common_signs": ["tail chasing", "light/shadow chasing", "fixating on objects", "repetitive pacing"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Highly intelligent, intense, driven. Considered the most intelligent dog breed.",
+      "exercise_needs": "Very high — requires 2+ hours of physical AND mental exercise daily.",
+      "anxiety_profile": "Prone to anxiety if understimulated. Noise sensitivity common.",
+      "notable_behaviors": ["Needs mental stimulation as much as physical — boredom causes behavioral issues", "Herding instinct may manifest as nipping, circling, or staring", "Fixation behaviors (staring at walls, shadows) may indicate compulsive disorder or real stimulus detection", "Extremely sensitive to routine changes"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Socialization critical. Begin mental stimulation early. Watch for early eye issues.",
+      "young_adult_1_to_3": "Peak energy and drive. Risk of compulsive behaviors if not stimulated. Epilepsy onset window.",
+      "adult_3_to_7": "Maintain vigorous exercise and mental enrichment. Monitor for joint issues.",
+      "senior_7_plus": "Activity may decrease but mental needs remain high. Arthritis. Monitor hearing and vision."
+    },
+    "breed_specific_red_flags": ["Seizure activity (higher epilepsy incidence)", "Fixation behaviors that cannot be interrupted (compulsive disorder vs. stimulus)", "Sudden vision problems (Collie eye anomaly)", "Dramatic behavioral change in normally high-energy dog"],
+    "common_medications": [
+      {"medication": "Phenobarbital / Levetiracetam (Keppra)", "used_for": "Epilepsy management", "notes": "Phenobarbital requires regular liver monitoring."},
+      {"medication": "Fluoxetine (Prozac)", "used_for": "Compulsive behaviors and anxiety", "notes": "Used for severe cases. Takes 4-6 weeks for full effect."},
+      {"medication": "Joint supplements", "used_for": "Joint health in active dogs", "notes": "Important for high-impact athletes."}
+    ],
+    "symptom_keywords": ["seizure", "staring", "fixating", "compulsive", "barking at wall", "shadow chasing", "tail chasing", "anxiety", "pacing", "limping", "eye problems", "vision", "behavioral change"],
+    "embedding_text": "Border Collie. Medium herding breed, 30-55 lbs, life expectancy 12-15 years, senior at 10. Most intelligent dog breed — extremely high mental stimulation needs. Prone to: hip dysplasia, epilepsy (higher incidence, onset 1-5 years), collie eye anomaly, compulsive behaviors (from understimulation). Fixation on walls/lights may be compulsive behavior OR real stimulus detection. Extremely sensitive to routine changes. Common meds: anti-epileptics, fluoxetine for compulsive behaviors. Red flags: seizures, uninterruptible fixation, vision problems, dramatic behavioral change."
+  },
+  {
+    "breed_id": "dog_beagle",
+    "species": "dog",
+    "breed_name": "Beagle",
+    "breed_group": "Hound",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 20, "max": 30},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Obesity", "description": "Extremely food-driven with strong scavenging instinct — very prone to weight gain", "urgency_if_symptomatic": "try_this", "common_signs": ["difficulty feeling ribs", "low energy", "reluctance to exercise"]},
+      {"condition": "Ear infections", "description": "Long floppy ears trap moisture and reduce airflow", "urgency_if_symptomatic": "try_this", "common_signs": ["ear scratching", "head shaking", "odor", "discharge"]},
+      {"condition": "Epilepsy", "description": "Breed predisposition to idiopathic epilepsy", "urgency_if_symptomatic": "call_vet", "common_signs": ["seizures", "trembling", "sudden collapse", "disorientation"]},
+      {"condition": "Hypothyroidism", "description": "Underactive thyroid causing weight gain and lethargy", "urgency_if_symptomatic": "call_vet", "common_signs": ["weight gain despite normal diet", "lethargy", "cold intolerance", "dry skin", "hair loss"]},
+      {"condition": "Cherry eye", "description": "Prolapsed tear gland appearing as red mass in corner of eye", "urgency_if_symptomatic": "call_vet", "common_signs": ["red bulge in eye corner", "excessive tearing"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Merry, friendly, curious. Nose-driven — follows scents obsessively.",
+      "exercise_needs": "Moderate to high — needs daily walks and sniffing enrichment.",
+      "anxiety_profile": "Prone to separation anxiety. Can be vocal (howling, baying) when distressed.",
+      "notable_behaviors": ["Nose-driven scavenger — will eat almost anything, very high poisoning risk", "Vocal breed — howling and baying are normal but excessive vocalization may indicate distress", "Food-obsessed — trash-raiding is common", "Escape artists — may dig or squeeze through fences following scents"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "High energy. Start recall training early. Watch for cherry eye.",
+      "young_adult_1_to_3": "Epilepsy onset window. Establish weight management. Ear care routine.",
+      "adult_3_to_7": "Weight management critical. Annual thyroid screening. Ear infection monitoring.",
+      "senior_7_plus": "Hypothyroidism more likely. Arthritis. Cognitive decline. Cancer screening."
+    },
+    "breed_specific_red_flags": ["Ingestion of any foreign object or toxin (scavenger breed — extremely common)", "Seizure activity (breed predisposition)", "Rapid weight gain despite normal feeding (hypothyroidism)", "Refusing food (very unusual for this food-obsessed breed)"],
+    "common_medications": [
+      {"medication": "Levothyroxine (Soloxine)", "used_for": "Hypothyroidism", "notes": "Lifelong daily medication. Requires periodic blood level monitoring."},
+      {"medication": "Anti-epileptics (phenobarbital, Keppra)", "used_for": "Seizure management", "notes": "Weight gain is a common side effect in already obesity-prone Beagles."},
+      {"medication": "Ear cleaning solutions", "used_for": "Ear maintenance", "notes": "Routine weekly cleaning prevents chronic infections."}
+    ],
+    "symptom_keywords": ["eating something", "poisoning", "chocolate", "xylitol", "trash", "vomiting", "ear infection", "obesity", "weight gain", "seizure", "lethargy", "howling", "not eating", "hypothyroid"],
+    "embedding_text": "Beagle. Small hound breed, 20-30 lbs, life expectancy 12-15 years, senior at 10. Nose-driven scavenger — extremely high risk of eating foreign objects and toxins. Prone to: obesity (food-obsessed), ear infections (long floppy ears), epilepsy, hypothyroidism, cherry eye. Food refusal is highly unusual. Vocal breed. Common meds: levothyroxine for thyroid, anti-epileptics, ear cleaners. Red flags: ingestion of toxins, seizures, rapid weight gain, food refusal."
+  },
+  {
+    "breed_id": "dog_poodle_standard",
+    "species": "dog",
+    "breed_name": "Standard Poodle",
+    "breed_group": "Non-Sporting",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 40, "max": 70},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Bloat / GDV", "description": "Deep-chested breed at risk for stomach torsion", "urgency_if_symptomatic": "call_vet", "common_signs": ["hard distended abdomen", "unproductive retching", "restlessness", "pacing"]},
+      {"condition": "Addison's disease", "description": "Adrenal insufficiency — Poodles are predisposed. Causes vague, intermittent symptoms", "urgency_if_symptomatic": "call_vet", "common_signs": ["intermittent vomiting", "lethargy that comes and goes", "muscle weakness", "shaking"]},
+      {"condition": "Hip dysplasia", "description": "Common in standard-sized Poodles", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising", "reluctance to climb stairs"]},
+      {"condition": "Epilepsy", "description": "Breed predisposition to seizure disorders", "urgency_if_symptomatic": "call_vet", "common_signs": ["seizures", "staring spells", "sudden collapse"]},
+      {"condition": "Eye diseases (PRA, cataracts)", "description": "Progressive retinal atrophy and cataracts are breed concerns", "urgency_if_symptomatic": "call_vet", "common_signs": ["bumping into objects", "reluctance in dim light", "cloudy eyes"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Intelligent, active, proud. Second most intelligent breed after Border Collie.",
+      "exercise_needs": "High — athletic breed needing both physical and mental stimulation.",
+      "anxiety_profile": "Can be sensitive and anxious. Responds strongly to household tension.",
+      "notable_behaviors": ["Highly intelligent — behavioral changes often have a clear cause", "Sensitive to household emotions — owner stress can cause behavioral shifts", "Athletic — sudden clumsiness or reluctance to move is noteworthy", "Non-shedding coat hides skin issues"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Socialization for sensitive temperament. Joint development. Eye screening.",
+      "young_adult_1_to_3": "Peak energy. Epilepsy onset window. Addison's can appear. Bloat awareness.",
+      "adult_3_to_7": "Annual eye exams. Bloat prevention. Monitor for Addison's.",
+      "senior_7_plus": "Eye disease progression. Joint supplements. Cancer screening."
+    },
+    "breed_specific_red_flags": ["Hard distended abdomen with retching (bloat/GDV — deep-chested)", "Intermittent vomiting and lethargy that comes and goes (Addison's — often missed)", "Seizures (breed predisposition)", "Night vision problems (PRA)"],
+    "common_medications": [
+      {"medication": "Fludrocortisone / DOCP (Percorten)", "used_for": "Addison's disease management", "notes": "Lifelong treatment. Requires periodic electrolyte monitoring."},
+      {"medication": "Anti-epileptics", "used_for": "Seizure management", "notes": "Standard protocols."},
+      {"medication": "Joint supplements", "used_for": "Hip and joint support", "notes": "Important for active large Poodles."}
+    ],
+    "symptom_keywords": ["bloat", "vomiting", "lethargy", "seizure", "eye problems", "vision", "limping", "shaking", "weakness", "not eating", "distended abdomen", "collapse"],
+    "embedding_text": "Standard Poodle. Medium non-sporting breed, 40-70 lbs, life expectancy 12-15 years, senior at 10. Second most intelligent breed. Deep-chested — bloat/GDV risk. Prone to: bloat/GDV, Addison's disease (vague intermittent symptoms often missed), hip dysplasia, epilepsy, PRA and cataracts. Sensitive to household emotions. Non-shedding coat hides skin issues. Common meds: Addison's medications, anti-epileptics, joint supplements. Red flags: bloat symptoms, intermittent vomiting/lethargy (Addison's), seizures, vision problems."
+  },
+  {
+    "breed_id": "dog_rottweiler",
+    "species": "dog",
+    "breed_name": "Rottweiler",
+    "breed_group": "Working",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 80, "max": 135},
+    "life_expectancy_years": {"min": 8, "max": 10},
+    "senior_age_starts": 7,
+    "health_predispositions": [
+      {"condition": "Dilated cardiomyopathy (DCM)", "description": "Heart muscle weakens and enlarges — Rottweilers are predisposed", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing especially at night or lying down", "exercise intolerance", "rapid breathing", "fainting", "abdominal distension"]},
+      {"condition": "Subaortic stenosis", "description": "Narrowing below aortic valve — congenital heart defect common in Rotties", "urgency_if_symptomatic": "call_vet", "common_signs": ["exercise intolerance", "fainting during activity", "sudden collapse"]},
+      {"condition": "Hip and elbow dysplasia", "description": "Very common in this large, heavy breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising", "stiffness"]},
+      {"condition": "Osteosarcoma (bone cancer)", "description": "Large breeds predisposed to bone cancer, particularly in limbs", "urgency_if_symptomatic": "call_vet", "common_signs": ["persistent limping in one leg", "swelling on a limb", "leg pain that doesn't resolve"]},
+      {"condition": "Cruciate ligament tears", "description": "Heavy body weight stresses knee ligaments", "urgency_if_symptomatic": "call_vet", "common_signs": ["sudden hind leg lameness", "sitting with leg extended"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Confident, loyal, protective. Strong guardian instinct.",
+      "exercise_needs": "Moderate to high — needs daily exercise but avoid overexertion in heat.",
+      "anxiety_profile": "Generally confident but can develop territorial anxiety.",
+      "notable_behaviors": ["Naturally protective — sudden aggression may indicate pain", "Stoic breed — may not show pain until advanced", "Coughing at night or after lying down is a cardiac warning sign", "Heavy and powerful — injuries from jumping can be serious"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development critical. Cardiac screening recommended. Socialization essential.",
+      "young_adult_1_to_3": "Establish exercise routine. Heart murmur check.",
+      "adult_3_to_7": "Annual cardiac screening recommended. Cancer awareness. Weight management.",
+      "senior_7_plus": "Cardiac disease risk peaks. Cancer screening critical. Arthritis management."
+    },
+    "breed_specific_red_flags": ["Coughing especially at night or lying down (DCM — cardiac disease)", "Exercise intolerance or fainting (heart disease)", "Persistent limping in one limb that doesn't resolve (osteosarcoma risk)", "Sudden collapse (cardiac event)"],
+    "common_medications": [
+      {"medication": "Pimobendan (Vetmedin)", "used_for": "Heart failure / DCM management", "notes": "Improves heart contractility. Given on empty stomach."},
+      {"medication": "Enalapril / Benazepril (ACE inhibitors)", "used_for": "Heart disease management", "notes": "Reduces cardiac workload. Monitor kidney values."},
+      {"medication": "NSAIDs", "used_for": "Arthritis and joint pain", "notes": "Use cautiously with heart medications."}
+    ],
+    "symptom_keywords": ["coughing", "heart", "collapse", "fainting", "exercise intolerance", "limping", "bone pain", "swelling on leg", "breathing", "lethargy", "aggression", "stiffness"],
+    "embedding_text": "Rottweiler. Large working breed, 80-135 lbs, life expectancy 8-10 years, senior at 7. Significant cardiac and cancer risks. Prone to: DCM (coughing at night is key warning), subaortic stenosis, hip/elbow dysplasia, osteosarcoma (persistent single-limb limping), cruciate tears. Stoic — hides pain. Aggression may indicate pain. Common meds: pimobendan and ACE inhibitors for heart, NSAIDs. Red flags: nighttime coughing, exercise intolerance/fainting, persistent single-limb limping, sudden collapse."
+  },
+  {
+    "breed_id": "dog_great_dane",
+    "species": "dog",
+    "breed_name": "Great Dane",
+    "breed_group": "Working",
+    "size_category": "giant",
+    "weight_range_lbs": {"min": 110, "max": 175},
+    "life_expectancy_years": {"min": 7, "max": 10},
+    "senior_age_starts": 6,
+    "health_predispositions": [
+      {"condition": "Bloat / GDV", "description": "THE breed most associated with bloat — deep narrow chest creates highest risk. Life-threatening emergency.", "urgency_if_symptomatic": "call_vet", "common_signs": ["hard distended abdomen", "unproductive retching", "restlessness", "pacing", "drooling"]},
+      {"condition": "Dilated cardiomyopathy (DCM)", "description": "One of the most predisposed breeds to heart muscle disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "exercise intolerance", "fainting", "rapid breathing"]},
+      {"condition": "Hip dysplasia", "description": "Extremely common in giant breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "bunny-hopping", "difficulty rising"]},
+      {"condition": "Osteosarcoma", "description": "Giant breeds have significantly elevated bone cancer risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["persistent limping", "swelling on a limb"]},
+      {"condition": "Wobbler syndrome", "description": "Cervical vertebral instability causing coordination issues", "urgency_if_symptomatic": "call_vet", "common_signs": ["wobbly gait", "neck pain", "difficulty walking"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Gentle, affectionate, patient. Known as the 'gentle giant.'",
+      "exercise_needs": "Moderate — daily walks but avoid intense exercise.",
+      "anxiety_profile": "Can develop separation anxiety despite large size.",
+      "notable_behaviors": ["Any GI symptoms should be taken seriously due to extreme bloat risk", "Giant size means small changes in hydration or nutrition have outsized effects", "Gentle giant — behavioral changes are often meaningful", "Rapid growth in puppies requires careful nutrition"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Controlled growth rate critical. No jumping or stairs. Bloat prevention from day one.",
+      "young_adult_1_to_3": "Bloat awareness essential. Cardiac screening. Joint protection.",
+      "adult_3_to_6": "Annual cardiac screening. Bloat prevention routine. Joint health.",
+      "senior_6_plus": "Cancer screening. Heart monitoring. Quality of life assessment. Mobility support."
+    },
+    "breed_specific_red_flags": ["ANY hard or distended abdomen — bloat/GDV until proven otherwise (highest-risk breed)", "Unproductive retching or dry heaving (bloat emergency)", "Coughing or exercise intolerance (DCM)", "Persistent limping in one limb (osteosarcoma risk)"],
+    "common_medications": [
+      {"medication": "Pimobendan (Vetmedin)", "used_for": "DCM / heart failure management", "notes": "Commonly needed. Given on empty stomach."},
+      {"medication": "Joint supplements (glucosamine, MSM)", "used_for": "Joint support for massive frame", "notes": "Important from young adulthood."},
+      {"medication": "Gastropexy discussion", "used_for": "Bloat prevention surgery", "notes": "Prophylactic gastropexy increasingly recommended."}
+    ],
+    "symptom_keywords": ["bloat", "distended abdomen", "retching", "vomiting", "coughing", "heart", "collapse", "limping", "wobbly gait", "neck pain", "diarrhea", "soft stool", "not eating", "lethargy"],
+    "embedding_text": "Great Dane. Giant working breed, 110-175 lbs, life expectancy 7-10 years, senior at 6. THE highest bloat/GDV risk breed — any GI symptoms must include bloat awareness. Prone to: bloat/GDV (life-threatening), DCM (heart disease), hip dysplasia, osteosarcoma, Wobbler syndrome. Giant size amplifies dehydration and nutrition impacts. Gastropexy recommended. Common meds: pimobendan for heart, joint supplements. Red flags: ANY abdominal distension/retching (bloat), coughing (DCM), persistent single-limb limping (osteosarcoma)."
+  },
+  {
+    "breed_id": "dog_chihuahua",
+    "species": "dog",
+    "breed_name": "Chihuahua",
+    "breed_group": "Toy",
+    "size_category": "toy",
+    "weight_range_lbs": {"min": 2, "max": 6},
+    "life_expectancy_years": {"min": 14, "max": 16},
+    "senior_age_starts": 12,
+    "health_predispositions": [
+      {"condition": "Patellar luxation", "description": "Kneecap dislocation — extremely common in toy breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "sudden leg-holding", "intermittent lameness"]},
+      {"condition": "Hypoglycemia", "description": "Dangerously low blood sugar — toy puppies and small adults at highest risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["wobbliness", "glazed eyes", "trembling", "weakness", "seizures", "unresponsiveness"]},
+      {"condition": "Heart disease (mitral valve disease)", "description": "Small breeds prone to degenerative valve disease as they age", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "rapid breathing", "exercise intolerance", "fainting"]},
+      {"condition": "Dental disease", "description": "Tiny mouths with crowded teeth — dental disease is almost universal", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "loose teeth", "drooling"]},
+      {"condition": "Collapsed trachea", "description": "Weakened tracheal rings cause breathing difficulties", "urgency_if_symptomatic": "call_vet", "common_signs": ["honking cough", "gagging", "difficulty breathing during excitement"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Bold, alert, devoted. Big personality in a tiny body.",
+      "exercise_needs": "Low to moderate — short walks. Easily over-exercised.",
+      "anxiety_profile": "Prone to anxiety, shaking, and reactive behaviors.",
+      "notable_behaviors": ["Shaking/trembling can be normal (cold, excitement) but persistent trembling may indicate pain or hypoglycemia", "Tiny size means even minor illnesses escalate quickly", "Open fontanelle may persist — head trauma is especially dangerous", "Not eating for even 12 hours is concerning (hypoglycemia risk)"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Hypoglycemia risk highest. Frequent small meals essential. Protect head (fontanelle).",
+      "young_adult_1_to_3": "Patellar luxation may appear. Dental cleaning routine.",
+      "adult_3_to_7": "Annual dental assessment. Heart murmur screening. Tracheal monitoring.",
+      "senior_7_plus": "Heart disease risk increases. Dental disease progression. Joint supplements."
+    },
+    "breed_specific_red_flags": ["Not eating for 12+ hours (hypoglycemia risk — critical in toy breeds)", "Wobbliness, glazed eyes, or unresponsiveness (hypoglycemia emergency — rub corn syrup on gums)", "Honking cough that worsens (collapsed trachea)", "Any head trauma (open fontanelle makes this especially dangerous)"],
+    "common_medications": [
+      {"medication": "Heart medications (enalapril, pimobendan)", "used_for": "Mitral valve disease", "notes": "Dose carefully for tiny body weight."},
+      {"medication": "Hydrocodone / cough suppressants", "used_for": "Collapsed trachea management", "notes": "Harness instead of collar is essential."},
+      {"medication": "Corn syrup / honey", "used_for": "Emergency hypoglycemia treatment", "notes": "Rub on gums if wobbly or unresponsive. Seek vet immediately after."}
+    ],
+    "symptom_keywords": ["shaking", "trembling", "not eating", "wobbling", "seizure", "hypoglycemia", "coughing", "honking", "dental", "bad breath", "limping", "knee", "heart", "collapse", "lethargy"],
+    "embedding_text": "Chihuahua. Toy breed, 2-6 lbs, life expectancy 14-16 years, senior at 12. Tiny size means minor illnesses escalate rapidly. Prone to: patellar luxation, hypoglycemia (especially puppies — not eating 12+ hours is emergency), heart disease (mitral valve), dental disease (almost universal), collapsed trachea. Shaking can be normal but persistent trembling may indicate pain or low blood sugar. Open fontanelle makes head trauma dangerous. Common meds: heart medications, cough suppressants, emergency corn syrup. Red flags: not eating 12+ hours, wobbliness/glazed eyes (hypoglycemia), honking cough, head trauma."
+  },
+  {
+    "breed_id": "dog_australian_shepherd",
+    "species": "dog",
+    "breed_name": "Australian Shepherd",
+    "breed_group": "Herding",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 40, "max": 65},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "MDR1 gene mutation", "description": "About 50% of Aussies carry this mutation affecting drug metabolism — certain medications can be toxic", "urgency_if_symptomatic": "call_vet", "common_signs": ["severe reaction to ivermectin or certain sedatives", "neurological symptoms after medication"]},
+      {"condition": "Hip dysplasia", "description": "Common in active medium-large breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "bunny-hopping", "difficulty rising"]},
+      {"condition": "Epilepsy", "description": "Herding breeds have elevated seizure disorder risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["seizures", "staring episodes", "sudden collapse"]},
+      {"condition": "Eye diseases (cataracts, CEA, iris coloboma)", "description": "Multiple inherited eye conditions", "urgency_if_symptomatic": "call_vet", "common_signs": ["cloudy eyes", "bumping into objects", "squinting"]},
+      {"condition": "Arthritis from high activity", "description": "Years of high-impact activity stress joints", "urgency_if_symptomatic": "try_this", "common_signs": ["stiffness after rest", "reluctance to jump", "slowing on walks"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Intelligent, energetic, loyal. Strong herding instinct and work drive.",
+      "exercise_needs": "Very high — requires 1-2+ hours of physical and mental activity daily.",
+      "anxiety_profile": "Can develop anxiety if understimulated. Noise sensitivity. Velcro dog.",
+      "notable_behaviors": ["MDR1 gene mutation means some common medications are dangerous — always mention to vet", "Herding instinct may manifest as nipping at heels", "Stoic breed — may mask pain from joint injuries", "Highly routine-oriented — behavioral changes often signal something meaningful"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "MDR1 testing recommended. Eye screening. Socialization critical.",
+      "young_adult_1_to_3": "Peak energy. Epilepsy onset window. Joint protection during intense activity.",
+      "adult_3_to_7": "Annual eye exams. Joint monitoring for active dogs. MDR1-safe medication awareness.",
+      "senior_7_plus": "Arthritis from active lifestyle. Eye disease progression. Cancer screening."
+    },
+    "breed_specific_red_flags": ["Any adverse reaction to medication (MDR1 gene — 50% of Aussies are carriers)", "Seizures (breed predisposition)", "Vision problems (multiple inherited eye conditions)", "Sudden personality change in normally energetic dog"],
+    "common_medications": [
+      {"medication": "Rimadyl / Galliprant (NSAIDs)", "used_for": "Arthritis and joint pain", "notes": "Safe for MDR1 carriers."},
+      {"medication": "AVOID: ivermectin, loperamide, certain sedatives", "used_for": "MDR1-affected drugs to avoid", "notes": "CRITICAL: ~50% carry MDR1. Always test before administering."},
+      {"medication": "Anti-epileptics", "used_for": "Seizure management if needed", "notes": "Verify MDR1 status."}
+    ],
+    "symptom_keywords": ["limping", "joint pain", "seizure", "eye problems", "vision", "medication reaction", "stiffness", "herding", "anxiety", "behavioral change", "reluctance to jump"],
+    "embedding_text": "Australian Shepherd. Medium herding breed, 40-65 lbs, life expectancy 12-15 years, senior at 9. CRITICAL: ~50% carry MDR1 gene mutation making certain medications (ivermectin, loperamide, some sedatives) potentially toxic. Prone to: MDR1 drug sensitivity, hip dysplasia, epilepsy, multiple eye diseases, arthritis from high-impact activity. Stoic — masks pain. Common meds: NSAIDs (safe for MDR1), AVOID ivermectin/loperamide. Red flags: medication reactions, seizures, vision problems, sudden personality change."
+  },
+  {
+    "breed_id": "dog_husky",
+    "species": "dog",
+    "breed_name": "Siberian Husky",
+    "breed_group": "Working",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 35, "max": 60},
+    "life_expectancy_years": {"min": 12, "max": 14},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "Epilepsy", "description": "Genetic predisposition, typically onset 1-5 years", "urgency_if_symptomatic": "call_vet", "common_signs": ["seizures", "sudden collapse", "trembling", "disorientation"]},
+      {"condition": "Eye diseases (cataracts, PRA, corneal dystrophy)", "description": "Multiple inherited eye conditions — cataracts can appear as young as 1 year", "urgency_if_symptomatic": "call_vet", "common_signs": ["cloudy eyes", "bumping into objects", "night vision problems"]},
+      {"condition": "Hip dysplasia", "description": "Moderate risk in this active breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising"]},
+      {"condition": "Hypothyroidism", "description": "Underactive thyroid relatively common", "urgency_if_symptomatic": "call_vet", "common_signs": ["weight gain", "lethargy", "cold intolerance", "dry skin"]},
+      {"condition": "Heat intolerance", "description": "Dense double coat designed for arctic conditions makes overheating a serious risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive panting", "drooling", "collapse during warm weather exercise"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Energetic, independent, mischievous. Strong prey drive and wanderlust.",
+      "exercise_needs": "Very high — bred to run. Requires extensive daily exercise.",
+      "anxiety_profile": "Can be destructive when bored. Independent nature.",
+      "notable_behaviors": ["Escape artists — digging, jumping fences, bolting through doors", "Dense double coat makes them extremely heat-sensitive", "Dramatic vocalizations (howling, talking) are normal — silence can be unusual", "Strong prey drive — may chase small animals"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Eye screening important. Begin recall training. High energy from very young.",
+      "young_adult_1_to_3": "Epilepsy onset window. Cataracts can appear early. Exercise needs peak.",
+      "adult_3_to_7": "Annual eye exams. Thyroid screening. Heat management.",
+      "senior_7_plus": "Eye disease progression. Arthritis. Thyroid issues increase."
+    },
+    "breed_specific_red_flags": ["Seizures (genetic predisposition)", "Vision problems or cloudy eyes (early-onset cataracts possible even in young adults)", "Collapse during warm weather exercise (heat stroke — double coat traps heat)", "Unexplained weight gain with lethargy (hypothyroidism)"],
+    "common_medications": [
+      {"medication": "Anti-epileptics (phenobarbital, Keppra)", "used_for": "Seizure management", "notes": "Common in Huskies with idiopathic epilepsy."},
+      {"medication": "Levothyroxine", "used_for": "Hypothyroidism", "notes": "Lifelong daily medication if thyroid is underactive."},
+      {"medication": "Eye drops / ophthalmic medications", "used_for": "Eye condition management", "notes": "Regular eye exams recommended."}
+    ],
+    "symptom_keywords": ["seizure", "eye problems", "cloudy eyes", "vision", "heat stroke", "overheating", "collapse", "weight gain", "lethargy", "escaping", "howling", "not eating", "limping"],
+    "embedding_text": "Siberian Husky. Medium working breed, 35-60 lbs, life expectancy 12-14 years, senior at 9. Arctic breed with dense double coat — extremely heat sensitive. Prone to: epilepsy (genetic, onset 1-5 years), multiple eye diseases (cataracts can appear at age 1), hip dysplasia, hypothyroidism, heat intolerance. Escape artists with strong prey drive. Vocal — silence is unusual. Common meds: anti-epileptics, levothyroxine, eye medications. Red flags: seizures, cloudy eyes, collapse in heat, unexplained weight gain."
+  },
+  {
+    "breed_id": "dog_boxer",
+    "species": "dog",
+    "breed_name": "Boxer",
+    "breed_group": "Working",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 50, "max": 80},
+    "life_expectancy_years": {"min": 10, "max": 12},
+    "senior_age_starts": 8,
+    "health_predispositions": [
+      {"condition": "Cancer (mast cell tumors, lymphoma, brain tumors)", "description": "One of the highest cancer rates of any breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["lumps on skin", "weight loss", "lethargy", "seizures (brain tumor)", "swollen lymph nodes"]},
+      {"condition": "Boxer cardiomyopathy (ARVC)", "description": "Breed-specific heart condition causing irregular rhythms", "urgency_if_symptomatic": "call_vet", "common_signs": ["fainting", "exercise intolerance", "irregular heartbeat", "sudden collapse"]},
+      {"condition": "Bloat / GDV", "description": "Deep-chested breed at bloat risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["hard distended abdomen", "unproductive retching", "restlessness"]},
+      {"condition": "Hip dysplasia", "description": "Common in this athletic large breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising"]},
+      {"condition": "GI sensitivity", "description": "Sensitive stomachs and enthusiastic fast eating", "urgency_if_symptomatic": "try_this", "common_signs": ["vomiting after eating too fast", "gas", "soft stool"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Playful, energetic, loyal. Perpetual puppy energy well into adulthood.",
+      "exercise_needs": "High — athletic breed needing vigorous daily exercise.",
+      "anxiety_profile": "Can develop separation anxiety. Very people-oriented.",
+      "notable_behaviors": ["Enthusiastic eater — eats too fast, increasing vomiting and bloat risk", "High pain tolerance — may not show illness until advanced", "Mildly brachycephalic — some breathing limitations in heat", "Extremely playful — injuries from rough play are common"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Heart screening recommended. Bloat prevention habits.",
+      "young_adult_1_to_3": "Cardiac monitoring. Skin lump checks begin.",
+      "adult_3_to_7": "Cancer screening important. Annual cardiac check. GI management.",
+      "senior_7_plus": "Cancer risk peaks. Heart monitoring critical. Joint support."
+    },
+    "breed_specific_red_flags": ["Any new lump or skin mass (mast cell tumor risk — very high in Boxers)", "Fainting or collapse especially during exercise (Boxer cardiomyopathy)", "Hard distended abdomen (bloat — deep-chested)", "Seizures in an older Boxer (brain tumor possibility)"],
+    "common_medications": [
+      {"medication": "Sotalol / Mexiletine", "used_for": "Boxer cardiomyopathy / arrhythmia management", "notes": "Breed-specific cardiac medication. Regular Holter monitoring."},
+      {"medication": "Slow feeder bowls", "used_for": "Bloat and vomiting prevention", "notes": "Essential equipment for fast-eating Boxers."},
+      {"medication": "Antihistamines / steroids", "used_for": "Mast cell tumor management", "notes": "May be part of treatment."}
+    ],
+    "symptom_keywords": ["lump", "mass", "skin growth", "vomiting", "eating fast", "fainting", "collapse", "heart", "bloat", "distended abdomen", "seizure", "limping", "weight loss", "lethargy"],
+    "embedding_text": "Boxer. Large working breed, 50-80 lbs, life expectancy 10-12 years, senior at 8. One of highest cancer rates — mast cell tumors especially common. Prone to: cancer (mast cell tumors, lymphoma, brain tumors), Boxer cardiomyopathy (breed-specific arrhythmia), bloat/GDV, hip dysplasia, GI sensitivity. High pain tolerance masks illness. Fast eater increases bloat risk. Common meds: cardiac anti-arrhythmics, slow feeders. Red flags: new lumps, fainting/collapse, bloat symptoms, seizures in older Boxers."
+  },
+  {
+    "breed_id": "dog_pomeranian",
+    "species": "dog",
+    "breed_name": "Pomeranian",
+    "breed_group": "Toy",
+    "size_category": "toy",
+    "weight_range_lbs": {"min": 3, "max": 7},
+    "life_expectancy_years": {"min": 12, "max": 16},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Heart disease (mitral valve disease)", "description": "Leading cause of death in Pomeranians", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "rapid breathing", "exercise intolerance", "fainting", "blue gums"]},
+      {"condition": "Collapsed trachea", "description": "Common in toy breeds — weakened tracheal rings", "urgency_if_symptomatic": "call_vet", "common_signs": ["honking cough", "gagging", "worsening with excitement"]},
+      {"condition": "Patellar luxation", "description": "Very common in toy breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "sudden leg-holding"]},
+      {"condition": "Hypoglycemia", "description": "Tiny body mass makes blood sugar drops dangerous", "urgency_if_symptomatic": "call_vet", "common_signs": ["wobbliness", "trembling", "glazed eyes", "seizures"]},
+      {"condition": "Alopecia X (black skin disease)", "description": "Breed-specific coat loss condition", "urgency_if_symptomatic": "try_this", "common_signs": ["symmetrical hair loss", "darkened skin where fur lost", "no itching"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Alert, bold, lively. Big personality despite tiny size.",
+      "exercise_needs": "Low to moderate — short walks and indoor play.",
+      "anxiety_profile": "Can be nervous and bark-prone. Startles easily.",
+      "notable_behaviors": ["Frequent barking is normal but excessive can indicate pain or anxiety", "Tiny size means injuries from falls or being stepped on are serious", "Shaking can be normal (cold, excitement) but persistent trembling needs evaluation", "Dense double coat can hide skin issues and weight changes"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Hypoglycemia risk — frequent small meals. Fragile bones.",
+      "young_adult_1_to_3": "Patellar luxation may appear. Tracheal health.",
+      "adult_3_to_7": "Annual cardiac screening. Dental disease management.",
+      "senior_7_plus": "Heart disease risk peaks. Tracheal issues worsen. Dental extractions common."
+    },
+    "breed_specific_red_flags": ["Coughing and exercise intolerance (heart disease — high risk breed)", "Honking cough that worsens (collapsed trachea)", "Wobbliness or unresponsiveness (hypoglycemia — tiny body mass)", "Collapse or fainting (cardiac event)"],
+    "common_medications": [
+      {"medication": "Enalapril / Pimobendan", "used_for": "Heart disease management", "notes": "Dose carefully for tiny weight."},
+      {"medication": "Hydrocodone / cough suppressants", "used_for": "Collapsed trachea", "notes": "Harness only — never a collar."},
+      {"medication": "Corn syrup / honey", "used_for": "Emergency hypoglycemia", "notes": "Rub on gums if wobbly or unresponsive."}
+    ],
+    "symptom_keywords": ["coughing", "honking cough", "heart", "fainting", "collapse", "shaking", "trembling", "not eating", "wobbling", "seizure", "hair loss", "limping", "knee"],
+    "embedding_text": "Pomeranian. Toy breed, 3-7 lbs, life expectancy 12-16 years, senior at 11. High cardiac risk — heart disease is leading cause of death. Prone to: mitral valve disease, collapsed trachea, patellar luxation, hypoglycemia, Alopecia X. Tiny size means falls are dangerous. Shaking can be normal but persistent trembling needs evaluation. Common meds: heart medications, cough suppressants, emergency corn syrup. Red flags: coughing/exercise intolerance (heart), honking cough (trachea), wobbliness (hypoglycemia), collapse."
+  },
+  {
+    "breed_id": "dog_shih_tzu",
+    "species": "dog",
+    "breed_name": "Shih Tzu",
+    "breed_group": "Toy",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 9, "max": 16},
+    "life_expectancy_years": {"min": 10, "max": 16},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Brachycephalic airway issues", "description": "Flat face causes breathing difficulties, especially in heat", "urgency_if_symptomatic": "call_vet", "common_signs": ["loud breathing", "snoring", "overheating", "exercise intolerance"]},
+      {"condition": "Eye problems (proptosis, dry eye, corneal ulcers)", "description": "Prominent eyes vulnerable to injury and disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["eye bulging", "excessive tearing", "squinting", "red eyes"]},
+      {"condition": "Cushing's disease", "description": "Overactive adrenal glands — Shih Tzus are one of the most predisposed breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive drinking and urination", "pot-bellied appearance", "hair loss", "increased appetite"]},
+      {"condition": "Dental disease", "description": "Small mouth with crowded teeth", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "loose teeth"]},
+      {"condition": "Ear infections", "description": "Floppy hairy ears trap moisture", "urgency_if_symptomatic": "try_this", "common_signs": ["ear scratching", "head shaking", "odor"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Affectionate, outgoing, playful. Bred as a companion.",
+      "exercise_needs": "Low — short walks and indoor play. Heat sensitive.",
+      "anxiety_profile": "Can develop separation anxiety. Generally adaptable.",
+      "notable_behaviors": ["Prominent eyes are easily injured — any eye issue is serious", "Heat sensitive due to brachycephalic anatomy", "Excessive drinking is NOT normal — investigate Cushing's, diabetes, or kidney issues", "Coat requires extensive grooming — skin issues hide underneath"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Eye protection from injury. Breathing assessment.",
+      "young_adult_1_to_3": "Eye exams. Ear care routine. Dental cleaning schedule.",
+      "adult_3_to_7": "Watch for Cushing's signs (excessive drinking). Annual eye and dental exams.",
+      "senior_7_plus": "Cushing's and diabetes risk increases. Kidney monitoring. Heart murmur screening."
+    },
+    "breed_specific_red_flags": ["Eye injury or bulging (proptosis — shallow eye sockets)", "Excessive drinking and urination (Cushing's — #1 predisposed breed)", "Difficulty breathing beyond normal brachycephalic sounds", "Any eye trauma or sudden vision change"],
+    "common_medications": [
+      {"medication": "Trilostane (Vetoryl)", "used_for": "Cushing's disease management", "notes": "Requires regular cortisol monitoring. Lifelong."},
+      {"medication": "Cyclosporine eye drops (Optimmune)", "used_for": "Dry eye treatment", "notes": "Common in brachycephalic breeds. Daily application."},
+      {"medication": "Apoquel / antihistamines", "used_for": "Allergy management", "notes": "Skin allergies common under dense coat."}
+    ],
+    "symptom_keywords": ["drinking more", "excessive thirst", "urination", "eye injury", "eye bulging", "breathing", "snoring", "bad breath", "dental", "ear infection", "hair loss", "pot belly", "panting"],
+    "embedding_text": "Shih Tzu. Small toy breed, 9-16 lbs, life expectancy 10-16 years, senior at 11. Brachycephalic with prominent vulnerable eyes. Prone to: brachycephalic airway issues, eye problems (proptosis, dry eye, corneal ulcers), Cushing's disease (one of most predisposed — excessive drinking is key sign), dental disease, ear infections. Excessive drinking is NOT normal. Heat sensitive. Common meds: trilostane for Cushing's, eye drops, allergy medications. Red flags: eye injury/bulging, excessive drinking (Cushing's), breathing difficulty, eye trauma."
+  },
+  {
+    "breed_id": "dog_yorkshire_terrier",
+    "species": "dog",
+    "breed_name": "Yorkshire Terrier",
+    "breed_group": "Toy",
+    "size_category": "toy",
+    "weight_range_lbs": {"min": 4, "max": 7},
+    "life_expectancy_years": {"min": 11, "max": 15},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Dental disease", "description": "One of the worst breeds for dental problems — retained teeth and overcrowding", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "loose teeth", "drooling"]},
+      {"condition": "Collapsed trachea", "description": "Very common in tiny breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["honking cough", "gagging", "cough worsening with excitement"]},
+      {"condition": "Portosystemic shunt (liver shunt)", "description": "Congenital liver blood vessel abnormality — Yorkies are predisposed", "urgency_if_symptomatic": "call_vet", "common_signs": ["stunted growth", "disorientation after eating", "seizures", "excessive thirst"]},
+      {"condition": "Patellar luxation", "description": "Kneecap dislocation common in toy breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "intermittent lameness"]},
+      {"condition": "Hypoglycemia", "description": "Tiny body mass and fast metabolism", "urgency_if_symptomatic": "call_vet", "common_signs": ["wobbliness", "trembling", "glazed eyes", "seizures"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Bold, confident, feisty. True terrier attitude in a tiny package.",
+      "exercise_needs": "Low to moderate — short walks and indoor play.",
+      "anxiety_profile": "Can be anxious and yappy. May develop resource guarding.",
+      "notable_behaviors": ["Tiny size means even minor illnesses escalate quickly", "Dental issues start very young — breath changes are significant", "Disorientation or 'spacing out' after meals could indicate liver shunt", "Very cold-sensitive"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Hypoglycemia prevention. Retained baby teeth check. Liver shunt screening if symptomatic.",
+      "young_adult_1_to_3": "Dental care becomes critical. Patellar luxation may appear.",
+      "adult_3_to_7": "Annual dental cleaning usually needed. Tracheal monitoring.",
+      "senior_7_plus": "Dental disease severe. Heart disease risk. Tracheal issues worsen."
+    },
+    "breed_specific_red_flags": ["Disorientation or seizures after eating (liver shunt — breed-specific risk)", "Honking cough that worsens (collapsed trachea)", "Not eating for 12+ hours (hypoglycemia risk)", "Facial swelling (dental abscess)"],
+    "common_medications": [
+      {"medication": "Lactulose / special diet", "used_for": "Liver shunt management", "notes": "Low protein diet may be needed."},
+      {"medication": "Cough suppressants", "used_for": "Collapsed trachea management", "notes": "Harness only — no collar."},
+      {"medication": "Dental care products", "used_for": "Dental disease prevention", "notes": "Daily brushing essential."}
+    ],
+    "symptom_keywords": ["bad breath", "dental", "coughing", "honking cough", "seizure after eating", "disorientation", "not eating", "wobbling", "trembling", "limping", "knee"],
+    "embedding_text": "Yorkshire Terrier. Toy breed, 4-7 lbs, life expectancy 11-15 years, senior at 11. One of worst breeds for dental disease. Prone to: dental disease (severe, starts young), collapsed trachea, portosystemic liver shunt (disorientation/seizures after eating), patellar luxation, hypoglycemia. Disorientation after meals is a critical liver shunt warning. Common meds: lactulose for liver, cough suppressants, dental care. Red flags: disorientation/seizures after eating, honking cough, not eating 12+ hours, facial swelling."
+  },
+  {
+    "breed_id": "dog_pit_bull",
+    "species": "dog",
+    "breed_name": "American Pit Bull Terrier / Pit Bull Mix",
+    "breed_group": "Terrier",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 30, "max": 65},
+    "life_expectancy_years": {"min": 12, "max": 14},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "Skin allergies and food sensitivities", "description": "One of the most allergy-prone breeds — skin and GI manifestations", "urgency_if_symptomatic": "try_this", "common_signs": ["itching", "red skin", "hot spots", "ear infections", "paw licking", "chronic soft stool"]},
+      {"condition": "Hip dysplasia", "description": "Moderate risk in this muscular active breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising", "bunny-hopping"]},
+      {"condition": "Cranial cruciate ligament tears", "description": "Active breed with powerful rear stresses knee ligaments", "urgency_if_symptomatic": "call_vet", "common_signs": ["sudden hind leg lameness", "sitting with leg extended"]},
+      {"condition": "Thyroid disease", "description": "Both hypo and hyperthyroidism seen", "urgency_if_symptomatic": "call_vet", "common_signs": ["weight changes", "lethargy or hyperactivity", "skin changes"]},
+      {"condition": "Mange (demodex)", "description": "Predisposed to demodectic mange especially as puppies", "urgency_if_symptomatic": "call_vet", "common_signs": ["hair loss patches", "red scaly skin", "usually starts on face and legs"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Loyal, affectionate, eager to please. Strong and athletic.",
+      "exercise_needs": "High — muscular breed needing vigorous daily exercise.",
+      "anxiety_profile": "Can develop separation anxiety. Very people-bonded.",
+      "notable_behaviors": ["Extremely stoic — may not show pain until advanced", "Strong jaw and chewing drive — foreign body ingestion risk", "Allergies often manifest as both skin and GI symptoms simultaneously", "High pain tolerance means limping is always significant"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Mange screening. Socialization critical. Allergy signs often appear early.",
+      "young_adult_1_to_3": "Allergy management may begin. Cruciate injury risk.",
+      "adult_3_to_7": "Allergy management ongoing. Annual thyroid screening.",
+      "senior_7_plus": "Arthritis common. Cancer screening. Thyroid monitoring."
+    },
+    "breed_specific_red_flags": ["Limping or reluctance to move (high pain tolerance means this is significant)", "Chronic skin issues not responding to treatment", "Sudden hind leg lameness (cruciate tear — common)", "Behavioral change in normally stable dog (investigate pain or thyroid)"],
+    "common_medications": [
+      {"medication": "Apoquel / Cytopoint", "used_for": "Chronic allergy management", "notes": "Very commonly needed. May need lifelong management."},
+      {"medication": "Limited ingredient / hydrolyzed protein diet", "used_for": "Food allergy management", "notes": "Elimination diet trials common."},
+      {"medication": "NSAIDs", "used_for": "Joint and injury pain", "notes": "Monitor for GI effects especially in dogs with food sensitivities."}
+    ],
+    "symptom_keywords": ["itching", "skin", "allergy", "ear infection", "hot spots", "limping", "hind leg", "diarrhea", "soft stool", "hair loss", "food sensitivity", "vomiting", "blood in stool"],
+    "embedding_text": "Pit Bull / Pit Bull Mix. Medium terrier, 30-65 lbs, life expectancy 12-14 years, senior at 9. One of most allergy-prone breeds. Prone to: skin/food allergies (dominant concern), hip dysplasia, cruciate ligament tears, thyroid disease, demodectic mange. Extremely stoic — hides pain, so limping is always significant. Allergies cause both skin and GI symptoms. Common meds: Apoquel/Cytopoint, limited ingredient diets, NSAIDs. Red flags: limping (stoic breed), chronic skin issues, sudden hind lameness, behavioral change."
+  },
+  {
+    "breed_id": "dog_bulldog_english",
+    "species": "dog",
+    "breed_name": "English Bulldog",
+    "breed_group": "Non-Sporting",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 40, "max": 50},
+    "life_expectancy_years": {"min": 8, "max": 10},
+    "senior_age_starts": 7,
+    "health_predispositions": [
+      {"condition": "Brachycephalic airway syndrome", "description": "Severely compressed airways — most affected brachycephalic breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["loud breathing", "overheating", "exercise intolerance", "blue gums", "collapse"]},
+      {"condition": "Skin fold infections", "description": "Extensive wrinkles trap moisture and bacteria", "urgency_if_symptomatic": "try_this", "common_signs": ["red irritated skin folds", "odor", "discharge"]},
+      {"condition": "Hip dysplasia and joint issues", "description": "Heavy compact body with abnormal gait stresses joints", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising", "reluctance to walk"]},
+      {"condition": "Cherry eye", "description": "Prolapsed tear gland — very common in Bulldogs", "urgency_if_symptomatic": "call_vet", "common_signs": ["red bulge in eye corner", "excessive tearing"]},
+      {"condition": "Heat stroke", "description": "Extremely heat sensitive — the breed most likely to overheat", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive panting", "drooling", "bright red gums", "collapse"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Calm, courageous, friendly. Low energy with stubborn streak.",
+      "exercise_needs": "Low — short walks only. Cannot exercise in heat.",
+      "anxiety_profile": "Generally calm but stubborn about changes.",
+      "notable_behaviors": ["Heat is their enemy — even mild warm days are dangerous", "Loud breathing is normal but worsening means trouble", "Low energy baseline — lethargy beyond normal is still concerning", "Many cannot swim — water safety is critical"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Breathing assessment critical. Cherry eye may appear. Wrinkle care.",
+      "young_adult_1_to_3": "Skin care. Joint monitoring. Heat management.",
+      "adult_3_to_7": "Spinal issues may appear. Breathing may worsen. Weight critical.",
+      "senior_7_plus": "Breathing complications increase. Joint disease. Heart monitoring."
+    },
+    "breed_specific_red_flags": ["Any breathing difficulty beyond normal Bulldog level (respiratory emergency)", "Blue or purple gums (oxygen deprivation)", "Collapse in warm weather (heat stroke — most susceptible breed)", "Cannot cool down after rest indoors (overheating)"],
+    "common_medications": [
+      {"medication": "Medicated wipes/shampoo", "used_for": "Skin fold maintenance", "notes": "Daily wrinkle cleaning essential."},
+      {"medication": "NSAIDs", "used_for": "Joint pain", "notes": "Many need chronic pain management."},
+      {"medication": "Allergy medications", "used_for": "Skin allergies", "notes": "Common in the breed."}
+    ],
+    "symptom_keywords": ["breathing", "overheating", "heat", "collapse", "skin infection", "wrinkles", "eye", "cherry eye", "limping", "snoring", "panting", "blue gums"],
+    "embedding_text": "English Bulldog. Medium breed, 40-50 lbs, life expectancy 8-10 years, senior at 7. Most severely brachycephalic breed — breathing is the defining health concern. Prone to: severe brachycephalic airway syndrome, skin fold infections, hip dysplasia, cherry eye, heat stroke (most heat-sensitive breed). Cannot exercise in warm weather. Cannot swim. Loud breathing is baseline normal. Common meds: skin care products, NSAIDs, allergy meds. Red flags: breathing difficulty beyond normal, blue gums, heat collapse, eye problems."
+  },
+  {
+    "breed_id": "dog_cocker_spaniel",
+    "species": "dog",
+    "breed_name": "Cocker Spaniel",
+    "breed_group": "Sporting",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 20, "max": 30},
+    "life_expectancy_years": {"min": 12, "max": 14},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Ear infections (chronic)", "description": "Long heavy pendulous ears with poor airflow — THE breed most prone to chronic ear infections", "urgency_if_symptomatic": "try_this", "common_signs": ["ear scratching", "head shaking", "ear odor", "discharge", "head tilt"]},
+      {"condition": "Eye diseases (cataracts, glaucoma, cherry eye, PRA)", "description": "Multiple inherited eye conditions", "urgency_if_symptomatic": "call_vet", "common_signs": ["cloudy eyes", "eye pain", "squinting", "bumping into objects"]},
+      {"condition": "Autoimmune hemolytic anemia (AIHA)", "description": "Immune system attacks own red blood cells — Cockers are predisposed", "urgency_if_symptomatic": "call_vet", "common_signs": ["pale gums", "lethargy", "rapid breathing", "dark urine", "yellowing of whites of eyes"]},
+      {"condition": "Hypothyroidism", "description": "Underactive thyroid common", "urgency_if_symptomatic": "call_vet", "common_signs": ["weight gain", "lethargy", "skin issues"]},
+      {"condition": "Skin conditions (seborrhea)", "description": "Oily or flaky skin common", "urgency_if_symptomatic": "try_this", "common_signs": ["oily coat", "flaky skin", "odor", "itching"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Happy, gentle, trusting. Classic family dog.",
+      "exercise_needs": "Moderate — daily walks and play.",
+      "anxiety_profile": "Can develop separation anxiety. Some lines have 'rage syndrome' (sudden aggression — rare).",
+      "notable_behaviors": ["Ears need constant maintenance — weekly cleaning minimum", "Happy demeanor means behavioral changes are very noticeable", "Pale gums should prompt immediate vet visit (AIHA risk)", "Food-motivated but less obsessively so than Labs"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Eye screening. Begin ear care routine.",
+      "young_adult_1_to_3": "Annual eye exams. Ear infection management.",
+      "adult_3_to_7": "Eye disease progression. AIHA awareness. Weight management.",
+      "senior_7_plus": "Eye diseases advance. Heart murmur screening. Thyroid monitoring."
+    },
+    "breed_specific_red_flags": ["Pale gums or yellow eyes (AIHA — breed-specific autoimmune emergency)", "Dark brown or red urine (AIHA — red blood cell destruction)", "Eye pain or sudden vision change (glaucoma — rapid vision loss)", "Chronic ear infections not responding to treatment"],
+    "common_medications": [
+      {"medication": "Ear cleaning solutions", "used_for": "Chronic ear maintenance", "notes": "Weekly minimum. After every bath or swim."},
+      {"medication": "Immunosuppressive drugs (prednisone, cyclosporine)", "used_for": "AIHA treatment", "notes": "Emergency and long-term management."},
+      {"medication": "Eye medications", "used_for": "Various eye conditions", "notes": "Regular exams critical."}
+    ],
+    "symptom_keywords": ["ear infection", "ear scratching", "eye problems", "pale gums", "yellow eyes", "dark urine", "lethargy", "skin", "oily coat", "weight gain", "vision"],
+    "embedding_text": "Cocker Spaniel. Medium sporting breed, 20-30 lbs, life expectancy 12-14 years, senior at 10. THE breed most prone to chronic ear infections. Prone to: chronic ear infections, multiple eye diseases, AIHA (autoimmune — pale gums/yellow eyes is EMERGENCY), hypothyroidism, seborrhea. Happy temperament — behavioral changes very noticeable. Common meds: ear cleaners weekly, immunosuppressives for AIHA, eye medications. Red flags: pale gums/yellow eyes (AIHA emergency), dark urine, eye pain, chronic ear infections."
+  },
+  {
+    "breed_id": "dog_cavalier_king_charles",
+    "species": "dog",
+    "breed_name": "Cavalier King Charles Spaniel",
+    "breed_group": "Toy",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 12, "max": 18},
+    "life_expectancy_years": {"min": 9, "max": 14},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "Mitral valve disease (MVD)", "description": "Nearly 100% of Cavaliers develop MVD — the breed's defining health issue, often starting with murmur by age 5", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "exercise intolerance", "rapid breathing", "fainting"]},
+      {"condition": "Syringomyelia (SM)", "description": "Skull too small for brain, causing fluid-filled cavities in spinal cord — extremely common", "urgency_if_symptomatic": "call_vet", "common_signs": ["scratching at neck/shoulder without making contact (phantom scratching)", "neck pain", "yelping", "reluctance to lower head"]},
+      {"condition": "Eye conditions (dry eye, cataracts)", "description": "Prominent eyes prone to dryness and injury", "urgency_if_symptomatic": "call_vet", "common_signs": ["eye discharge", "squinting", "red eyes"]},
+      {"condition": "Patellar luxation", "description": "Common in small breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "intermittent lameness"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Gentle, affectionate, eager to please. Excellent therapy dog.",
+      "exercise_needs": "Moderate — adaptable to owner's activity level.",
+      "anxiety_profile": "Velcro dog — very prone to separation anxiety.",
+      "notable_behaviors": ["Phantom scratching at neck/shoulders is hallmark of syringomyelia — NOT a skin issue", "Heart murmur is almost expected — but progression should be monitored", "Very sensitive to owner emotions", "Adaptable energy level"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Heart murmur screening. SM awareness. Eye screening.",
+      "young_adult_1_to_3": "Annual cardiac exam. Watch for phantom scratching.",
+      "adult_3_to_7": "Heart murmur likely develops. SM may progress. Regular cardiac monitoring.",
+      "senior_7_plus": "Heart failure management. SM management. Quality of life monitoring."
+    },
+    "breed_specific_red_flags": ["Phantom scratching (scratching neck/shoulder without contact — syringomyelia)", "Coughing or rapid breathing (heart disease — nearly universal)", "Fainting or collapse (cardiac decompensation)", "Yelping when head is lowered (SM-related neck pain)"],
+    "common_medications": [
+      {"medication": "Pimobendan / Enalapril", "used_for": "Heart disease management", "notes": "Most Cavaliers will need cardiac medication eventually."},
+      {"medication": "Gabapentin / NSAIDs", "used_for": "Syringomyelia pain management", "notes": "SM requires lifelong pain management in many cases."},
+      {"medication": "Cyclosporine eye drops", "used_for": "Dry eye management", "notes": "Common. Daily application."}
+    ],
+    "symptom_keywords": ["coughing", "heart", "phantom scratching", "neck pain", "yelping", "fainting", "collapse", "eye discharge", "exercise intolerance", "breathing"],
+    "embedding_text": "Cavalier King Charles Spaniel. Small toy breed, 12-18 lbs, life expectancy 9-14 years, senior at 9. Nearly 100% develop mitral valve disease — heart disease is THE defining issue. Prone to: MVD (murmur by age 5 typical), syringomyelia (skull too small for brain — phantom scratching is hallmark), eye conditions, patellar luxation. Phantom scratching is NOT a skin issue — it's neurological. Very separation-anxious. Common meds: cardiac medications, gabapentin for SM pain, eye drops. Red flags: phantom scratching, coughing/rapid breathing (heart), fainting, yelping when lowering head."
+  },
+  {
+    "breed_id": "dog_miniature_schnauzer",
+    "species": "dog",
+    "breed_name": "Miniature Schnauzer",
+    "breed_group": "Terrier",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 11, "max": 20},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Pancreatitis", "description": "THE breed most predisposed to pancreatitis — high-fat foods are extremely dangerous", "urgency_if_symptomatic": "call_vet", "common_signs": ["severe vomiting", "abdominal pain (hunched posture, prayer position)", "diarrhea", "loss of appetite"]},
+      {"condition": "Hyperlipidemia", "description": "Genetically elevated blood fat levels — contributes to pancreatitis risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["often no visible signs until pancreatitis attack"]},
+      {"condition": "Bladder stones", "description": "Prone to calcium oxalate and struvite stones", "urgency_if_symptomatic": "call_vet", "common_signs": ["straining to urinate", "blood in urine", "frequent small urinations"]},
+      {"condition": "Diabetes", "description": "Elevated risk connected to pancreatitis and obesity", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive drinking and urination", "weight loss despite eating", "cataracts"]},
+      {"condition": "Cataracts", "description": "Hereditary and diabetes-related cataracts both common", "urgency_if_symptomatic": "call_vet", "common_signs": ["cloudy eyes", "bumping into objects"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Alert, spirited, friendly. Classic terrier personality.",
+      "exercise_needs": "Moderate — daily walks and play.",
+      "anxiety_profile": "Can be bark-prone and territorial. Generally confident.",
+      "notable_behaviors": ["High-fat treats and table scraps are DANGEROUS (pancreatitis trigger)", "Increased drinking/urination should always be investigated", "Alert barkers — vocalization changes may signal pain", "Bearded face can hide dental issues"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Establish low-fat diet habits early. Eye screening.",
+      "young_adult_1_to_3": "Lipid panel recommended. Bladder stone awareness.",
+      "adult_3_to_7": "Annual lipid and glucose screening. Strict diet control.",
+      "senior_7_plus": "Diabetes risk increases. Pancreatitis risk continues. Cataracts."
+    },
+    "breed_specific_red_flags": ["Severe vomiting with abdominal pain (pancreatitis — #1 predisposed breed)", "Hunched posture or 'prayer position' (pancreatic pain)", "Excessive drinking and urination (diabetes or kidney issues)", "Straining to urinate or blood in urine (bladder stones)"],
+    "common_medications": [
+      {"medication": "Low-fat prescription diet", "used_for": "Pancreatitis prevention and management", "notes": "CRITICAL. No high-fat treats ever."},
+      {"medication": "Insulin", "used_for": "Diabetes management", "notes": "Twice daily injections if diagnosed."},
+      {"medication": "Urinary diet", "used_for": "Bladder stone prevention", "notes": "Specific formulations to prevent recurrence."}
+    ],
+    "symptom_keywords": ["vomiting", "abdominal pain", "hunched", "prayer position", "drinking more", "urination", "blood in urine", "straining", "not eating", "lethargy", "cataracts", "eye cloudiness"],
+    "embedding_text": "Miniature Schnauzer. Small terrier, 11-20 lbs, life expectancy 12-15 years, senior at 10. THE breed most predisposed to pancreatitis — high-fat foods are extremely dangerous. Prone to: pancreatitis (breed #1 risk), hyperlipidemia, bladder stones, diabetes, cataracts. High-fat treats can trigger life-threatening pancreatitis. Excessive drinking is always concerning. Common meds: low-fat diet (critical), insulin if diabetic, urinary diet. Red flags: vomiting with abdominal pain (pancreatitis), excessive drinking (diabetes), blood in urine (stones)."
+  },
+  {
+    "breed_id": "dog_doberman",
+    "species": "dog",
+    "breed_name": "Doberman Pinscher",
+    "breed_group": "Working",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 60, "max": 100},
+    "life_expectancy_years": {"min": 10, "max": 12},
+    "senior_age_starts": 8,
+    "health_predispositions": [
+      {"condition": "Dilated cardiomyopathy (DCM)", "description": "THE breed most affected — up to 58% develop DCM. Leading cause of death. Can cause sudden death with no prior symptoms.", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "exercise intolerance", "fainting", "rapid breathing", "sudden collapse"]},
+      {"condition": "Von Willebrand's disease", "description": "Blood clotting disorder — most commonly affected breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive bleeding from minor cuts", "nosebleeds", "bruising easily"]},
+      {"condition": "Bloat / GDV", "description": "Deep-chested breed at significant bloat risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["hard distended abdomen", "unproductive retching", "restlessness"]},
+      {"condition": "Wobbler syndrome", "description": "Cervical vertebral instability causing neurological problems", "urgency_if_symptomatic": "call_vet", "common_signs": ["wobbly gait", "neck pain", "stumbling"]},
+      {"condition": "Hip dysplasia", "description": "Common in large breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Loyal, alert, fearless. Strong bond with owner.",
+      "exercise_needs": "High — athletic breed requiring daily vigorous exercise.",
+      "anxiety_profile": "Can be anxious without adequate exercise. Protective instincts.",
+      "notable_behaviors": ["DCM can cause sudden death with no prior symptoms — annual cardiac screening is critical", "Excessive bleeding from minor wounds should prompt vWD testing", "Athletic and lean — weight gain may indicate thyroid issues", "Protective nature means pain-related changes may be misread as aggression"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Von Willebrand's testing recommended. Cardiac baseline.",
+      "young_adult_1_to_3": "Annual cardiac screening begins (Holter monitor recommended).",
+      "adult_3_to_7": "Annual Holter monitoring for DCM. Bloat prevention.",
+      "senior_7_plus": "DCM risk peaks. Heart failure management. Cancer screening."
+    },
+    "breed_specific_red_flags": ["Coughing or exercise intolerance (DCM — up to 58% affected)", "Sudden collapse or fainting (cardiac arrhythmia)", "Excessive bleeding from minor wounds (von Willebrand's disease)", "Hard distended abdomen (bloat/GDV)"],
+    "common_medications": [
+      {"medication": "Pimobendan / Sotalol", "used_for": "DCM management", "notes": "Often started before symptoms based on Holter results."},
+      {"medication": "DDAVP (desmopressin)", "used_for": "Von Willebrand's before surgery", "notes": "Given pre-operatively to improve clotting."},
+      {"medication": "Holter monitoring", "used_for": "Annual DCM screening", "notes": "24-hour heart rhythm recording. Recommended annually for all Dobermans over 2."}
+    ],
+    "symptom_keywords": ["coughing", "heart", "fainting", "collapse", "bleeding", "bruising", "bloat", "distended abdomen", "wobbly gait", "exercise intolerance", "breathing", "sudden death"],
+    "embedding_text": "Doberman Pinscher. Large working breed, 60-100 lbs, life expectancy 10-12 years, senior at 8. THE breed most affected by DCM — up to 58% develop it, can cause sudden death. Prone to: DCM (annual Holter monitoring critical), von Willebrand's disease (excessive bleeding), bloat/GDV, Wobbler syndrome, hip dysplasia. Annual cardiac screening is non-negotiable. Common meds: cardiac medications (often pre-symptom), DDAVP for clotting. Red flags: coughing/exercise intolerance (DCM), fainting/collapse, excessive bleeding, bloat symptoms."
+  },
+  {
+    "breed_id": "dog_goldendoodle",
+    "species": "dog",
+    "breed_name": "Goldendoodle",
+    "breed_group": "Mixed/Designer",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 30, "max": 75},
+    "life_expectancy_years": {"min": 10, "max": 15},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "Hip dysplasia", "description": "Inherited from both Golden Retriever and Poodle parent breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising", "stiffness"]},
+      {"condition": "Allergies", "description": "Common from both Golden and Poodle lines", "urgency_if_symptomatic": "try_this", "common_signs": ["itching", "ear infections", "paw licking"]},
+      {"condition": "Ear infections", "description": "Floppy ears with hair growth in canal trap moisture", "urgency_if_symptomatic": "try_this", "common_signs": ["ear scratching", "odor", "head shaking"]},
+      {"condition": "Addison's disease", "description": "Inherited from Poodle line — vague intermittent symptoms", "urgency_if_symptomatic": "call_vet", "common_signs": ["intermittent vomiting", "lethargy", "weakness", "shaking"]},
+      {"condition": "Cancer", "description": "Golden Retriever parent line carries high cancer risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["lumps", "weight loss", "lethargy"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Friendly, intelligent, social. Combines best of both parent breeds.",
+      "exercise_needs": "Moderate to high — varies with size.",
+      "anxiety_profile": "Can develop separation anxiety. Very people-oriented.",
+      "notable_behaviors": ["Variable size — health risks shift based on standard vs mini", "Non-shedding coat requires regular grooming — skin issues hide under fur", "Combines food motivation of Golden with Poodle intelligence", "First-gen vs multi-gen affects health prediction"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development. Ear care routine. Grooming schedule.",
+      "young_adult_1_to_3": "Allergy signs may appear. Ear maintenance. Addison's awareness.",
+      "adult_3_to_7": "Cancer screening (Golden heritage). Annual ear and eye exams.",
+      "senior_7_plus": "Cancer risk from Golden line. Joint support. Cognitive decline."
+    },
+    "breed_specific_red_flags": ["Intermittent unexplained vomiting and lethargy (Addison's from Poodle line)", "New lumps or masses (cancer risk from Golden line)", "Chronic ear infections (ear anatomy traps moisture)", "Skipping meals (unusual given food motivation)"],
+    "common_medications": [
+      {"medication": "Apoquel / Cytopoint", "used_for": "Allergy management", "notes": "Common in Goldendoodles."},
+      {"medication": "Ear cleaners", "used_for": "Ear maintenance", "notes": "Weekly cleaning essential."},
+      {"medication": "Joint supplements", "used_for": "Joint health", "notes": "Important especially for larger Goldendoodles."}
+    ],
+    "symptom_keywords": ["ear infection", "itching", "allergy", "limping", "vomiting", "lethargy", "lump", "not eating"],
+    "embedding_text": "Goldendoodle. Mixed/designer breed, 30-75 lbs, life expectancy 10-15 years, senior at 9. Inherits risks from Golden Retriever (cancer, hip dysplasia) and Poodle (Addison's, epilepsy, eye diseases). Prone to: hip dysplasia, allergies, chronic ear infections, Addison's disease, cancer. Variable size affects risk profile. Non-shedding coat hides skin issues. Common meds: allergy medications, ear cleaners, joint supplements. Red flags: intermittent vomiting/lethargy (Addison's), new lumps (cancer), chronic ear infections."
+  },
+  {
+    "breed_id": "dog_corgi",
+    "species": "dog",
+    "breed_name": "Pembroke Welsh Corgi",
+    "breed_group": "Herding",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 25, "max": 30},
+    "life_expectancy_years": {"min": 12, "max": 13},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "IVDD", "description": "Long-backed breed with IVDD risk similar to Dachshunds", "urgency_if_symptomatic": "call_vet", "common_signs": ["back pain", "reluctance to jump", "hind weakness", "dragging legs"]},
+      {"condition": "Degenerative myelopathy (DM)", "description": "One of the most predisposed breeds to progressive spinal cord disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["progressive hind weakness", "dragging feet", "knuckling over", "loss of hind coordination"]},
+      {"condition": "Hip dysplasia", "description": "Surprisingly common — heavy body on short legs", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "bunny-hopping", "difficulty rising"]},
+      {"condition": "Obesity", "description": "Very food-motivated breed prone to rapid weight gain", "urgency_if_symptomatic": "try_this", "common_signs": ["loss of waistline", "difficulty feeling ribs"]},
+      {"condition": "Von Willebrand's disease", "description": "Bleeding disorder found in some lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive bleeding", "nosebleeds"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Smart, alert, affectionate. Strong herding instinct.",
+      "exercise_needs": "Moderate to high — athletic despite short legs.",
+      "anxiety_profile": "Alert barkers. Can be bossy and pushy.",
+      "notable_behaviors": ["Long back + short legs = IVDD risk — same caution as Dachshunds", "Very food-motivated — weight management critical for spinal health", "Herding nips at heels are normal breed behavior", "Progressive hind weakness is NOT just aging — investigate DM"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development. Weight management early. DM carrier testing available.",
+      "young_adult_1_to_3": "Maintain lean weight. Spinal health awareness.",
+      "adult_3_to_7": "Weight critical for back health. Annual spine assessment.",
+      "senior_7_plus": "DM risk increases. Arthritis management. Spinal health."
+    },
+    "breed_specific_red_flags": ["Progressive hind leg weakness (DM — high predisposition)", "Back pain or reluctance to jump (IVDD)", "Rapid weight gain (worsens all structural issues)", "Dragging hind feet or knuckling over (DM or IVDD emergency)"],
+    "common_medications": [
+      {"medication": "NSAIDs", "used_for": "Arthritis and back pain", "notes": "Common need for long-backed breed."},
+      {"medication": "Weight management diet", "used_for": "Obesity prevention", "notes": "Critical — every extra pound stresses the spine."}
+    ],
+    "symptom_keywords": ["back pain", "hind weakness", "dragging legs", "IVDD", "limping", "obesity", "weight gain", "bleeding"],
+    "embedding_text": "Pembroke Welsh Corgi. Small herding breed, 25-30 lbs, life expectancy 12-13 years, senior at 10. Long back + short legs = IVDD risk similar to Dachshunds. One of most predisposed breeds to DM (progressive hind weakness). Prone to: IVDD, DM, hip dysplasia, obesity (weight management critical for spine), von Willebrand's. Progressive hind weakness is NOT just aging. Common meds: NSAIDs, weight management diet. Red flags: progressive hind weakness (DM), back pain (IVDD), rapid weight gain, dragging feet."
+  }
+]

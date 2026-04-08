@@ -1,0 +1,1100 @@
+[
+  {
+    "breed_id": "dog_german_shorthaired_pointer",
+    "species": "dog",
+    "breed_name": "German Shorthaired Pointer",
+    "breed_group": "Sporting",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 45, "max": 70},
+    "life_expectancy_years": {"min": 12, "max": 14},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "Bloat / GDV", "description": "Deep-chested sporting breed at significant bloat risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["hard distended abdomen", "unproductive retching", "restlessness", "pacing", "drooling"]},
+      {"condition": "Hip dysplasia", "description": "Common in active large sporting breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "stiffness after rest", "reluctance to jump", "bunny-hopping"]},
+      {"condition": "Cancer (hemangiosarcoma, mast cell tumors)", "description": "Higher than average cancer rates, especially splenic hemangiosarcoma", "urgency_if_symptomatic": "call_vet", "common_signs": ["sudden collapse", "pale gums", "abdominal swelling", "new lumps", "unexplained lethargy"]},
+      {"condition": "Hypothyroidism", "description": "Common endocrine disorder in the breed", "urgency_if_symptomatic": "try_this", "common_signs": ["weight gain without increased eating", "lethargy", "thin coat", "skin infections", "cold intolerance"]},
+      {"condition": "Eye conditions (entropion, PRA)", "description": "Eyelid rolling inward and progressive retinal disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive tearing", "squinting", "eye redness", "bumping into things in dim light"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Enthusiastic, intelligent, tireless. Built for all-day fieldwork.",
+      "exercise_needs": "Very high — requires 1-2+ hours of vigorous daily exercise. Without it, becomes destructive.",
+      "anxiety_profile": "High energy mistaken for anxiety. Genuine separation anxiety possible if under-exercised.",
+      "notable_behaviors": ["One of the highest-energy breeds — lethargy is ALWAYS a red flag", "Will eat anything found outdoors during exercise — foreign body and toxin risk", "Athletic injuries common (sprains, lacerations from fieldwork)", "Under-exercise leads to destructive behavior that owners mistake for behavioral issues"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development — avoid hard surfaces for running. Channel energy into training.",
+      "young_adult_1_to_3": "Peak energy. Athletic injuries. Bloat awareness. Foreign body ingestion risk.",
+      "adult_3_to_7": "Bloat prevention. Cancer screening. Thyroid check if weight gain or coat changes.",
+      "senior_7_plus": "Cancer risk increases. Joint support. Vision monitoring. Activity adjustment."
+    },
+    "breed_specific_red_flags": ["Lethargy in this normally tireless breed (always investigate — cancer, bloat, pain)", "Bloat symptoms (deep-chested breed)", "Sudden collapse or pale gums (hemangiosarcoma can cause internal bleeding)", "Unexplained weight gain with coat changes (hypothyroidism)"],
+    "common_medications": [
+      {"medication": "Levothyroxine", "used_for": "Hypothyroidism", "notes": "Common need. Lifelong daily medication."},
+      {"medication": "NSAIDs", "used_for": "Joint pain and athletic injuries", "notes": "Common for active sporting breed."},
+      {"medication": "Joint supplements (glucosamine, fish oil)", "used_for": "Joint health", "notes": "Important for high-impact active lifestyle."}
+    ],
+    "symptom_keywords": ["bloat", "lethargy", "collapse", "pale gums", "lump", "weight gain", "limping", "coat changes", "eye problems", "vomiting", "distended abdomen"],
+    "embedding_text": "German Shorthaired Pointer. Large sporting breed, 45-70 lbs, life expectancy 12-14 years, senior at 9. One of the highest-energy breeds — lethargy is ALWAYS a red flag. Deep-chested = bloat/GDV risk. Prone to: bloat/GDV, hip dysplasia, cancer (hemangiosarcoma, mast cell tumors), hypothyroidism, eye conditions. Athletic injuries common. Will eat anything found outdoors. Common meds: levothyroxine, NSAIDs, joint supplements. Red flags: lethargy (always investigate), bloat symptoms, sudden collapse/pale gums, unexplained weight gain."
+  },
+  {
+    "breed_id": "dog_miniature_poodle",
+    "species": "dog",
+    "breed_name": "Miniature Poodle",
+    "breed_group": "Non-Sporting",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 10, "max": 15},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Patellar luxation", "description": "Common small breed kneecap dislocation", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "intermittent lameness", "sudden leg-holding"]},
+      {"condition": "Progressive retinal atrophy (PRA)", "description": "Inherited progressive blindness", "urgency_if_symptomatic": "call_vet", "common_signs": ["night blindness", "bumping into furniture in dim light", "dilated pupils", "reluctance to go outside at dusk"]},
+      {"condition": "Epilepsy", "description": "Genetic predisposition in Poodle lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["seizures", "disorientation", "paddling legs", "loss of consciousness", "drooling"]},
+      {"condition": "Addison's disease", "description": "Adrenal insufficiency — vague symptoms make diagnosis difficult", "urgency_if_symptomatic": "call_vet", "common_signs": ["intermittent vomiting", "lethargy", "weakness", "shaking", "poor appetite"]},
+      {"condition": "Dental disease", "description": "Small mouth with crowded teeth increases tartar and decay", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "drooling", "loose teeth", "pawing at mouth"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Highly intelligent, alert, trainable. Often more anxious than Standard Poodles.",
+      "exercise_needs": "Moderate — daily walks and mental stimulation. Thrives with puzzle toys.",
+      "anxiety_profile": "Can be prone to anxiety and nervousness. Sensitive to household tension.",
+      "notable_behaviors": ["Extremely intelligent — behavioral changes often signal something medical", "Non-shedding coat requires regular grooming — mats can hide skin issues", "Sensitive to owner emotions — stress in household may cause GI upset", "Small size means medication dosing is critical — even minor overdoses can be dangerous"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Patellar monitoring. Dental care early. Socialization important for nervous temperament.",
+      "young_adult_1_to_3": "Epilepsy onset window. Eye exam baseline. Addison's awareness.",
+      "adult_3_to_7": "Annual eye exams. Dental cleanings. Thyroid screening.",
+      "senior_7_plus": "Vision monitoring (PRA). Dental management. Cardiac screening. Cognitive health."
+    },
+    "breed_specific_red_flags": ["Seizures (breed predisposition to epilepsy)", "Night vision problems or bumping into things in dim light (PRA)", "Intermittent vomiting and lethargy episodes (Addison's — easily missed)", "Behavioral changes in this intelligent breed (usually signals medical issue)"],
+    "common_medications": [
+      {"medication": "Anti-epileptics (phenobarbital, levetiracetam)", "used_for": "Seizure management", "notes": "If needed. Regular blood monitoring required."},
+      {"medication": "Fludrocortisone / DOCP", "used_for": "Addison's disease management", "notes": "Lifelong treatment if diagnosed."},
+      {"medication": "Dental care products", "used_for": "Dental disease prevention", "notes": "Daily brushing essential for small Poodles."}
+    ],
+    "symptom_keywords": ["seizure", "vision", "blindness", "night blindness", "knee", "skipping", "vomiting", "lethargy", "shaking", "dental", "bad breath", "anxiety"],
+    "embedding_text": "Miniature Poodle. Small non-sporting breed, 10-15 lbs, life expectancy 12-15 years, senior at 11. Highly intelligent — behavioral changes usually signal medical issues. Prone to: patellar luxation, PRA (progressive blindness), epilepsy, Addison's disease (vague intermittent symptoms), dental disease. Sensitive to household stress. Non-shedding coat hides skin issues. Small size makes medication dosing critical. Common meds: anti-epileptics, Addison's medications, dental care. Red flags: seizures, night vision loss, intermittent vomiting/lethargy (Addison's), behavioral changes."
+  },
+  {
+    "breed_id": "dog_cane_corso",
+    "species": "dog",
+    "breed_name": "Cane Corso",
+    "breed_group": "Working",
+    "size_category": "giant",
+    "weight_range_lbs": {"min": 85, "max": 120},
+    "life_expectancy_years": {"min": 9, "max": 12},
+    "senior_age_starts": 7,
+    "health_predispositions": [
+      {"condition": "Hip and elbow dysplasia", "description": "Very common in giant breeds — rapid growth increases risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising", "stiffness after rest", "reluctance to exercise"]},
+      {"condition": "Bloat / GDV", "description": "Giant deep-chested breed at very high bloat risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["hard distended abdomen", "unproductive retching", "restlessness", "pacing", "drooling"]},
+      {"condition": "Dilated cardiomyopathy (DCM)", "description": "Heart muscle weakens and enlarges — giant breeds predisposed", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "rapid breathing", "exercise intolerance", "fainting", "lethargy"]},
+      {"condition": "Cherry eye / entropion / ectropion", "description": "Multiple eye conditions common in this breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["red mass in eye corner", "excessive tearing", "squinting", "eye discharge"]},
+      {"condition": "Cruciate ligament tears", "description": "Heavy body weight stresses knee ligaments", "urgency_if_symptomatic": "call_vet", "common_signs": ["sudden hind leg lameness", "sitting with leg extended", "swollen knee"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Loyal, protective, confident. Strong guardian instinct — bonds deeply with family.",
+      "exercise_needs": "Moderate to high — needs daily exercise but avoid overexertion in heat.",
+      "anxiety_profile": "Can develop territorial anxiety. Needs early socialization.",
+      "notable_behaviors": ["Stoic and high pain tolerance — may hide serious illness until advanced", "Drooling is normal but excessive/sudden drooling can signal bloat or nausea", "Powerful jaws mean injuries from chewing are more severe (broken teeth, ingestion of hard objects)", "Giant breed aging — senior health concerns start earlier than owners expect"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Controlled growth rate critical. Joint development. Socialization window.",
+      "young_adult_1_to_3": "Joint monitoring. Bloat awareness. Cardiac baseline recommended.",
+      "adult_3_to_7": "Annual cardiac screening. Bloat prevention. Joint health. Eye exams.",
+      "senior_7_plus": "Cardiac disease risk increases. Cancer screening. Arthritis management. Quality of life monitoring."
+    },
+    "breed_specific_red_flags": ["Bloat symptoms (very high risk giant breed — emergency)", "Sudden collapse or exercise intolerance (cardiac)", "Stoic breed hiding pain — any behavior change warrants investigation", "Sudden increase in drooling (may signal bloat, nausea, or oral pain)"],
+    "common_medications": [
+      {"medication": "Joint supplements (glucosamine, fish oil, MSM)", "used_for": "Joint health", "notes": "Start early for giant breed."},
+      {"medication": "NSAIDs", "used_for": "Arthritis and joint pain", "notes": "Dose carefully for giant breed."},
+      {"medication": "Cardiac medications (pimobendan, enalapril)", "used_for": "Heart disease management", "notes": "If DCM diagnosed. Lifelong treatment."}
+    ],
+    "symptom_keywords": ["bloat", "distended abdomen", "limping", "collapse", "coughing", "breathing difficulty", "eye problems", "drooling", "hind leg", "stiffness", "lethargy"],
+    "embedding_text": "Cane Corso. Giant working breed, 85-120 lbs, life expectancy 9-12 years, senior at 7. Giant deep-chested = very high bloat/GDV risk. Stoic and high pain tolerance — hides illness. Prone to: hip/elbow dysplasia, bloat/GDV, DCM (heart disease), eye conditions (cherry eye, entropion), cruciate tears. Giant breed aging starts early. Powerful jaws increase dental injury risk. Common meds: joint supplements, NSAIDs, cardiac medications. Red flags: bloat symptoms (emergency), collapse/exercise intolerance (cardiac), any behavior change in stoic breed, sudden drooling increase."
+  },
+  {
+    "breed_id": "dog_boston_terrier",
+    "species": "dog",
+    "breed_name": "Boston Terrier",
+    "breed_group": "Non-Sporting",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 12, "max": 25},
+    "life_expectancy_years": {"min": 11, "max": 13},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Brachycephalic airway syndrome", "description": "Flat face causes chronic breathing difficulty — less severe than French Bulldogs but still significant", "urgency_if_symptomatic": "call_vet", "common_signs": ["noisy breathing", "snoring", "exercise intolerance", "blue gums", "collapse in heat"]},
+      {"condition": "Eye injuries and conditions", "description": "Prominent eyes are extremely vulnerable to corneal ulcers and trauma", "urgency_if_symptomatic": "call_vet", "common_signs": ["squinting", "eye redness", "cloudy eye", "tearing", "pawing at eye"]},
+      {"condition": "Patellar luxation", "description": "Common in small breeds — kneecap slides out of position", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "intermittent lameness", "sudden leg-holding"]},
+      {"condition": "Deafness", "description": "White-headed Bostons have higher deafness rates", "urgency_if_symptomatic": "call_vet", "common_signs": ["not responding to sounds", "startling easily when touched", "excessive barking"]},
+      {"condition": "Allergies", "description": "Skin and food allergies common", "urgency_if_symptomatic": "try_this", "common_signs": ["itching", "skin redness", "ear infections", "paw licking"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Lively, affectionate, comical. 'American Gentleman' personality.",
+      "exercise_needs": "Moderate — short walks and play. MUST avoid overexertion in heat.",
+      "anxiety_profile": "Can develop separation anxiety. Generally friendly and adaptable.",
+      "notable_behaviors": ["Prominent eyes make ANY eye injury an emergency — don't wait", "Brachycephalic — heat and exercise intolerance are breed-normal but monitor for worsening", "Flatulence is normal for the breed due to air swallowing", "Reverse sneezing is common and usually harmless but monitor frequency"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Eye protection. Breathing assessment. BAER hearing test for white-marked puppies.",
+      "young_adult_1_to_3": "Patellar monitoring. Allergy signs may appear. Weight management.",
+      "adult_3_to_7": "Eye health monitoring. Breathing assessment. Allergy management. Spine monitoring.",
+      "senior_7_plus": "Cardiac screening. Eye conditions worsen. Breathing may deteriorate. Joint support."
+    },
+    "breed_specific_red_flags": ["ANY eye injury — prominent eyes mean corneal ulcers develop fast", "Blue gums or collapse, especially in heat (brachycephalic crisis)", "Worsening breathing or snoring (airway deterioration)", "Squinting or cloudy eye (corneal ulcer — delay risks vision loss)"],
+    "common_medications": [
+      {"medication": "Eye lubricants / artificial tears", "used_for": "Eye protection", "notes": "Prominent eyes prone to dryness. Daily use common."},
+      {"medication": "Apoquel / Cytopoint", "used_for": "Allergy management", "notes": "Common for skin and food allergies."},
+      {"medication": "Anti-nausea medications", "used_for": "GI sensitivity", "notes": "Brachycephalic breeds swallow air, causing GI issues."}
+    ],
+    "symptom_keywords": ["eye injury", "squinting", "breathing", "snoring", "heat intolerance", "collapse", "knee", "skipping", "itching", "allergy", "deafness"],
+    "embedding_text": "Boston Terrier. Small non-sporting breed, 12-25 lbs, life expectancy 11-13 years, senior at 10. Brachycephalic — breathing difficulty, heat intolerance. Prominent eyes = extremely vulnerable to corneal ulcers (any eye injury is urgent). Prone to: brachycephalic airway syndrome, eye injuries/conditions, patellar luxation, deafness (white-headed), allergies. Flatulence and reverse sneezing are breed-normal. Common meds: eye lubricants, allergy medications. Red flags: any eye injury (urgent), blue gums/collapse in heat, worsening breathing, squinting/cloudy eye."
+  },
+  {
+    "breed_id": "dog_akita",
+    "species": "dog",
+    "breed_name": "Akita",
+    "breed_group": "Working",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 70, "max": 130},
+    "life_expectancy_years": {"min": 10, "max": 13},
+    "senior_age_starts": 8,
+    "health_predispositions": [
+      {"condition": "Bloat / GDV", "description": "Large deep-chested breed at significant bloat risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["hard distended abdomen", "unproductive retching", "restlessness", "pacing"]},
+      {"condition": "Hip dysplasia", "description": "Common in large breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising", "stiffness", "reluctance to exercise"]},
+      {"condition": "Autoimmune conditions", "description": "Akitas are predisposed to multiple autoimmune diseases including pemphigus, lupus, and immune-mediated hemolytic anemia", "urgency_if_symptomatic": "call_vet", "common_signs": ["skin lesions", "crusting on nose or ears", "pale gums", "lethargy", "fever"]},
+      {"condition": "Hypothyroidism", "description": "Common endocrine disorder", "urgency_if_symptomatic": "try_this", "common_signs": ["weight gain", "lethargy", "coat thinning", "cold intolerance"]},
+      {"condition": "Progressive retinal atrophy (PRA)", "description": "Inherited progressive blindness", "urgency_if_symptomatic": "call_vet", "common_signs": ["night blindness", "dilated pupils", "bumping into things in dim light"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Dignified, loyal, courageous. Reserved with strangers. Strong-willed.",
+      "exercise_needs": "Moderate — daily walks. Not a marathon runner but needs consistent activity.",
+      "anxiety_profile": "Independent but bonds strongly. Can develop same-sex dog aggression.",
+      "notable_behaviors": ["Extremely stoic — Akitas are legendary for hiding pain and illness", "Naturally reserved and quiet — increased vocalization may signal distress", "Cat-like grooming habits — poor grooming = illness signal", "Same-sex aggression is breed-typical, not necessarily anxiety"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development. Socialization critical. Autoimmune awareness.",
+      "young_adult_1_to_3": "Bloat awareness. Joint monitoring. Thyroid baseline.",
+      "adult_3_to_7": "Autoimmune screening if symptomatic. Annual bloat risk assessment. Eye exams.",
+      "senior_7_plus": "Cancer screening. Arthritis management. Vision monitoring. Autoimmune conditions may emerge."
+    },
+    "breed_specific_red_flags": ["Bloat symptoms (deep-chested breed — emergency)", "Skin lesions or crusting, especially on nose and ears (autoimmune conditions)", "ANY behavior change in this stoic breed (they hide illness remarkably well)", "Pale gums or sudden lethargy (autoimmune hemolytic anemia)"],
+    "common_medications": [
+      {"medication": "Immunosuppressives (prednisone, azathioprine)", "used_for": "Autoimmune disease management", "notes": "Akitas commonly need these. Monitor for side effects."},
+      {"medication": "Levothyroxine", "used_for": "Hypothyroidism", "notes": "Common need. Lifelong daily medication."},
+      {"medication": "Joint supplements", "used_for": "Joint health", "notes": "Important for large breed."}
+    ],
+    "symptom_keywords": ["bloat", "skin lesions", "crusting", "pale gums", "lethargy", "limping", "weight gain", "coat changes", "vision", "fever", "autoimmune"],
+    "embedding_text": "Akita. Large working breed, 70-130 lbs, life expectancy 10-13 years, senior at 8. Deep-chested = bloat/GDV risk. EXTREMELY stoic — hides pain and illness remarkably well. Prone to: bloat/GDV, hip dysplasia, autoimmune conditions (pemphigus, lupus, IMHA — breed predisposition), hypothyroidism, PRA. Any behavior change in an Akita warrants investigation. Cat-like grooming — poor grooming signals illness. Common meds: immunosuppressives, levothyroxine, joint supplements. Red flags: bloat symptoms, skin lesions/crusting (autoimmune), any behavior change, pale gums."
+  },
+  {
+    "breed_id": "dog_belgian_malinois",
+    "species": "dog",
+    "breed_name": "Belgian Malinois",
+    "breed_group": "Herding",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 40, "max": 80},
+    "life_expectancy_years": {"min": 12, "max": 14},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "Hip and elbow dysplasia", "description": "Common in active large herding breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "stiffness", "difficulty rising", "reluctance to jump"]},
+      {"condition": "Epilepsy", "description": "Genetic predisposition in the breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["seizures", "disorientation after episodes", "paddling legs", "loss of consciousness"]},
+      {"condition": "Bloat / GDV", "description": "Deep-chested breed at bloat risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["distended abdomen", "retching", "restlessness", "pacing"]},
+      {"condition": "Eye conditions (cataracts, PRA)", "description": "Inherited eye diseases found in the breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["cloudy eyes", "bumping into things", "night blindness"]},
+      {"condition": "Athletic injuries", "description": "Extremely active breed prone to soft tissue injuries, cruciate tears, and paw pad injuries", "urgency_if_symptomatic": "call_vet", "common_signs": ["sudden lameness", "swelling", "limping after activity", "licking paws"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Intense, driven, extremely high energy. Working dog mentality — needs a job.",
+      "exercise_needs": "Extremely high — requires 2+ hours of vigorous daily exercise AND mental stimulation.",
+      "anxiety_profile": "High drive mistaken for anxiety. Genuine anxiety manifests as destructive behavior, compulsive behaviors, or reactivity.",
+      "notable_behaviors": ["Highest-energy common breed — any lethargy is a major red flag", "Compulsive behaviors (shadow/light chasing, tail chasing, fly biting) can develop from under-stimulation", "Athletic injuries very common — sprains, strains, pad injuries", "Stress causes GI upset in this intense breed"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development. Mental stimulation critical. Avoid repetitive high-impact exercise.",
+      "young_adult_1_to_3": "Peak drive. Epilepsy onset window. Athletic injury prevention. Bloat awareness.",
+      "adult_3_to_7": "Bloat prevention. Joint health for active lifestyle. Eye exams. Injury management.",
+      "senior_7_plus": "Activity level adjustment. Joint support. Vision monitoring. Cognitive engagement to prevent decline."
+    },
+    "breed_specific_red_flags": ["Lethargy or low energy in this normally intense breed (always investigate)", "Seizures (breed predisposition to epilepsy)", "Bloat symptoms (deep-chested)", "Compulsive behaviors — repetitive shadow chasing, tail chasing, fly biting (not just a 'quirk')"],
+    "common_medications": [
+      {"medication": "Anti-epileptics (phenobarbital, levetiracetam, zonisamide)", "used_for": "Seizure management", "notes": "If needed. Regular blood monitoring."},
+      {"medication": "NSAIDs", "used_for": "Athletic injury management and joint pain", "notes": "Common for active working breed."},
+      {"medication": "Joint supplements", "used_for": "Joint health", "notes": "Important given high-impact activity level."}
+    ],
+    "symptom_keywords": ["seizure", "lethargy", "limping", "lameness", "bloat", "compulsive behavior", "tail chasing", "shadow chasing", "eye problems", "stiffness", "paw injury"],
+    "embedding_text": "Belgian Malinois. Large herding breed, 40-80 lbs, life expectancy 12-14 years, senior at 9. Extremely high energy — lethargy is ALWAYS a major red flag. Deep-chested = bloat risk. Prone to: hip/elbow dysplasia, epilepsy, bloat/GDV, eye conditions, athletic injuries. Compulsive behaviors (shadow/tail chasing) develop from under-stimulation. Stress causes GI upset. Common meds: anti-epileptics, NSAIDs, joint supplements. Red flags: lethargy (always investigate), seizures, bloat symptoms, compulsive behaviors."
+  },
+  {
+    "breed_id": "dog_labradoodle",
+    "species": "dog",
+    "breed_name": "Labradoodle",
+    "breed_group": "Mixed/Designer",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 30, "max": 65},
+    "life_expectancy_years": {"min": 12, "max": 14},
+    "senior_age_starts": 9,
+    "health_predispositions": [
+      {"condition": "Hip and elbow dysplasia", "description": "Inherited from both Labrador and Poodle parent lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["limping", "difficulty rising", "stiffness after rest", "reluctance to jump"]},
+      {"condition": "Addison's disease", "description": "Inherited from Poodle line — vague intermittent symptoms often missed", "urgency_if_symptomatic": "call_vet", "common_signs": ["intermittent vomiting", "lethargy", "weakness", "shaking", "poor appetite"]},
+      {"condition": "Ear infections", "description": "Floppy ears with curly hair in canal trap moisture", "urgency_if_symptomatic": "try_this", "common_signs": ["ear scratching", "head shaking", "ear odor", "discharge"]},
+      {"condition": "Exercise-induced collapse (EIC)", "description": "Can inherit from Labrador line — genetic weakness during intense exercise", "urgency_if_symptomatic": "call_vet", "common_signs": ["wobbling during exercise", "collapse after exertion", "hind leg weakness during play"]},
+      {"condition": "Eye conditions (PRA, cataracts)", "description": "Both parent breeds carry eye disease genes", "urgency_if_symptomatic": "call_vet", "common_signs": ["night blindness", "cloudy eyes", "bumping into things"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Friendly, energetic, social. Combines Lab enthusiasm with Poodle intelligence.",
+      "exercise_needs": "Moderate to high — needs daily exercise and mental stimulation.",
+      "anxiety_profile": "Can develop separation anxiety from both parent breeds. Very people-oriented.",
+      "notable_behaviors": ["Variable size and coat — health risks shift based on generation and size", "Inherits Lab food motivation — foreign body ingestion risk", "Non-shedding coat (if Poodle-type) requires regular grooming — hides skin issues", "First-gen vs multi-gen affects health prediction reliability"]
+    },
+    "age_specific_concerns": {
+      "puppy_0_to_1": "Joint development. Ear care routine. EIC awareness if exercising hard.",
+      "young_adult_1_to_3": "Addison's awareness. Ear maintenance. Eye exam baseline.",
+      "adult_3_to_7": "Eye exams. Ear infection prevention. Joint monitoring. Weight management.",
+      "senior_7_plus": "Vision monitoring. Joint support. Cardiac screening. Cognitive health."
+    },
+    "breed_specific_red_flags": ["Intermittent vomiting and lethargy (Addison's from Poodle line — easily missed)", "Collapse during exercise (EIC from Lab line)", "Refusing food (unusual given Lab food motivation)", "Chronic ear infections that don't resolve (ear anatomy traps moisture and hair)"],
+    "common_medications": [
+      {"medication": "Fludrocortisone / DOCP", "used_for": "Addison's disease management", "notes": "If diagnosed. Lifelong treatment."},
+      {"medication": "Ear cleaners", "used_for": "Ear maintenance and infection prevention", "notes": "Weekly cleaning essential. Ear hair removal may be needed."},
+      {"medication": "Joint supplements (glucosamine, fish oil)", "used_for": "Joint health", "notes": "Important especially for larger Labradoodles."}
+    ],
+    "symptom_keywords": ["ear infection", "vomiting", "lethargy", "collapse", "limping", "not eating", "eye problems", "weakness", "shaking", "hind leg"],
+    "embedding_text": "Labradoodle. Mixed/designer breed, 30-65 lbs, life expectancy 12-14 years, senior at 9. Inherits risks from Labrador (hip dysplasia, EIC, food motivation/ingestion risk) and Poodle (Addison's, PRA, epilepsy). Prone to: hip/elbow dysplasia, Addison's disease, ear infections, EIC, eye conditions. Variable size affects risk profile. Lab food motivation = foreign body risk. Non-shedding coat hides skin issues. Common meds: Addison's medications, ear cleaners, joint supplements. Red flags: intermittent vomiting/lethargy (Addison's), exercise collapse (EIC), refusing food, chronic ear infections."
+  },
+  {
+    "breed_id": "cat_persian",
+    "species": "cat",
+    "breed_name": "Persian",
+    "breed_group": "Brachycephalic Longhair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 7, "max": 12},
+    "life_expectancy_years": {"min": 12, "max": 17},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Polycystic kidney disease (PKD)", "description": "Genetic — up to 50% of Persians carry the gene. Cysts slowly destroy kidney tissue.", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss", "decreased appetite", "vomiting"]},
+      {"condition": "Brachycephalic airway issues", "description": "Flat face causes chronic breathing difficulty and tear duct overflow", "urgency_if_symptomatic": "call_vet", "common_signs": ["noisy breathing", "open-mouth breathing", "snoring", "collapse in heat"]},
+      {"condition": "Eye conditions (entropion, corneal sequestrum, tear overflow)", "description": "Flat face causes chronic eye issues and tear staining", "urgency_if_symptomatic": "call_vet", "common_signs": ["chronic tearing", "eye discharge", "squinting", "dark spot on cornea"]},
+      {"condition": "Dental disease", "description": "Shortened jaw causes crowded teeth and misalignment", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "drooling", "pawing at mouth"]},
+      {"condition": "Skin fold infections", "description": "Facial skin folds trap moisture and bacteria", "urgency_if_symptomatic": "try_this", "common_signs": ["odor from face folds", "red irritated skin", "discharge in facial creases"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Calm, gentle, quiet. Low-energy lap cat.",
+      "exercise_needs": "Low — prefers lounging. Interactive play still important for weight management.",
+      "anxiety_profile": "Generally calm but sensitive to environmental changes. Prefers quiet households.",
+      "notable_behaviors": ["Long coat requires daily grooming — mats can cause skin infections and hide weight changes", "Flat face means ANY open-mouth breathing is an emergency (even more so than other cats)", "Tear staining is cosmetic but increased discharge signals infection", "Low energy is breed-normal but complete lethargy needs investigation"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "PKD genetic test. Eye care routine. Grooming habituation. Dental assessment.",
+      "young_adult_1_to_6": "Kidney function baseline. Daily grooming routine. Facial fold care. Weight management.",
+      "adult_7_to_10": "Annual kidney bloodwork. Dental cleanings. Eye monitoring. Obesity prevention.",
+      "senior_11_plus": "Kidney disease progression monitoring. Blood pressure. Dental management. Quality of life."
+    },
+    "breed_specific_red_flags": ["Open-mouth breathing (ALWAYS emergency in cats — especially dangerous in flat-faced Persians)", "Increased drinking/urination (PKD — up to 50% carry the gene)", "Dark spot on cornea (corneal sequestrum — needs treatment)", "Not eating 24+ hours (liver failure risk in any cat, especially overweight Persians)"],
+    "common_medications": [
+      {"medication": "Subcutaneous fluids", "used_for": "Kidney disease support", "notes": "Common for PKD management. Owners learn home administration."},
+      {"medication": "Renal diet (Royal Canin Renal, Hill's k/d)", "used_for": "Kidney disease nutrition", "notes": "Lifelong diet change if kidney disease diagnosed."},
+      {"medication": "Eye lubricants / tear stain cleaners", "used_for": "Chronic eye care", "notes": "Daily face cleaning routine essential."}
+    ],
+    "symptom_keywords": ["drinking more", "urination", "kidney", "breathing", "eye discharge", "tearing", "not eating", "weight loss", "matted fur", "grooming changes", "open mouth breathing"],
+    "embedding_text": "Persian cat. Medium brachycephalic longhair, 7-12 lbs, life expectancy 12-17 years, senior at 11. Up to 50% carry PKD gene (polycystic kidney disease). Flat face causes breathing difficulty, chronic eye issues, dental crowding, skin fold infections. Long coat requires daily grooming — mats hide skin problems. Open-mouth breathing is ALWAYS emergency (even more dangerous in flat-faced cats). Common meds: subQ fluids for kidneys, renal diet, eye lubricants. Red flags: open-mouth breathing (emergency), increased drinking (PKD), dark corneal spot, not eating 24+ hours."
+  },
+  {
+    "breed_id": "cat_maine_coon",
+    "species": "cat",
+    "breed_name": "Maine Coon",
+    "breed_group": "Large Longhair",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 10, "max": 25},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Most common heart disease in cats — Maine Coons have a genetic predisposition. Can cause sudden death.", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "sudden hind leg paralysis", "hiding"]},
+      {"condition": "Hip dysplasia", "description": "Unusual for cats but Maine Coons are predisposed due to large size", "urgency_if_symptomatic": "call_vet", "common_signs": ["difficulty jumping", "stiff hind legs", "reluctance to climb", "bunny-hopping"]},
+      {"condition": "Spinal muscular atrophy (SMA)", "description": "Genetic condition causing muscle wasting — usually not painful but progressive", "urgency_if_symptomatic": "call_vet", "common_signs": ["muscle wasting in hind legs", "wobbliness", "difficulty jumping", "progressive weakness"]},
+      {"condition": "Polycystic kidney disease (PKD)", "description": "Less common than in Persians but found in Maine Coon lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss", "vomiting"]},
+      {"condition": "Dental disease (tooth resorption)", "description": "Cats commonly develop tooth resorption — painful lesions on teeth", "urgency_if_symptomatic": "call_vet", "common_signs": ["difficulty eating", "dropping food", "drooling", "red gums at tooth line"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Gentle giant. Dog-like, social, playful. Slow to mature (3-5 years).",
+      "exercise_needs": "Moderate — enjoys play, climbing, and water. Interactive toys important.",
+      "anxiety_profile": "Generally confident. Can develop anxiety if understimulated.",
+      "notable_behaviors": ["Largest domestic cat breed — slow to mature physically (3-5 years)", "Dog-like behavior — plays fetch, follows owners, comes when called", "Loves water — unusual for cats", "Chirping and trilling vocalizations are normal breed behavior"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "HCM screening (echocardiogram). SMA genetic test. Slow growth expected.",
+      "young_adult_1_to_5": "Still growing until 3-5 years. Cardiac screening. Hip monitoring. Weight management.",
+      "adult_5_to_10": "Annual echocardiogram for HCM. Dental care. Joint monitoring. Kidney baseline.",
+      "senior_10_plus": "HCM monitoring intensifies. Kidney disease screening. Arthritis management. Dental extractions may be needed."
+    },
+    "breed_specific_red_flags": ["Sudden hind leg paralysis or cold hind legs (blood clot from HCM — emergency)", "Open-mouth breathing or rapid breathing (HCM crisis — emergency)", "Sudden collapse or death can be first sign of HCM", "Progressive hind weakness in young cat (SMA — get genetic test)"],
+    "common_medications": [
+      {"medication": "Atenolol / diltiazem", "used_for": "HCM management", "notes": "If diagnosed. Slows heart disease progression."},
+      {"medication": "Clopidogrel (Plavix)", "used_for": "Blood clot prevention", "notes": "Critical for HCM cats to prevent saddle thrombus."},
+      {"medication": "Joint supplements (Cosequin for Cats)", "used_for": "Joint health", "notes": "Important for this large breed."}
+    ],
+    "symptom_keywords": ["breathing", "rapid breathing", "hind leg paralysis", "cold legs", "collapse", "heart", "difficulty jumping", "weakness", "drinking more", "not eating", "weight loss"],
+    "embedding_text": "Maine Coon cat. Large longhair, 10-25 lbs, life expectancy 12-15 years, senior at 10. Largest domestic cat breed — slow to mature (3-5 years). Genetic predisposition to HCM (heart disease) — can cause sudden death or hind leg paralysis from blood clots. Prone to: HCM, hip dysplasia (unusual for cats), SMA, PKD, dental disease. Dog-like behavior, loves water. Common meds: cardiac medications, blood clot prevention (clopidogrel), joint supplements. Red flags: sudden hind leg paralysis/cold legs (HCM blood clot — emergency), rapid/open-mouth breathing, sudden collapse."
+  },
+  {
+    "breed_id": "cat_siamese",
+    "species": "cat",
+    "breed_name": "Siamese",
+    "breed_group": "Oriental",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 6, "max": 14},
+    "life_expectancy_years": {"min": 12, "max": 20},
+    "senior_age_starts": 12,
+    "health_predispositions": [
+      {"condition": "Amyloidosis", "description": "Protein deposits damage liver and kidneys — breed-specific predisposition", "urgency_if_symptomatic": "call_vet", "common_signs": ["lethargy", "loss of appetite", "vomiting", "jaundice (yellow gums/ears)", "abdominal swelling"]},
+      {"condition": "Respiratory infections (URI)", "description": "Siamese have higher susceptibility to upper respiratory infections", "urgency_if_symptomatic": "try_this", "common_signs": ["sneezing", "nasal discharge", "eye discharge", "loss of appetite"]},
+      {"condition": "Convergent strabismus (crossed eyes)", "description": "Inherited eye alignment issue — usually cosmetic", "urgency_if_symptomatic": "monitor", "common_signs": ["crossed eyes — breed normal if mild"]},
+      {"condition": "Asthma / bronchial disease", "description": "Siamese are predisposed to feline asthma", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "wheezing", "labored breathing", "open-mouth breathing"]},
+      {"condition": "Gastrointestinal issues", "description": "Sensitive stomachs and predisposition to intestinal lymphoma", "urgency_if_symptomatic": "call_vet", "common_signs": ["chronic vomiting", "diarrhea", "weight loss", "decreased appetite"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Extremely vocal, social, intelligent, demanding. Strong bond with owner.",
+      "exercise_needs": "Moderate to high — very playful and active. Needs mental stimulation.",
+      "anxiety_profile": "Prone to separation anxiety. Extremely people-oriented. Can develop compulsive behaviors.",
+      "notable_behaviors": ["Most vocal cat breed — increased OR decreased vocalization both signal problems", "Extremely social — isolation causes significant stress", "Wool-sucking and pica (eating non-food items) is breed-associated", "Sensitive to anesthesia — important for vet to know breed"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "URI susceptibility. Socialization. Pica monitoring.",
+      "young_adult_1_to_6": "Asthma may develop. GI health monitoring. Dental care.",
+      "adult_7_to_11": "Amyloidosis awareness. GI lymphoma screening if chronic vomiting. Dental disease.",
+      "senior_12_plus": "Kidney disease. Amyloidosis risk. Cancer screening. Hyperthyroidism. Cognitive decline."
+    },
+    "breed_specific_red_flags": ["Change in vocalization pattern — less vocal Siamese is often a sick Siamese", "Jaundice / yellow tint to gums or ears (amyloidosis — liver/kidney damage)", "Chronic vomiting or weight loss (intestinal lymphoma — breed predisposition)", "Coughing or wheezing (asthma — Siamese are predisposed)"],
+    "common_medications": [
+      {"medication": "Inhaled corticosteroids (Flovent via AeroKat)", "used_for": "Asthma management", "notes": "Preferred over oral steroids. Owners use AeroKat spacer."},
+      {"medication": "Famotidine / omeprazole", "used_for": "GI sensitivity", "notes": "Common for chronic GI issues."},
+      {"medication": "Anti-nausea (maropitant/Cerenia)", "used_for": "Nausea and vomiting", "notes": "Commonly needed for GI-sensitive breed."}
+    ],
+    "symptom_keywords": ["vocalization changes", "vomiting", "weight loss", "jaundice", "yellow gums", "coughing", "wheezing", "sneezing", "not eating", "diarrhea", "eating non-food items", "wool sucking"],
+    "embedding_text": "Siamese cat. Medium oriental breed, 6-14 lbs, life expectancy 12-20 years, senior at 12. Most vocal cat breed — decreased vocalization signals illness. Prone to: amyloidosis (liver/kidney protein deposits), respiratory infections, asthma, GI issues (intestinal lymphoma predisposition), crossed eyes (usually cosmetic). Wool-sucking/pica is breed-associated. Sensitive to anesthesia. Extremely social — isolation causes stress. Common meds: inhaled corticosteroids for asthma, GI medications. Red flags: less vocal than normal, jaundice, chronic vomiting/weight loss, coughing/wheezing."
+  },
+  {
+    "breed_id": "cat_ragdoll",
+    "species": "cat",
+    "breed_name": "Ragdoll",
+    "breed_group": "Large Semi-Longhair",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 10, "max": 20},
+    "life_expectancy_years": {"min": 12, "max": 17},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Genetic predisposition — same MYBPC3 gene mutation as Maine Coons", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "sudden hind leg paralysis", "hiding"]},
+      {"condition": "Urinary tract issues (FLUTD/FIC)", "description": "Ragdolls may be predisposed to bladder inflammation and stones", "urgency_if_symptomatic": "call_vet", "common_signs": ["straining in litter box", "blood in urine", "crying when urinating", "urinating outside box"]},
+      {"condition": "Feline infectious peritonitis (FIP)", "description": "Ragdolls may have increased susceptibility", "urgency_if_symptomatic": "call_vet", "common_signs": ["persistent fever", "lethargy", "weight loss", "abdominal swelling", "eye inflammation"]},
+      {"condition": "GI sensitivity", "description": "Sensitive digestive systems", "urgency_if_symptomatic": "try_this", "common_signs": ["soft stool", "vomiting", "appetite changes"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Docile, affectionate, relaxed. Goes limp when held (hence 'Ragdoll').",
+      "exercise_needs": "Low to moderate — gentle play. Not particularly athletic.",
+      "anxiety_profile": "Generally calm. Follows owners room to room. Can develop separation anxiety.",
+      "notable_behaviors": ["Extremely docile — reduced pain response means injuries may go unnoticed", "Goes limp when picked up — this is breed-normal", "Slow to mature (4 years)", "Dog-like following behavior is normal — withdrawal signals illness"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "HCM genetic test. Vaccination schedule. Slow growth (mature at 4 years).",
+      "young_adult_1_to_4": "Still growing. Cardiac screening. Urinary health. Weight management.",
+      "adult_4_to_10": "Annual echocardiogram for HCM. Dental care. Urinary health. Weight management.",
+      "senior_10_plus": "HCM monitoring. Kidney disease screening. Arthritis management. Dental care."
+    },
+    "breed_specific_red_flags": ["Sudden hind leg paralysis or cold hind legs (HCM blood clot — emergency)", "Open-mouth breathing (HCM crisis or respiratory emergency)", "Male Ragdoll straining to urinate (urinary blockage — emergency)", "Withdrawal from family or not following owners (illness in this social breed)"],
+    "common_medications": [
+      {"medication": "Atenolol / diltiazem", "used_for": "HCM management", "notes": "If diagnosed. Slows disease progression."},
+      {"medication": "Clopidogrel (Plavix)", "used_for": "Blood clot prevention in HCM cats", "notes": "Critical to prevent saddle thrombus."},
+      {"medication": "Urinary diet", "used_for": "Urinary tract health", "notes": "If history of FLUTD."}
+    ],
+    "symptom_keywords": ["breathing", "rapid breathing", "hind leg paralysis", "cold legs", "litter box changes", "straining", "blood in urine", "lethargy", "not eating", "hiding", "weight loss"],
+    "embedding_text": "Ragdoll cat. Large semi-longhair, 10-20 lbs, life expectancy 12-17 years, senior at 10. Genetic predisposition to HCM (same gene as Maine Coons) — can cause sudden death or hind leg paralysis. Extremely docile with reduced pain response — injuries may go unnoticed. Prone to: HCM, urinary issues (FLUTD), FIP susceptibility, GI sensitivity. Slow to mature (4 years). Dog-like following behavior — withdrawal signals illness. Common meds: cardiac medications, clopidogrel, urinary diet. Red flags: hind leg paralysis/cold legs (HCM — emergency), open-mouth breathing, male straining to urinate, social withdrawal."
+  },
+  {
+    "breed_id": "cat_bengal",
+    "species": "cat",
+    "breed_name": "Bengal",
+    "breed_group": "Hybrid/Active",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 8, "max": 15},
+    "life_expectancy_years": {"min": 12, "max": 16},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Bengals are predisposed — annual screening recommended", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "sudden collapse", "hind leg paralysis"]},
+      {"condition": "Progressive retinal atrophy (Bengal PRA)", "description": "Breed-specific form of progressive blindness — genetic test available", "urgency_if_symptomatic": "call_vet", "common_signs": ["dilated pupils", "bumping into things in dim light", "reluctance to jump in low light"]},
+      {"condition": "Flat-chested kitten syndrome", "description": "Chest compression in kittens — mild cases resolve, severe are fatal", "urgency_if_symptomatic": "call_vet", "common_signs": ["flattened chest in kitten", "breathing difficulty", "poor growth"]},
+      {"condition": "Patellar luxation", "description": "Kneecap dislocation — found in Bengal lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "intermittent lameness", "reluctance to jump"]},
+      {"condition": "GI sensitivity (IBD)", "description": "Sensitive digestive systems, prone to inflammatory bowel disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["chronic diarrhea", "vomiting", "weight loss", "poor coat quality"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Extremely active, intelligent, curious. Wild-cat energy in a domestic package.",
+      "exercise_needs": "Very high — needs extensive play, climbing, and mental stimulation. Can be destructive without it.",
+      "anxiety_profile": "Under-stimulation causes anxiety-like behaviors. Needs environmental enrichment.",
+      "notable_behaviors": ["Highest-energy domestic cat breed — any lethargy is concerning", "Loves water (wild cat heritage) — may play in water bowls, sinks, toilets", "Extremely athletic — injuries from jumping and climbing are possible", "Pica (eating non-food items) can develop if under-stimulated"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "PRA genetic test. HCM screening. Flat-chested syndrome monitoring. High enrichment needs.",
+      "young_adult_1_to_6": "Annual cardiac screening. GI health. Patellar monitoring. Weight management despite high activity.",
+      "adult_6_to_11": "HCM screening continues. IBD monitoring if chronic GI symptoms. Dental care.",
+      "senior_11_plus": "HCM monitoring. Kidney disease. Vision monitoring (PRA). Activity level adjustment."
+    },
+    "breed_specific_red_flags": ["Lethargy in this normally hyperactive breed (always investigate)", "Hind leg paralysis or cold legs (HCM blood clot)", "Chronic diarrhea or vomiting (IBD — Bengal predisposition)", "Vision changes in dim light (Bengal PRA)"],
+    "common_medications": [
+      {"medication": "Cardiac medications (atenolol, diltiazem)", "used_for": "HCM management", "notes": "If diagnosed via echocardiogram."},
+      {"medication": "Prednisolone / budesonide", "used_for": "IBD management", "notes": "If chronic GI inflammation diagnosed."},
+      {"medication": "Hypoallergenic / novel protein diet", "used_for": "GI sensitivity", "notes": "Diet change often helps GI issues significantly."}
+    ],
+    "symptom_keywords": ["lethargy", "breathing", "hind leg paralysis", "diarrhea", "vomiting", "weight loss", "vision", "not eating", "coat quality", "knee", "jumping difficulty"],
+    "embedding_text": "Bengal cat. Medium hybrid/active breed, 8-15 lbs, life expectancy 12-16 years, senior at 11. Highest-energy domestic cat — lethargy is always concerning. Predisposed to HCM (heart disease). Prone to: HCM, Bengal PRA (breed-specific progressive blindness), patellar luxation, GI sensitivity/IBD, flat-chested kitten syndrome. Loves water. Pica if under-stimulated. Common meds: cardiac medications, IBD medications, hypoallergenic diet. Red flags: lethargy (always investigate), hind leg paralysis (HCM), chronic GI issues (IBD), vision changes."
+  },
+  {
+    "breed_id": "cat_british_shorthair",
+    "species": "cat",
+    "breed_name": "British Shorthair",
+    "breed_group": "Shorthair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 9, "max": 18},
+    "life_expectancy_years": {"min": 12, "max": 20},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Genetic predisposition — one of the most affected breeds", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "hind leg paralysis", "hiding"]},
+      {"condition": "Obesity", "description": "Stocky build and calm temperament make weight gain very easy", "urgency_if_symptomatic": "try_this", "common_signs": ["difficulty feeling ribs", "round belly", "decreased activity", "difficulty grooming"]},
+      {"condition": "Polycystic kidney disease (PKD)", "description": "Found in some British Shorthair lines — genetic test available", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss", "vomiting"]},
+      {"condition": "Hemophilia B", "description": "Blood clotting disorder found in the breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive bleeding from minor cuts", "large bruises", "blood in stool"]},
+      {"condition": "Dental disease", "description": "Round face with crowded teeth increases dental issues", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "drooling"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Calm, easygoing, independent. Not a lap cat — prefers to sit beside you.",
+      "exercise_needs": "Low to moderate — not naturally active. Interactive play essential to prevent obesity.",
+      "anxiety_profile": "Generally calm and adaptable. Doesn't like being picked up or carried.",
+      "notable_behaviors": ["Naturally stocky — owners often underestimate obesity because 'they're supposed to be big'", "Calm temperament means low baseline activity — lethargy is harder to spot", "Doesn't like being carried — struggling when picked up is breed-normal, not distress", "Slow to anger — aggression indicates significant pain or illness"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "HCM screening. PKD genetic test. Establish healthy weight early.",
+      "young_adult_1_to_6": "Weight management critical. Cardiac screening. Dental care.",
+      "adult_7_to_11": "Annual echocardiogram. Kidney bloodwork. Strict weight management. Dental cleanings.",
+      "senior_11_plus": "HCM monitoring. Kidney disease screening. Diabetes risk if overweight. Arthritis management."
+    },
+    "breed_specific_red_flags": ["Hind leg paralysis or cold legs (HCM blood clot — emergency)", "Open-mouth breathing (cardiac or respiratory emergency)", "Any aggression in this normally calm breed (indicates pain)", "Excessive bleeding from minor injuries (hemophilia)"],
+    "common_medications": [
+      {"medication": "Cardiac medications (atenolol, diltiazem)", "used_for": "HCM management", "notes": "If diagnosed."},
+      {"medication": "Weight management diet", "used_for": "Obesity prevention", "notes": "Critical — naturally stocky breed overweight easily."},
+      {"medication": "Clopidogrel", "used_for": "Blood clot prevention in HCM cats", "notes": "If HCM diagnosed."}
+    ],
+    "symptom_keywords": ["breathing", "hind leg paralysis", "weight gain", "obesity", "drinking more", "bleeding", "lethargy", "not eating", "aggression"],
+    "embedding_text": "British Shorthair cat. Medium shorthair, 9-18 lbs, life expectancy 12-20 years, senior at 11. Naturally stocky — owners underestimate obesity. One of most HCM-affected breeds. Prone to: HCM, obesity (calm temperament + stocky build), PKD, hemophilia B, dental disease. Calm breed = lethargy harder to detect. Aggression always indicates pain. Common meds: cardiac medications, weight management diet, clopidogrel. Red flags: hind leg paralysis (HCM), open-mouth breathing, aggression (pain), excessive bleeding."
+  },
+  {
+    "breed_id": "cat_sphynx",
+    "species": "cat",
+    "breed_name": "Sphynx",
+    "breed_group": "Hairless",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 6, "max": 12},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "High genetic predisposition — annual echocardiogram strongly recommended", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "hind leg paralysis", "collapse"]},
+      {"condition": "Skin conditions", "description": "No fur means oil builds up on skin — acne, yeast infections, and sunburn common", "urgency_if_symptomatic": "try_this", "common_signs": ["oily skin", "blackheads", "red rash", "brown waxy ear buildup", "skin irritation"]},
+      {"condition": "Respiratory infections", "description": "No nasal hair filtration increases susceptibility", "urgency_if_symptomatic": "try_this", "common_signs": ["sneezing", "nasal discharge", "eye discharge", "congestion"]},
+      {"condition": "Dental disease", "description": "Higher rates of dental issues than other breeds", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "red gums"]},
+      {"condition": "Temperature sensitivity", "description": "No fur means hypothermia and sunburn risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["shivering", "cold ears", "seeking heat sources constantly", "sunburned skin"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Extremely social, energetic, attention-seeking. Clown-like personality.",
+      "exercise_needs": "Moderate to high — very playful and active despite appearance.",
+      "anxiety_profile": "Strong separation anxiety potential. Needs constant companionship.",
+      "notable_behaviors": ["Hairless — skin requires weekly bathing and daily monitoring for issues", "Seeks warmth constantly — sweaters and heated beds are medical needs, not fashion", "High metabolism — eats more than expected for size", "Ears produce excessive wax — weekly cleaning essential"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "HCM screening. Skin care routine. Temperature management. Ear cleaning routine.",
+      "young_adult_1_to_6": "Annual cardiac screening. Skin health. Dental care. Ear maintenance.",
+      "adult_6_to_11": "HCM monitoring. Skin infection prevention. Dental management. Weight monitoring.",
+      "senior_11_plus": "HCM intensified monitoring. Kidney screening. Skin care continues. Temperature regulation support."
+    },
+    "breed_specific_red_flags": ["Hind leg paralysis or cold legs (HCM blood clot — Sphynx are very high risk)", "Sunburned or blistered skin (no fur protection)", "Not seeking warmth or social contact (usually craves both — withdrawal signals illness)", "Open-mouth breathing (cardiac or respiratory emergency)"],
+    "common_medications": [
+      {"medication": "Cardiac medications (atenolol, diltiazem)", "used_for": "HCM management", "notes": "Very high HCM prevalence — annual screening essential."},
+      {"medication": "Medicated skin wipes / antifungal shampoo", "used_for": "Skin hygiene and infection prevention", "notes": "Weekly bathing routine."},
+      {"medication": "Ear cleaner", "used_for": "Excessive wax management", "notes": "Weekly ear cleaning essential."}
+    ],
+    "symptom_keywords": ["breathing", "hind leg paralysis", "skin problems", "acne", "oily skin", "sunburn", "shivering", "ear buildup", "not eating", "lethargy", "cold"],
+    "embedding_text": "Sphynx cat. Medium hairless breed, 6-12 lbs, life expectancy 12-15 years, senior at 11. Very high HCM prevalence — annual echocardiogram essential. Hairless = needs weekly bathing, daily skin monitoring, sun protection, temperature management. Prone to: HCM (very high risk), skin conditions (oil buildup, acne, yeast), respiratory infections, dental disease, temperature sensitivity. Sweaters/heated beds are medical needs. High metabolism. Common meds: cardiac medications, medicated skin products, ear cleaner. Red flags: hind leg paralysis (HCM), sunburned skin, not seeking warmth/social contact, open-mouth breathing."
+  },
+  {
+    "breed_id": "cat_scottish_fold",
+    "species": "cat",
+    "breed_name": "Scottish Fold",
+    "breed_group": "Shorthair/Longhair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 6, "max": 13},
+    "life_expectancy_years": {"min": 11, "max": 15},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Osteochondrodysplasia (OCD)", "description": "The same gene that folds ears causes cartilage/bone abnormalities throughout the body. ALL Scottish Folds are affected to some degree.", "urgency_if_symptomatic": "call_vet", "common_signs": ["stiffness", "reluctance to jump", "stiff tail", "swollen joints", "abnormal gait", "sitting in 'Buddha position'"]},
+      {"condition": "Arthritis (early onset)", "description": "Cartilage defects cause premature and severe arthritis", "urgency_if_symptomatic": "call_vet", "common_signs": ["difficulty jumping", "stiffness", "limping", "decreased activity", "reluctance to be touched"]},
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Increased predisposition", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "hind leg paralysis"]},
+      {"condition": "Polycystic kidney disease (PKD)", "description": "Found in some Scottish Fold lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Sweet, gentle, quiet. Adaptable and easygoing.",
+      "exercise_needs": "Low to moderate — may be less active due to joint issues rather than personality.",
+      "anxiety_profile": "Generally calm. Can be sensitive to environmental changes.",
+      "notable_behaviors": ["'Buddha sit' position (sitting upright with legs stretched out) is a PAIN signal, not cute — indicates joint discomfort", "Reduced activity may be mislabeled as 'calm personality' when actually chronic pain", "Stiff tail that doesn't swish or curl is OCD symptom", "ALL Scottish Folds have OCD to some degree — proactive pain management is essential"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "OCD assessment. Joint monitoring. Cardiac screening.",
+      "young_adult_1_to_5": "Joint health monitoring — arthritis can start very young. Pain management assessment.",
+      "adult_5_to_10": "Arthritis management likely needed. Cardiac screening. Kidney baseline.",
+      "senior_10_plus": "Severe arthritis management. Mobility support. Kidney screening. Cardiac monitoring. Quality of life assessment."
+    },
+    "breed_specific_red_flags": ["'Buddha sitting' or sitting with legs stretched forward (joint pain from OCD — not cute behavior)", "Stiff tail that won't move (OCD affecting tail cartilage)", "Reluctance to jump or reduced activity (early arthritis — can start very young)", "Sudden worsening of mobility (arthritis flare or joint crisis)"],
+    "common_medications": [
+      {"medication": "Solensia (frunevetmab)", "used_for": "Arthritis pain — monthly injection for cats", "notes": "Game-changer for Scottish Fold arthritis. Monthly vet injection."},
+      {"medication": "Gabapentin", "used_for": "Chronic pain management", "notes": "Very commonly needed for this breed."},
+      {"medication": "Joint supplements (Cosequin for Cats)", "used_for": "Joint health support", "notes": "Lifelong need for all Scottish Folds."}
+    ],
+    "symptom_keywords": ["stiffness", "joint pain", "jumping difficulty", "buddha sit", "stiff tail", "limping", "reduced activity", "breathing", "hind leg paralysis", "drinking more"],
+    "embedding_text": "Scottish Fold cat. Medium shorthair/longhair, 6-13 lbs, life expectancy 11-15 years, senior at 10. CRITICAL: ALL Scottish Folds have osteochondrodysplasia (OCD) — the fold gene affects cartilage/bone throughout body. 'Buddha sit' is a PAIN signal, not cute. Prone to: OCD (every cat), early severe arthritis, HCM, PKD. Reduced activity is often chronic pain mislabeled as calm personality. Stiff tail = OCD symptom. Common meds: Solensia injections, gabapentin, joint supplements. Red flags: buddha sitting (pain), stiff tail, reluctance to jump, worsening mobility."
+  },
+  {
+    "breed_id": "cat_abyssinian",
+    "species": "cat",
+    "breed_name": "Abyssinian",
+    "breed_group": "Shorthair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 6, "max": 10},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Renal amyloidosis", "description": "Breed-specific kidney disease from protein deposits — can cause kidney failure in young cats", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss", "vomiting", "lethargy"]},
+      {"condition": "Pyruvate kinase deficiency (PKDef)", "description": "Genetic red blood cell disorder causing intermittent anemia", "urgency_if_symptomatic": "call_vet", "common_signs": ["pale gums", "lethargy", "weakness", "rapid breathing", "jaundice"]},
+      {"condition": "Progressive retinal atrophy (PRA)", "description": "Inherited progressive blindness — genetic test available", "urgency_if_symptomatic": "call_vet", "common_signs": ["dilated pupils", "bumping into things in dim light", "reluctance to jump at night"]},
+      {"condition": "Dental disease (tooth resorption)", "description": "Cats commonly develop tooth resorption — painful lesions", "urgency_if_symptomatic": "call_vet", "common_signs": ["difficulty eating", "drooling", "red gums", "dropping food"]},
+      {"condition": "Patellar luxation", "description": "Found in Abyssinian lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping", "intermittent lameness", "reluctance to jump"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Extremely active, curious, playful. Constantly in motion — 'the clown of the cat world'.",
+      "exercise_needs": "Very high — needs climbing, interactive play, and mental stimulation.",
+      "anxiety_profile": "Under-stimulation causes anxiety. Can develop compulsive over-grooming.",
+      "notable_behaviors": ["One of the most active cat breeds — lethargy is ALWAYS a red flag", "Compulsive over-grooming (psychogenic alopecia) common if stressed or under-stimulated", "Very social — isolation causes depression and behavioral issues", "Climbers — injuries from falls are possible"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "PKDef genetic test. PRA genetic test. High enrichment needs.",
+      "young_adult_1_to_6": "Renal amyloidosis can present in young adults (unusual for kidney disease). Dental care. Knee monitoring.",
+      "adult_6_to_11": "Kidney monitoring (amyloidosis can strike at any age). Eye exams. Dental care.",
+      "senior_11_plus": "Kidney disease screening. Vision monitoring. Arthritis management. Dental extractions."
+    },
+    "breed_specific_red_flags": ["Lethargy in this normally hyperactive breed (always investigate immediately)", "Increased drinking/urination in young adult (renal amyloidosis — unusual age for kidney issues)", "Pale gums or jaundice (PKDef — hemolytic anemia)", "Compulsive over-grooming with bald patches (stress, pain, or skin disease)"],
+    "common_medications": [
+      {"medication": "Renal support diet", "used_for": "Kidney disease management", "notes": "Early intervention critical for amyloidosis."},
+      {"medication": "Subcutaneous fluids", "used_for": "Kidney support", "notes": "Home administration if kidney disease progresses."},
+      {"medication": "Anti-anxiety medication (gabapentin, fluoxetine)", "used_for": "Psychogenic alopecia / compulsive grooming", "notes": "If environmental enrichment alone isn't sufficient."}
+    ],
+    "symptom_keywords": ["lethargy", "drinking more", "urination", "pale gums", "jaundice", "weight loss", "over-grooming", "bald patches", "vision", "not eating", "vomiting"],
+    "embedding_text": "Abyssinian cat. Medium shorthair, 6-10 lbs, life expectancy 12-15 years, senior at 11. One of most active breeds — lethargy always a red flag. Prone to: renal amyloidosis (can cause kidney failure in young cats — unusual for kidney disease), PKDef (hemolytic anemia), PRA (progressive blindness), dental disease, patellar luxation. Compulsive over-grooming if stressed. Very social. Common meds: renal diet, subQ fluids, anti-anxiety meds for over-grooming. Red flags: lethargy (always investigate), increased drinking in young cat (amyloidosis), pale gums/jaundice (PKDef), over-grooming."
+  },
+  {
+    "breed_id": "cat_russian_blue",
+    "species": "cat",
+    "breed_name": "Russian Blue",
+    "breed_group": "Shorthair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 7, "max": 12},
+    "life_expectancy_years": {"min": 15, "max": 20},
+    "senior_age_starts": 12,
+    "health_predispositions": [
+      {"condition": "Obesity", "description": "Extremely food-motivated breed — loves to eat and begs persistently", "urgency_if_symptomatic": "try_this", "common_signs": ["difficulty feeling ribs", "round belly", "decreased activity", "difficulty grooming"]},
+      {"condition": "Bladder stones", "description": "Predisposed to urinary stones, especially if overweight", "urgency_if_symptomatic": "call_vet", "common_signs": ["straining to urinate", "blood in urine", "frequent litter box visits", "crying when urinating"]},
+      {"condition": "Diabetes", "description": "Obesity predisposition increases diabetes risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive drinking", "excessive urination", "weight loss despite eating", "increased appetite"]},
+      {"condition": "Eye conditions", "description": "Progressive retinal atrophy reported in some lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["night blindness", "dilated pupils", "bumping into things"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Gentle, shy, loyal. Bonds deeply with family but reserved with strangers.",
+      "exercise_needs": "Moderate — playful but not hyperactive. Enjoys routine.",
+      "anxiety_profile": "Can be anxious with change. Sensitive to loud environments. Prefers routine.",
+      "notable_behaviors": ["Extremely food-motivated — will beg, steal food, open cabinets", "Creature of habit — any disruption to routine can cause stress-related symptoms", "Shy around strangers — hiding when guests visit is normal, hiding from family is not", "Dense double coat makes them appear larger than they are — check actual weight"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "Establish healthy feeding habits early. Socialization to prevent excessive shyness.",
+      "young_adult_1_to_6": "Weight management critical. Urinary health. Dental care.",
+      "adult_7_to_12": "Strict weight control. Diabetes screening if overweight. Urinary health monitoring.",
+      "senior_12_plus": "Kidney disease screening. Diabetes monitoring. Dental management. Arthritis if overweight."
+    },
+    "breed_specific_red_flags": ["Weight gain (extremely food-motivated — obesity is #1 health risk for this breed)", "Straining to urinate or blood in urine (bladder stones)", "Excessive drinking and urination (diabetes, especially if overweight)", "Hiding from family members (hiding from strangers is breed-normal, from family is not)"],
+    "common_medications": [
+      {"medication": "Weight management diet", "used_for": "Obesity prevention and management", "notes": "Measured feeding essential — never free-feed a Russian Blue."},
+      {"medication": "Urinary diet", "used_for": "Bladder stone prevention", "notes": "If history of stones."},
+      {"medication": "Insulin", "used_for": "Diabetes management", "notes": "If diabetes develops. Some cats achieve remission with diet change."}
+    ],
+    "symptom_keywords": ["weight gain", "obesity", "drinking more", "urination", "straining", "blood in urine", "hiding", "not eating", "lethargy"],
+    "embedding_text": "Russian Blue cat. Medium shorthair, 7-12 lbs, life expectancy 15-20 years, senior at 12. Extremely food-motivated — obesity is #1 health risk. Prone to: obesity, bladder stones, diabetes (obesity-related), eye conditions. Creature of habit — routine disruption causes stress. Shy with strangers (normal) but hiding from family signals illness. Dense coat makes them look bigger — check actual weight. Never free-feed. Common meds: weight management diet, urinary diet, insulin if diabetic. Red flags: weight gain, urinary straining, excessive drinking (diabetes), hiding from family."
+  },
+  {
+    "breed_id": "cat_burmese",
+    "species": "cat",
+    "breed_name": "Burmese",
+    "breed_group": "Shorthair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 8, "max": 12},
+    "life_expectancy_years": {"min": 15, "max": 18},
+    "senior_age_starts": 12,
+    "health_predispositions": [
+      {"condition": "Diabetes mellitus", "description": "One of the most diabetes-prone cat breeds, especially in Australia/UK lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["excessive drinking", "excessive urination", "weight loss despite eating", "increased appetite", "lethargy"]},
+      {"condition": "Hypokalemia (low potassium)", "description": "Burmese hypokalaemia — genetic muscle weakness from low potassium", "urgency_if_symptomatic": "call_vet", "common_signs": ["muscle weakness", "difficulty walking", "head hanging down", "wobbliness"]},
+      {"condition": "Oral/facial pain syndrome", "description": "Breed-specific condition — episodes of extreme facial pain", "urgency_if_symptomatic": "call_vet", "common_signs": ["pawing at face", "sudden distress", "reluctance to eat", "face rubbing", "vocalization"]},
+      {"condition": "Head and eye defects (cranial malformations)", "description": "Congenital issues in some lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["eye abnormalities", "facial asymmetry"]},
+      {"condition": "Kidney disease", "description": "Common in senior Burmese", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "weight loss", "decreased appetite", "vomiting"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Affectionate, vocal, people-oriented. Dog-like devotion to owners.",
+      "exercise_needs": "Moderate — playful throughout life. Enjoys interactive toys.",
+      "anxiety_profile": "Strong separation anxiety. Needs companionship — often does well with another cat.",
+      "notable_behaviors": ["Vocal breed — changes in vocalization pattern indicate distress or illness", "Dog-like attachment — follows owners everywhere, greets at door", "Remain playful into old age — decreased playfulness is noteworthy", "Will hide illness — behavioral changes may be subtle"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "Hypokalemia testing if weakness noted. Socialization.",
+      "young_adult_1_to_6": "Weight management for diabetes prevention. Dental care.",
+      "adult_7_to_12": "Annual glucose screening. Dental management. Kidney baseline.",
+      "senior_12_plus": "Diabetes monitoring. Kidney disease screening. Hyperthyroidism. Oral pain episodes may increase."
+    },
+    "breed_specific_red_flags": ["Excessive drinking and urination (diabetes — one of most prone breeds)", "Sudden pawing at face or facial distress (oral/facial pain syndrome — breed-specific)", "Muscle weakness or wobbliness (hypokalemia)", "Decreased playfulness in normally playful breed (always investigate)"],
+    "common_medications": [
+      {"medication": "Insulin (Lantus / ProZinc)", "used_for": "Diabetes management", "notes": "Many Burmese cats achieve remission with early treatment and diet change."},
+      {"medication": "Potassium supplementation", "used_for": "Hypokalemia management", "notes": "If genetic hypokalaemia diagnosed."},
+      {"medication": "Gabapentin / anti-seizure medications", "used_for": "Oral/facial pain syndrome", "notes": "For breed-specific pain episodes."}
+    ],
+    "symptom_keywords": ["drinking more", "urination", "weight loss", "muscle weakness", "pawing at face", "facial pain", "wobbliness", "not eating", "vocalization changes", "lethargy"],
+    "embedding_text": "Burmese cat. Medium shorthair, 8-12 lbs, life expectancy 15-18 years, senior at 12. One of most diabetes-prone breeds. Prone to: diabetes (especially Australian/UK lines), hypokalemia (genetic muscle weakness), oral/facial pain syndrome (breed-specific), kidney disease. Dog-like devotion — decreased playfulness always warrants investigation. Vocal breed — vocalization changes signal illness. Common meds: insulin, potassium supplements, gabapentin for facial pain. Red flags: excessive drinking (diabetes), facial pawing/distress (pain syndrome), muscle weakness (hypokalemia), decreased playfulness."
+  },
+  {
+    "breed_id": "cat_birman",
+    "species": "cat",
+    "breed_name": "Birman",
+    "breed_group": "Semi-Longhair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 7, "max": 12},
+    "life_expectancy_years": {"min": 12, "max": 16},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Genetic predisposition to heart disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "hind leg paralysis"]},
+      {"condition": "Kidney disease", "description": "Predisposed to chronic kidney disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss", "vomiting"]},
+      {"condition": "FIP susceptibility", "description": "Birmans may have increased susceptibility to feline infectious peritonitis", "urgency_if_symptomatic": "call_vet", "common_signs": ["persistent fever", "lethargy", "weight loss", "abdominal swelling"]},
+      {"condition": "Corneal dermoid", "description": "Congenital eye condition — skin-like growth on cornea", "urgency_if_symptomatic": "call_vet", "common_signs": ["hair-like growth on eye surface", "eye irritation", "squinting"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Gentle, affectionate, calm. Soft-spoken and easygoing.",
+      "exercise_needs": "Low to moderate — gentle play. Not demanding.",
+      "anxiety_profile": "Generally calm. Can be sensitive to household disruption.",
+      "notable_behaviors": ["Quiet breed — increased vocalization may indicate pain or distress", "Semi-longhair coat requires regular grooming but less than Persians", "Gentle nature means they tolerate discomfort quietly — watch for subtle signs", "White gloved paws are breed-standard — staining on paws may indicate excessive licking"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "HCM screening. Eye exam for corneal dermoid. Coat care routine.",
+      "young_adult_1_to_6": "Cardiac screening. Dental care. Kidney baseline.",
+      "adult_6_to_11": "Annual echocardiogram. Kidney monitoring. Weight management.",
+      "senior_11_plus": "Kidney disease monitoring. Cardiac management. Dental care. Hyperthyroidism screening."
+    },
+    "breed_specific_red_flags": ["Hind leg paralysis or cold legs (HCM blood clot — emergency)", "Increased vocalization in this normally quiet breed (pain or distress)", "Staining on white paw gloves (excessive licking indicates discomfort somewhere)", "Increased drinking (kidney disease)"],
+    "common_medications": [
+      {"medication": "Cardiac medications (atenolol)", "used_for": "HCM management", "notes": "If diagnosed."},
+      {"medication": "Renal diet", "used_for": "Kidney support", "notes": "Early dietary intervention helps."},
+      {"medication": "Subcutaneous fluids", "used_for": "Kidney disease support", "notes": "As kidney disease progresses."}
+    ],
+    "symptom_keywords": ["breathing", "hind leg paralysis", "drinking more", "weight loss", "vocalization", "paw licking", "lethargy", "fever", "not eating"],
+    "embedding_text": "Birman cat. Medium semi-longhair, 7-12 lbs, life expectancy 12-16 years, senior at 11. Prone to: HCM, kidney disease, FIP susceptibility, corneal dermoid. Quiet gentle breed — increased vocalization signals pain. White gloved paws — staining indicates excessive licking. Tolerates discomfort quietly. Common meds: cardiac medications, renal diet, subQ fluids. Red flags: hind leg paralysis (HCM), increased vocalization (pain), stained paw gloves (licking), increased drinking (kidney disease)."
+  },
+  {
+    "breed_id": "cat_exotic_shorthair",
+    "species": "cat",
+    "breed_name": "Exotic Shorthair",
+    "breed_group": "Brachycephalic Shorthair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 7, "max": 14},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Polycystic kidney disease (PKD)", "description": "Same genetic predisposition as Persian parent breed — up to 40-50% carry gene", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss", "decreased appetite", "vomiting"]},
+      {"condition": "Brachycephalic airway issues", "description": "Flat face causes breathing difficulty — same as Persians", "urgency_if_symptomatic": "call_vet", "common_signs": ["noisy breathing", "snoring", "open-mouth breathing", "heat intolerance"]},
+      {"condition": "Eye conditions (tear overflow, corneal sequestrum)", "description": "Flat face causes chronic tear drainage issues", "urgency_if_symptomatic": "call_vet", "common_signs": ["chronic tearing", "tear staining", "squinting", "dark spot on cornea"]},
+      {"condition": "Calcium oxalate bladder stones", "description": "Predisposition to urinary stones", "urgency_if_symptomatic": "call_vet", "common_signs": ["straining to urinate", "blood in urine", "crying when urinating"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Calm, affectionate, playful. 'The lazy man's Persian' — Persian personality without daily grooming.",
+      "exercise_needs": "Low to moderate — playful but not demanding.",
+      "anxiety_profile": "Generally calm and adaptable. Sensitive to heat due to flat face.",
+      "notable_behaviors": ["Shares ALL health risks of Persian in a short coat package — owners underestimate this", "Short coat is easier than Persian but still denser than average — hides weight changes", "Flat face means heat sensitivity is a medical concern, not just preference", "More playful than Persians but still generally low-energy"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "PKD genetic test. Eye care routine. Breathing assessment.",
+      "young_adult_1_to_6": "Kidney function baseline. Facial fold care. Weight management.",
+      "adult_6_to_11": "Annual kidney bloodwork. Urinary health monitoring. Eye care.",
+      "senior_11_plus": "Kidney disease monitoring. Blood pressure. Dental management. Breathing assessment."
+    },
+    "breed_specific_red_flags": ["Open-mouth breathing (dangerous in flat-faced cats — ALWAYS emergency)", "Increased drinking/urination (PKD — same risk as Persians)", "Dark spot on cornea (corneal sequestrum — needs treatment)", "Straining to urinate (bladder stones)"],
+    "common_medications": [
+      {"medication": "Renal diet", "used_for": "Kidney disease management", "notes": "If PKD diagnosed. Lifelong."},
+      {"medication": "Subcutaneous fluids", "used_for": "Kidney support", "notes": "Common for PKD management."},
+      {"medication": "Eye lubricants", "used_for": "Chronic eye care", "notes": "Daily face cleaning for tear overflow."}
+    ],
+    "symptom_keywords": ["breathing", "open mouth breathing", "drinking more", "urination", "straining", "eye discharge", "tearing", "weight loss", "not eating"],
+    "embedding_text": "Exotic Shorthair cat. Medium brachycephalic shorthair, 7-14 lbs, life expectancy 12-15 years, senior at 11. 'Short-haired Persian' — shares ALL Persian health risks including PKD (40-50% carry gene), brachycephalic airway issues, eye conditions. Owners underestimate health risks because short coat seems 'easier.' Prone to: PKD, breathing difficulty, eye conditions, bladder stones. Common meds: renal diet, subQ fluids, eye lubricants. Red flags: open-mouth breathing (emergency), increased drinking (PKD), dark corneal spot, urinary straining."
+  },
+  {
+    "breed_id": "cat_norwegian_forest",
+    "species": "cat",
+    "breed_name": "Norwegian Forest Cat",
+    "breed_group": "Large Longhair",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 9, "max": 16},
+    "life_expectancy_years": {"min": 12, "max": 16},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Genetic predisposition to heart disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "hind leg paralysis"]},
+      {"condition": "Glycogen storage disease type IV (GSD IV)", "description": "Fatal genetic disorder — kittens die young. Genetic test available.", "urgency_if_symptomatic": "call_vet", "common_signs": ["failure to thrive in kittens", "muscle tremors", "weakness", "fever"]},
+      {"condition": "Hip dysplasia", "description": "Large cat breed predisposition", "urgency_if_symptomatic": "call_vet", "common_signs": ["difficulty jumping", "stiff hind legs", "reluctance to climb"]},
+      {"condition": "Kidney disease", "description": "Common in senior large breed cats", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "weight loss", "decreased appetite"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Gentle, friendly, independent. Enjoys climbing and high vantage points.",
+      "exercise_needs": "Moderate — good climbers, enjoy interactive play.",
+      "anxiety_profile": "Generally confident and adaptable. Independent streak.",
+      "notable_behaviors": ["Excellent climbers — injuries from falls less likely than other cats but still possible", "Water-resistant double coat — requires regular grooming, especially during seasonal shedding", "Independent nature means they may hide illness until advanced", "Large breed — slow to mature (up to 5 years)"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "GSD IV genetic test. HCM screening. Slow growth expected (mature at 5).",
+      "young_adult_1_to_5": "Still growing. Cardiac screening. Hip monitoring. Coat maintenance.",
+      "adult_5_to_10": "Annual echocardiogram. Dental care. Weight management. Joint monitoring.",
+      "senior_10_plus": "HCM monitoring. Kidney screening. Arthritis management. Dental care."
+    },
+    "breed_specific_red_flags": ["Hind leg paralysis (HCM blood clot — emergency)", "Kitten failing to thrive (GSD IV if not previously tested)", "Reluctance to climb or jump (hip dysplasia or arthritis)", "Matted coat in normally well-groomed cat (illness signal)"],
+    "common_medications": [
+      {"medication": "Cardiac medications", "used_for": "HCM management", "notes": "If diagnosed."},
+      {"medication": "Joint supplements", "used_for": "Hip and joint support", "notes": "Important for large breed."},
+      {"medication": "Renal diet", "used_for": "Kidney support in seniors", "notes": "As needed."}
+    ],
+    "symptom_keywords": ["breathing", "hind leg paralysis", "climbing difficulty", "jumping difficulty", "matted coat", "drinking more", "weight loss", "lethargy"],
+    "embedding_text": "Norwegian Forest Cat. Large longhair, 9-16 lbs, life expectancy 12-16 years, senior at 10. Slow to mature (up to 5 years). Prone to: HCM, GSD IV (fatal kitten disease — genetic test available), hip dysplasia, kidney disease. Excellent climbers with water-resistant coat. Independent — may hide illness. Common meds: cardiac medications, joint supplements, renal diet. Red flags: hind leg paralysis (HCM), kitten failure to thrive (GSD IV), reluctance to climb/jump, matted coat."
+  },
+  {
+    "breed_id": "cat_devon_rex",
+    "species": "cat",
+    "breed_name": "Devon Rex",
+    "breed_group": "Rex/Curly Coat",
+    "size_category": "small",
+    "weight_range_lbs": {"min": 5, "max": 10},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Predisposed to heart disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "hind leg paralysis", "open-mouth breathing"]},
+      {"condition": "Hereditary myopathy (spasticity)", "description": "Breed-specific muscle disorder — Devon Rex myopathy", "urgency_if_symptomatic": "call_vet", "common_signs": ["muscle weakness", "head bobbing", "difficulty swallowing", "fatigue during activity", "stiff gait"]},
+      {"condition": "Patellar luxation", "description": "Kneecap dislocation found in Devon Rex lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["skipping on hind leg", "intermittent lameness"]},
+      {"condition": "Skin conditions", "description": "Thin fragile coat — prone to yeast infections and sunburn", "urgency_if_symptomatic": "try_this", "common_signs": ["greasy skin", "ear wax buildup", "bald patches", "skin irritation"]},
+      {"condition": "Malassezia dermatitis", "description": "Yeast overgrowth on skin — common in Devon Rex", "urgency_if_symptomatic": "try_this", "common_signs": ["greasy coat", "brown ear wax", "itching", "musty smell"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Mischievous, social, playful. 'Pixie of the cat world.'",
+      "exercise_needs": "Moderate to high — loves play and climbing. Very food-motivated.",
+      "anxiety_profile": "Needs companionship. Can develop anxiety if alone too long.",
+      "notable_behaviors": ["Extremely food-motivated — will steal food aggressively", "Thin coat provides less temperature insulation — seeks warmth", "Fragile whiskers and coat — handle gently", "Ears produce excessive wax — regular cleaning needed"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "Myopathy screening. HCM screening. Skin care routine. Ear cleaning.",
+      "young_adult_1_to_6": "Cardiac screening. Patellar monitoring. Weight management despite food motivation. Skin health.",
+      "adult_6_to_11": "HCM screening continues. Dental care. Skin management.",
+      "senior_11_plus": "Cardiac monitoring. Kidney screening. Arthritis management. Skin care."
+    },
+    "breed_specific_red_flags": ["Muscle weakness, head bobbing, or difficulty swallowing (Devon Rex myopathy)", "Hind leg paralysis (HCM blood clot — emergency)", "Greasy skin with musty smell (Malassezia yeast — common in breed)", "Excessive food stealing or eating non-food items (food motivation plus small size = quick toxicity)"],
+    "common_medications": [
+      {"medication": "Antifungal shampoo/wipes (miconazole, chlorhexidine)", "used_for": "Malassezia skin management", "notes": "Regular bathing schedule needed."},
+      {"medication": "Ear cleaner", "used_for": "Excessive ear wax", "notes": "Weekly cleaning essential."},
+      {"medication": "Cardiac medications", "used_for": "HCM if diagnosed", "notes": "Annual screening recommended."}
+    ],
+    "symptom_keywords": ["muscle weakness", "head bobbing", "difficulty swallowing", "greasy skin", "ear wax", "breathing", "hind leg paralysis", "knee", "skin irritation", "itching"],
+    "embedding_text": "Devon Rex cat. Small rex/curly coat breed, 5-10 lbs, life expectancy 12-15 years, senior at 11. Breed-specific myopathy (muscle disorder with head bobbing, swallowing difficulty). Thin fragile coat = sun/temperature sensitivity, prone to Malassezia yeast. Prone to: HCM, Devon Rex myopathy, patellar luxation, skin/yeast conditions. Extremely food-motivated. Ears produce excess wax. Common meds: antifungal skin products, ear cleaner, cardiac medications. Red flags: muscle weakness/head bobbing (myopathy), hind leg paralysis (HCM), greasy/smelly skin, food theft/toxin ingestion."
+  },
+  {
+    "breed_id": "cat_ragamuffin",
+    "species": "cat",
+    "breed_name": "RagaMuffin",
+    "breed_group": "Large Semi-Longhair",
+    "size_category": "large",
+    "weight_range_lbs": {"min": 10, "max": 20},
+    "life_expectancy_years": {"min": 12, "max": 16},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Related to Ragdoll — shares cardiac predisposition", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "hind leg paralysis"]},
+      {"condition": "Polycystic kidney disease (PKD)", "description": "Found in some lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss"]},
+      {"condition": "Obesity", "description": "Large breed with calm temperament and food motivation", "urgency_if_symptomatic": "try_this", "common_signs": ["difficulty feeling ribs", "round belly", "decreased activity"]},
+      {"condition": "Dental disease", "description": "Common in large breed cats", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "drooling"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Extremely docile, affectionate, trusting. Very gentle with children.",
+      "exercise_needs": "Low to moderate — enjoys gentle play but not athletic.",
+      "anxiety_profile": "Generally calm and trusting. Slow to mature (4 years).",
+      "notable_behaviors": ["Extremely trusting — should NEVER be allowed outdoors unsupervised (no self-defense instinct)", "Slow to mature (4 years) — still growing longer than owners expect", "Very docile — pain may go unnoticed because they don't complain", "Related to Ragdolls — similar health profile"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "HCM screening. Slow growth expected. Indoor-only essential.",
+      "young_adult_1_to_4": "Still growing. Cardiac screening. Weight management.",
+      "adult_4_to_10": "Annual echocardiogram. Weight control. Dental care. Kidney baseline.",
+      "senior_10_plus": "Cardiac monitoring. Kidney disease screening. Arthritis management. Dental care."
+    },
+    "breed_specific_red_flags": ["Hind leg paralysis (HCM blood clot — emergency)", "Open-mouth breathing (cardiac or respiratory emergency)", "Any aggression or hiding in this extremely docile breed (significant pain or illness)", "Not eating in food-motivated cat"],
+    "common_medications": [
+      {"medication": "Cardiac medications", "used_for": "HCM management", "notes": "If diagnosed."},
+      {"medication": "Weight management diet", "used_for": "Obesity prevention", "notes": "Important — calm breed gains weight easily."},
+      {"medication": "Joint supplements", "used_for": "Large breed joint support", "notes": "As they age."}
+    ],
+    "symptom_keywords": ["breathing", "hind leg paralysis", "weight gain", "not eating", "hiding", "lethargy", "drinking more"],
+    "embedding_text": "RagaMuffin cat. Large semi-longhair, 10-20 lbs, life expectancy 12-16 years, senior at 10. Related to Ragdolls — shares HCM predisposition. Extremely docile and trusting — should never be outdoors, may not show pain. Prone to: HCM, PKD, obesity, dental disease. Slow to mature (4 years). Aggression or hiding signals significant illness in this gentle breed. Common meds: cardiac medications, weight management diet, joint supplements. Red flags: hind leg paralysis (HCM), open-mouth breathing, aggression/hiding (pain), not eating."
+  },
+  {
+    "breed_id": "cat_american_shorthair",
+    "species": "cat",
+    "breed_name": "American Shorthair",
+    "breed_group": "Shorthair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 8, "max": 15},
+    "life_expectancy_years": {"min": 15, "max": 20},
+    "senior_age_starts": 12,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Genetic predisposition reported in the breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "hind leg paralysis"]},
+      {"condition": "Obesity", "description": "Sturdy build and food motivation make weight gain common", "urgency_if_symptomatic": "try_this", "common_signs": ["difficulty feeling ribs", "round belly", "decreased activity"]},
+      {"condition": "Dental disease", "description": "Common in the breed — tooth resorption particularly", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "drooling", "red gums"]},
+      {"condition": "Kidney disease", "description": "Common in senior cats", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "weight loss", "vomiting"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Easygoing, adaptable, independent. Good-natured working cat heritage.",
+      "exercise_needs": "Moderate — enjoys play and hunting toys. Can become sedentary if not encouraged.",
+      "anxiety_profile": "Generally adaptable and low-anxiety. Tolerates change well.",
+      "notable_behaviors": ["Naturally sturdy build — owners underestimate obesity (they ARE a stocky breed but still shouldn't be round)", "Strong hunting instinct — may bring 'gifts' if allowed outdoors, also means they'll play with and ingest small objects", "Generally healthy breed — but this means owners may delay vet visits, missing early signs", "Long lifespan means geriatric conditions are common if they live to full potential"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "Establish healthy weight. Dental care early.",
+      "young_adult_1_to_6": "Weight management. Dental care. Activity encouragement.",
+      "adult_7_to_12": "Cardiac screening. Strict weight management. Dental cleanings. Kidney baseline.",
+      "senior_12_plus": "Kidney screening. Hyperthyroidism screening. Dental management. Arthritis management."
+    },
+    "breed_specific_red_flags": ["Weight gain mistaken for 'breed-standard stockiness' (obesity still dangerous)", "Decreased hunting/play behavior (illness in normally active breed)", "Open-mouth breathing (always emergency in cats)", "Ingestion of small prey or objects (hunting instinct)"],
+    "common_medications": [
+      {"medication": "Weight management diet", "used_for": "Obesity prevention", "notes": "Measured feeding important — naturally stocky breed overweights easily."},
+      {"medication": "Dental care / dental diet", "used_for": "Dental disease prevention", "notes": "Breed prone to tooth resorption."},
+      {"medication": "Methimazole", "used_for": "Hyperthyroidism in seniors", "notes": "Common in long-lived cats."}
+    ],
+    "symptom_keywords": ["weight gain", "not eating", "drinking more", "breathing", "dental", "bad breath", "lethargy", "vomiting"],
+    "embedding_text": "American Shorthair cat. Medium shorthair, 8-15 lbs, life expectancy 15-20 years, senior at 12. Naturally stocky — owners underestimate obesity. Generally healthy breed but longevity means geriatric conditions common. Prone to: HCM, obesity, dental disease (tooth resorption), kidney disease in seniors. Strong hunting instinct — ingestion risk. Common meds: weight management diet, dental care, methimazole for hyperthyroidism. Red flags: obesity disguised as stockiness, decreased hunting/play, open-mouth breathing, small object ingestion."
+  },
+  {
+    "breed_id": "cat_oriental_shorthair",
+    "species": "cat",
+    "breed_name": "Oriental Shorthair",
+    "breed_group": "Oriental",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 5, "max": 10},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Amyloidosis", "description": "Same predisposition as Siamese (closely related breed) — protein deposits damage organs", "urgency_if_symptomatic": "call_vet", "common_signs": ["lethargy", "loss of appetite", "jaundice", "vomiting", "abdominal swelling"]},
+      {"condition": "Asthma / bronchial disease", "description": "Shared predisposition with Siamese", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "wheezing", "labored breathing", "open-mouth breathing"]},
+      {"condition": "Dilated cardiomyopathy (DCM)", "description": "Heart muscle weakens — less common than HCM in cats but Orientals are predisposed", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "reduced appetite", "hind leg weakness"]},
+      {"condition": "Crossed eyes (strabismus)", "description": "Inherited from Siamese lineage — usually cosmetic", "urgency_if_symptomatic": "monitor", "common_signs": ["crossed eyes"]},
+      {"condition": "GI sensitivity", "description": "Sensitive digestive system — shared with Siamese", "urgency_if_symptomatic": "try_this", "common_signs": ["vomiting", "diarrhea", "sensitive to diet changes"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Extremely vocal, demanding, social, intelligent. Even more vocal than Siamese.",
+      "exercise_needs": "High — very active and playful. Needs mental stimulation.",
+      "anxiety_profile": "Very prone to separation anxiety. Needs companionship constantly.",
+      "notable_behaviors": ["Most vocal domestic cat — decreased vocalization is significant", "Extremely social — can become depressed if left alone regularly", "Very thin/lean build — weight loss may be harder to spot visually", "Wool-sucking/pica behavior (shared with Siamese)"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "Socialization. Pica monitoring. Dental care.",
+      "young_adult_1_to_6": "Asthma monitoring. GI health. Cardiac baseline.",
+      "adult_6_to_11": "Amyloidosis awareness. Cardiac screening. Dental care.",
+      "senior_11_plus": "Kidney screening. Cardiac monitoring. Dental management. Hyperthyroidism screening."
+    },
+    "breed_specific_red_flags": ["Decreased vocalization (this breed NEVER stops talking — silence means illness)", "Jaundice / yellow gums or ears (amyloidosis)", "Coughing or wheezing (asthma — Oriental predisposition)", "Social withdrawal in this extremely social breed (significant illness)"],
+    "common_medications": [
+      {"medication": "Inhaled corticosteroids (Flovent via AeroKat)", "used_for": "Asthma management", "notes": "Preferred over oral steroids."},
+      {"medication": "GI medications (famotidine, maropitant)", "used_for": "GI sensitivity", "notes": "Common need."},
+      {"medication": "Anti-anxiety medication", "used_for": "Separation anxiety", "notes": "If environmental changes aren't sufficient."}
+    ],
+    "symptom_keywords": ["vocalization changes", "silence", "coughing", "wheezing", "jaundice", "vomiting", "diarrhea", "lethargy", "hiding", "not eating", "eating non-food items"],
+    "embedding_text": "Oriental Shorthair cat. Medium oriental breed, 5-10 lbs, life expectancy 12-15 years, senior at 11. Closely related to Siamese — shares health risks. Most vocal domestic cat — silence is always concerning. Prone to: amyloidosis, asthma, DCM (unusual — heart muscle weakening), GI sensitivity, crossed eyes (cosmetic). Extremely social — depression if isolated. Lean build makes weight loss subtle. Common meds: inhaled corticosteroids for asthma, GI meds, anti-anxiety meds. Red flags: decreased vocalization (silence = illness), jaundice (amyloidosis), coughing (asthma), social withdrawal."
+  },
+  {
+    "breed_id": "cat_tonkinese",
+    "species": "cat",
+    "breed_name": "Tonkinese",
+    "breed_group": "Oriental Cross",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 6, "max": 12},
+    "life_expectancy_years": {"min": 12, "max": 16},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Amyloidosis", "description": "Inherited from Siamese parentage", "urgency_if_symptomatic": "call_vet", "common_signs": ["lethargy", "jaundice", "loss of appetite", "vomiting"]},
+      {"condition": "Asthma", "description": "Shared predisposition from Siamese/Burmese heritage", "urgency_if_symptomatic": "call_vet", "common_signs": ["coughing", "wheezing", "open-mouth breathing"]},
+      {"condition": "Inflammatory bowel disease (IBD)", "description": "GI sensitivity from oriental breed lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["chronic vomiting", "diarrhea", "weight loss", "poor coat"]},
+      {"condition": "Dental disease", "description": "Prone to gingivitis and tooth resorption", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "red gums", "difficulty eating"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Social, playful, vocal (less than Siamese). Best of Siamese and Burmese.",
+      "exercise_needs": "Moderate to high — playful and social. Enjoys interactive toys.",
+      "anxiety_profile": "Social breed — does best with companionship. Can develop separation anxiety.",
+      "notable_behaviors": ["Moderately vocal — more talkative than average but less intense than Siamese", "Very social — does best with a feline companion if owner works long hours", "Combines Siamese and Burmese health risks", "Playful throughout life — decreased play is noteworthy"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "Socialization. Dental care. URI susceptibility.",
+      "young_adult_1_to_6": "Asthma monitoring. GI health. Dental care.",
+      "adult_6_to_11": "IBD screening if chronic GI symptoms. Cardiac baseline. Dental cleanings.",
+      "senior_11_plus": "Kidney screening. Amyloidosis awareness. Dental management. Hyperthyroidism."
+    },
+    "breed_specific_red_flags": ["Jaundice (amyloidosis — inherited risk)", "Chronic vomiting or diarrhea (IBD predisposition)", "Coughing or wheezing (asthma)", "Decreased playfulness (always investigate in this active breed)"],
+    "common_medications": [
+      {"medication": "Inhaled corticosteroids", "used_for": "Asthma management", "notes": "If diagnosed."},
+      {"medication": "Prednisolone / budesonide", "used_for": "IBD management", "notes": "If chronic GI inflammation."},
+      {"medication": "Dental care products", "used_for": "Dental disease prevention", "notes": "Regular dental care important."}
+    ],
+    "symptom_keywords": ["vomiting", "diarrhea", "coughing", "wheezing", "jaundice", "weight loss", "not eating", "lethargy", "bad breath"],
+    "embedding_text": "Tonkinese cat. Medium oriental cross, 6-12 lbs, life expectancy 12-16 years, senior at 11. Siamese × Burmese cross — inherits health risks from both. Prone to: amyloidosis (Siamese risk), asthma, IBD, dental disease. Social breed — decreased play signals illness. Moderately vocal. Common meds: inhaled corticosteroids, IBD medications, dental care. Red flags: jaundice (amyloidosis), chronic vomiting (IBD), coughing (asthma), decreased playfulness."
+  },
+  {
+    "breed_id": "cat_himalayan",
+    "species": "cat",
+    "breed_name": "Himalayan",
+    "breed_group": "Brachycephalic Longhair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 7, "max": 14},
+    "life_expectancy_years": {"min": 12, "max": 15},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Polycystic kidney disease (PKD)", "description": "Same high-risk gene as Persian parent breed", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss", "vomiting"]},
+      {"condition": "Brachycephalic airway issues", "description": "Flat face causes chronic breathing difficulty", "urgency_if_symptomatic": "call_vet", "common_signs": ["noisy breathing", "snoring", "open-mouth breathing", "heat collapse"]},
+      {"condition": "Eye conditions", "description": "Prominent eyes with chronic tear overflow and corneal risk", "urgency_if_symptomatic": "call_vet", "common_signs": ["chronic tearing", "tear staining", "squinting", "dark corneal spot"]},
+      {"condition": "Skin fold infections", "description": "Facial folds trap moisture", "urgency_if_symptomatic": "try_this", "common_signs": ["odor from face folds", "red irritated skin"]},
+      {"condition": "Dental disease", "description": "Shortened jaw causes crowding", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Calm, gentle, sweet. Siamese color points with Persian personality.",
+      "exercise_needs": "Low — lap cat. Still needs interactive play for weight management.",
+      "anxiety_profile": "Generally calm. Prefers quiet environment.",
+      "notable_behaviors": ["Persian × Siamese cross — inherits BOTH breeds' health risks", "Long coat requires daily grooming — mats cause skin infections", "Flat face means ALL the same brachycephalic risks as Persians", "Slightly more vocal than Persians due to Siamese heritage"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "PKD genetic test. Eye care routine. Grooming habituation.",
+      "young_adult_1_to_6": "Kidney baseline. Daily grooming. Facial fold care. Weight management.",
+      "adult_6_to_11": "Annual kidney bloodwork. Dental cleanings. Eye monitoring.",
+      "senior_11_plus": "Kidney disease monitoring. Breathing assessment. Dental management."
+    },
+    "breed_specific_red_flags": ["Open-mouth breathing (emergency — flat-faced + longhair = overheating risk)", "Increased drinking (PKD — same risk as Persians)", "Matted coat (can quickly lead to skin infections)", "Dark spot on cornea (corneal sequestrum)"],
+    "common_medications": [
+      {"medication": "Renal diet", "used_for": "Kidney disease management", "notes": "If PKD diagnosed."},
+      {"medication": "Subcutaneous fluids", "used_for": "Kidney support", "notes": "As disease progresses."},
+      {"medication": "Eye lubricants / tear stain cleaner", "used_for": "Chronic eye care", "notes": "Daily face cleaning essential."}
+    ],
+    "symptom_keywords": ["breathing", "open mouth breathing", "drinking more", "tearing", "eye discharge", "matted coat", "not eating", "weight loss"],
+    "embedding_text": "Himalayan cat. Medium brachycephalic longhair, 7-14 lbs, life expectancy 12-15 years, senior at 11. Persian × Siamese cross — inherits BOTH breeds' health risks. Flat face + long coat = maximum grooming and respiratory care needed. Prone to: PKD (same as Persian), brachycephalic airway issues, eye conditions, skin fold infections, dental disease. Daily grooming essential. Common meds: renal diet, subQ fluids, eye lubricants. Red flags: open-mouth breathing (emergency), increased drinking (PKD), matted coat (skin infections), dark corneal spot."
+  },
+  {
+    "breed_id": "cat_manx",
+    "species": "cat",
+    "breed_name": "Manx",
+    "breed_group": "Shorthair/Longhair (Tailless)",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 8, "max": 13},
+    "life_expectancy_years": {"min": 12, "max": 14},
+    "senior_age_starts": 10,
+    "health_predispositions": [
+      {"condition": "Manx syndrome", "description": "Spinal cord defects from the tailless gene — can cause incontinence, hind leg weakness, and spinal issues. Severity varies.", "urgency_if_symptomatic": "call_vet", "common_signs": ["hind leg weakness", "incontinence", "constipation", "bunny-hopping gait", "difficulty with balance"]},
+      {"condition": "Spina bifida", "description": "Incomplete spinal development related to tailless gene", "urgency_if_symptomatic": "call_vet", "common_signs": ["incontinence", "hind leg problems", "constipation"]},
+      {"condition": "Arthritis (spinal)", "description": "Abnormal spinal structure can cause premature arthritis", "urgency_if_symptomatic": "call_vet", "common_signs": ["stiffness", "reluctance to jump", "hind end sensitivity"]},
+      {"condition": "Corneal dystrophy", "description": "Eye condition found in some Manx lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["cloudy spots on cornea", "vision changes"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Playful, intelligent, loyal. Dog-like behavior — fetches, comes when called.",
+      "exercise_needs": "Moderate — good jumpers despite short/absent tail.",
+      "anxiety_profile": "Generally adaptable. Bonds closely with family.",
+      "notable_behaviors": ["Tailless gene affects spine — monitor bowel/bladder function throughout life", "Bunny-hopping gait can be normal for breed OR a Manx syndrome sign — vet should differentiate", "Excellent jumpers — rear legs are longer than front", "Some Manx have full tails ('longies'), stumps ('stumpies'), or no tail ('rumpies') — spinal risk varies"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "Manx syndrome assessment. Spinal evaluation. Bowel/bladder function monitoring.",
+      "young_adult_1_to_6": "Spinal health. Bowel/bladder regularity. Dental care.",
+      "adult_6_to_10": "Spinal arthritis assessment. Dental care. Weight management (protect spine).",
+      "senior_10_plus": "Spinal arthritis management. Kidney screening. Bowel/bladder function monitoring."
+    },
+    "breed_specific_red_flags": ["Any bowel or bladder control changes (Manx syndrome — spinal nerve involvement)", "Progressive hind leg weakness (spinal cord issues from tailless gene)", "Constipation (can indicate Manx syndrome nerve involvement)", "Worsening bunny-hop gait or balance issues (spinal deterioration)"],
+    "common_medications": [
+      {"medication": "Stool softeners / laxatives (lactulose, Miralax)", "used_for": "Constipation from Manx syndrome", "notes": "If nerve involvement affects bowel function."},
+      {"medication": "Pain management (gabapentin, Solensia)", "used_for": "Spinal arthritis and pain", "notes": "Common need for this breed."},
+      {"medication": "Joint supplements", "used_for": "Spinal and joint support", "notes": "Lifelong recommendation."}
+    ],
+    "symptom_keywords": ["hind leg weakness", "incontinence", "constipation", "balance problems", "bunny hopping", "stiffness", "spine pain", "eye cloudy"],
+    "embedding_text": "Manx cat. Medium tailless breed, 8-13 lbs, life expectancy 12-14 years, senior at 10. CRITICAL: Tailless gene can cause Manx syndrome — spinal cord defects causing incontinence, hind weakness, constipation. Severity varies from none to severe. Prone to: Manx syndrome, spina bifida, spinal arthritis, corneal dystrophy. Bunny-hop gait may be normal OR pathological. Tail length varies (rumpy/stumpy/longy) — shorter = higher spinal risk. Common meds: stool softeners, pain management, joint supplements. Red flags: bowel/bladder changes (Manx syndrome), hind leg weakness, constipation, worsening gait."
+  },
+  {
+    "breed_id": "cat_turkish_angora",
+    "species": "cat",
+    "breed_name": "Turkish Angora",
+    "breed_group": "Semi-Longhair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 5, "max": 10},
+    "life_expectancy_years": {"min": 12, "max": 18},
+    "senior_age_starts": 12,
+    "health_predispositions": [
+      {"condition": "Hypertrophic cardiomyopathy (HCM)", "description": "Genetic predisposition to heart disease", "urgency_if_symptomatic": "call_vet", "common_signs": ["rapid breathing", "lethargy", "open-mouth breathing", "hind leg paralysis"]},
+      {"condition": "Deafness", "description": "White Turkish Angoras with blue eyes have very high deafness rates — hereditary", "urgency_if_symptomatic": "call_vet", "common_signs": ["not responding to sounds", "loud vocalization", "startling when touched from behind"]},
+      {"condition": "Ataxia", "description": "Hereditary movement disorder in some Turkish Angora lines", "urgency_if_symptomatic": "call_vet", "common_signs": ["wobbliness", "uncoordinated movement", "difficulty jumping accurately"]},
+      {"condition": "Dental disease", "description": "Common in the breed", "urgency_if_symptomatic": "try_this", "common_signs": ["bad breath", "difficulty eating", "drooling"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Intelligent, playful, affectionate. Strong-willed and mischievous.",
+      "exercise_needs": "Moderate to high — active and playful. Loves climbing.",
+      "anxiety_profile": "Bonds strongly. Can be demanding of attention.",
+      "notable_behaviors": ["White/blue-eyed cats may be deaf — adjust environment accordingly", "Very athletic and graceful — clumsiness is concerning", "Single-layer silky coat (no undercoat) — mats less than other longhairs", "Loves water — unusual for cats"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "BAER hearing test for white/blue-eyed kittens. Ataxia screening. HCM screening.",
+      "young_adult_1_to_6": "Cardiac screening. Dental care. Hearing assessment if white.",
+      "adult_6_to_12": "Annual echocardiogram. Dental cleanings.",
+      "senior_12_plus": "HCM monitoring. Kidney screening. Dental management. Arthritis assessment."
+    },
+    "breed_specific_red_flags": ["New onset wobbliness or uncoordinated movement (ataxia or neurological issue)", "Hind leg paralysis (HCM blood clot)", "White/blue-eyed cat not responding to sounds (likely deaf — adapt environment)", "Sudden clumsiness in normally graceful cat (neurological concern)"],
+    "common_medications": [
+      {"medication": "Cardiac medications", "used_for": "HCM management", "notes": "If diagnosed."},
+      {"medication": "Dental care products", "used_for": "Dental disease prevention", "notes": "Important for this breed."},
+      {"medication": "No deafness treatment", "used_for": "Deafness management", "notes": "Deafness is managed environmentally — visual cues, vibration alerts, safe indoor environment."}
+    ],
+    "symptom_keywords": ["wobbliness", "uncoordinated", "deafness", "breathing", "hind leg paralysis", "clumsiness", "not eating", "bad breath"],
+    "embedding_text": "Turkish Angora cat. Medium semi-longhair, 5-10 lbs, life expectancy 12-18 years, senior at 12. White/blue-eyed cats have very high deafness rates. Prone to: HCM, hereditary deafness (white/blue-eyed), hereditary ataxia, dental disease. Athletic and graceful — clumsiness always concerning. Single-layer silky coat. Loves water. Common meds: cardiac medications, dental care, environmental deafness management. Red flags: new wobbliness (ataxia), hind leg paralysis (HCM), not responding to sounds (deafness), sudden clumsiness."
+  },
+  {
+    "breed_id": "cat_somali",
+    "species": "cat",
+    "breed_name": "Somali",
+    "breed_group": "Semi-Longhair",
+    "size_category": "medium",
+    "weight_range_lbs": {"min": 6, "max": 10},
+    "life_expectancy_years": {"min": 12, "max": 16},
+    "senior_age_starts": 11,
+    "health_predispositions": [
+      {"condition": "Renal amyloidosis", "description": "Same as Abyssinian (Somali is longhaired Abyssinian) — kidney failure from protein deposits", "urgency_if_symptomatic": "call_vet", "common_signs": ["increased drinking", "increased urination", "weight loss", "vomiting"]},
+      {"condition": "Pyruvate kinase deficiency (PKDef)", "description": "Genetic red blood cell disorder — shared with Abyssinian", "urgency_if_symptomatic": "call_vet", "common_signs": ["pale gums", "lethargy", "weakness", "jaundice"]},
+      {"condition": "Dental disease (tooth resorption)", "description": "Common and painful", "urgency_if_symptomatic": "call_vet", "common_signs": ["difficulty eating", "drooling", "red gums at tooth line"]},
+      {"condition": "Progressive retinal atrophy (PRA)", "description": "Inherited progressive blindness", "urgency_if_symptomatic": "call_vet", "common_signs": ["night blindness", "dilated pupils", "bumping into things"]}
+    ],
+    "behavioral_traits": {
+      "temperament": "Extremely active, curious, social. 'The fox cat' — bushy tail and active personality.",
+      "exercise_needs": "Very high — needs climbing, play, and stimulation. Athletic and agile.",
+      "anxiety_profile": "Under-stimulation leads to behavioral issues. Needs companionship.",
+      "notable_behaviors": ["Longhaired Abyssinian — shares ALL Abyssinian health risks", "Extremely active — lethargy is always concerning", "Gorgeous bushy coat requires regular grooming", "Very social — isolation leads to depression"]
+    },
+    "age_specific_concerns": {
+      "kitten_0_to_1": "PKDef genetic test. PRA test. High enrichment needs.",
+      "young_adult_1_to_6": "Renal amyloidosis can present young. Dental care. Activity support.",
+      "adult_6_to_11": "Kidney monitoring. Eye exams. Dental care.",
+      "senior_11_plus": "Kidney disease screening. Vision monitoring. Dental management."
+    },
+    "breed_specific_red_flags": ["Lethargy in this normally hyperactive breed (always investigate)", "Increased drinking in young adult (renal amyloidosis)", "Pale gums or jaundice (PKDef)", "Vision changes (PRA)"],
+    "common_medications": [
+      {"medication": "Renal diet", "used_for": "Kidney disease management", "notes": "Early intervention important."},
+      {"medication": "Subcutaneous fluids", "used_for": "Kidney support", "notes": "If kidney disease progresses."},
+      {"medication": "Dental care", "used_for": "Tooth resorption prevention", "notes": "Regular professional cleanings."}
+    ],
+    "symptom_keywords": ["lethargy", "drinking more", "pale gums", "jaundice", "vision", "weight loss", "not eating", "drooling"],
+    "embedding_text": "Somali cat. Medium semi-longhair, 6-10 lbs, life expectancy 12-16 years, senior at 11. Longhaired Abyssinian — shares ALL Abyssinian health risks. Prone to: renal amyloidosis (young-onset kidney disease), PKDef (hemolytic anemia), dental disease, PRA. 'Fox cat' — extremely active, bushy tail. Lethargy always concerning. Social — isolation causes depression. Common meds: renal diet, subQ fluids, dental care. Red flags: lethargy, increased drinking in young cat, pale gums/jaundice, vision changes."
+  }
+]

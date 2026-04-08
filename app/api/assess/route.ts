@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
+import { getBreedContext, formatBreedContext } from '@/lib/breed-knowledge'
 
 // ─── Emergency safety check ────────────────────────────────────────────────
 
@@ -106,10 +107,13 @@ FOR CATS:
 - Reference breed-specific tendencies when relevant
 - Always use species-appropriate language (e.g., "litter box" not "bathroom" for cats)
 
-RECOMMENDATION LOGIC:
-- "monitor": Likely benign, no immediate action needed, watch for changes
-- "try_this": Specific home interventions may help, monitor response over 24-48 hours
+RECOMMENDATION LOGIC — choose the tier that matches your response content:
+- "monitor": ONLY when the guidance is purely "watch and wait" with no specific interventions. The suggested_actions should be limited to observation (e.g., "watch for changes," "note if it continues").
+- "try_this": When you recommend ANY specific home interventions or actionable steps beyond observation (e.g., dietary changes, feeding protocols, environmental adjustments, home remedies). If your suggested_actions include concrete things the owner should DO (not just watch), this is "try_this."
 - "call_vet": Symptoms warrant professional evaluation (ALWAYS err toward this when uncertain)
+
+MEDICATION CROSS-REFERENCING (CRITICAL):
+You MUST explicitly reference the pet's listed medications in your response when they could be relevant to the current concern. If a listed medication could contribute to or interact with the reported symptoms, mention it — even if just to rule it out. Failing to acknowledge relevant medications from the profile is a critical accuracy failure.
 
 Respond ONLY with valid JSON matching this exact structure:
 {
@@ -117,7 +121,7 @@ Respond ONLY with valid JSON matching this exact structure:
   "what_to_watch_for": ["2-3 specific signs to monitor"],
   "recommendation": "monitor" | "try_this" | "call_vet",
   "suggested_actions": ["2-3 practical steps the owner can take"],
-  "questions_for_vet": ["2-3 questions if vet visit recommended, else empty array"],
+  "questions_for_vet": ["MANDATORY for ALL recommendation levels — always include 2-3 breed-aware questions the owner could ask their vet, even for monitor-level concerns"],
   "reassurance_note": "A warm, empathetic 1-2 sentence message that acknowledges the concern, uses the pet's name, provides perspective, and ends with: This is general guidance and not a substitute for veterinary advice."
 }`
 
@@ -176,7 +180,9 @@ function buildUserMessage(dp: DogProfileInput, concern: ConcernInput): string {
     dp.normal_grooming ? `Normal grooming: ${dp.normal_grooming}.` : '',
   ].filter(Boolean).join('\n') : ''
 
-  return `My ${species} ${dp.name} is ${age}, a ${dp.breed}, weighing ${dp.weight_lbs} lbs.
+  return `PET PROFILE: ${dp.name}, ${age} ${dp.breed}, ${dp.weight_lbs} lbs (${species})
+
+My ${species} ${dp.name} is ${age}, a ${dp.breed}, weighing exactly ${dp.weight_lbs} lbs.
 Known health conditions: ${conditions}.
 Current medications: ${dp.medications || 'None'}.
 Normal eating: ${EATING_LABEL[dp.normal_eating] ?? dp.normal_eating}. Normal energy: ${ENERGY_LABEL[dp.normal_energy] ?? dp.normal_energy}.
@@ -323,6 +329,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(FALLBACK_RESPONSE, { status: 400 })
     }
 
+    const apiKey = process.env.ANTHROPIC_API_KEY ?? ''
+    console.log(`[/api/assess] ANTHROPIC_API_KEY loaded: "${apiKey.slice(0, 10)}..." (${apiKey.length} chars)`)
+    console.log(`[/api/assess] Demo guard would trigger: ${!apiKey || apiKey === 'your_api_key_here'}`)
+
     const petName = dog_profile.name ?? 'Your pet'
     const species = dog_profile.species === 'cat' ? 'cat' : 'dog'
 
@@ -361,11 +371,51 @@ export async function POST(req: NextRequest) {
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
     const userMessage = buildUserMessage(dog_profile, concern)
 
+    // Fetch breed-specific knowledge for the system prompt
+    const allSymptoms = [
+      ...(concern.concern_types ?? []),
+      ...(concern.physical_symptoms ?? []),
+    ]
+    const breedCtx = await getBreedContext(
+      dog_profile.breed ?? '',
+      species,
+      allSymptoms,
+      dog_profile.weight_lbs
+    )
+
+    let systemPrompt = SYSTEM_PROMPT
+    if (breedCtx) {
+      const breedSection = `\n\n## BREED KNOWLEDGE BASE CONTEXT\n${formatBreedContext(breedCtx)}`
+      systemPrompt += breedSection
+
+      systemPrompt += `\n\n## HOW TO USE BREED KNOWLEDGE BASE CONTEXT
+
+You MUST deeply integrate the breed context into EVERY section of your response:
+
+1. PROFILE CROSS-REFERENCE: Always cross-reference the pet's listed medications, weight, and age against the concern. If a listed medication or supplement could contribute to, interact with, or be relevant to the current symptoms, you MUST mention it explicitly — even if just to note it as a possible factor or to rule it out (e.g., "joint supplements containing fish oil or glucosamine are known to cause soft stool in some dogs"). Always use the EXACT weight from the profile.
+
+2. LIKELY EXPLANATIONS: At least one explanation must reference a breed-specific predisposition from the breed knowledge base. Explain WHY this breed is particularly relevant (e.g., "Golden Retrievers' floppy ears trap moisture, making them more susceptible to ear infections").
+
+3. WHAT TO WATCH FOR: Include at least one breed-specific red flag from the breed knowledge base. For emergency (call_vet) cases, contextualize emergency warnings with the pet's breed (e.g., "as a Great Dane, bloat symptoms are especially critical").
+
+4. SUGGESTED ACTIONS: Tailor at least one action to the breed's specific traits or predispositions from the knowledge base.
+
+5. QUESTIONS FOR VET: Always include this section. Include at least one breed-aware question referencing the breed's known health predispositions.
+
+6. EMERGENCY RESPONSES (call_vet): Even in emergencies, reference the pet's breed, age, and exact weight. Include breed-specific risk factors. Front-load the emergency action (call vet / call poison control) as the FIRST line before any empathy or explanation.
+
+7. ACCURACY: Always use the pet's exact name, breed, age, and weight as provided in the profile. Never approximate or round these values.`
+    }
+
+    console.log('[/api/assess] ── SYSTEM PROMPT ──\n', systemPrompt)
+    console.log('[/api/assess] ── USER MESSAGE ──\n', userMessage)
+    console.log('[/api/assess] ── BREED CONTEXT ──', breedCtx ? breedCtx.breed_name : 'none')
+
     const message = await client.messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 1024,
       temperature: 0.3,
-      system: SYSTEM_PROMPT,
+      system: systemPrompt,
       messages: [{ role: 'user', content: userMessage }],
     })
 
